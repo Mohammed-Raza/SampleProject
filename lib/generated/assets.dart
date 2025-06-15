@@ -2,6 +2,12 @@
 class Assets {
   Assets._();
 
+  static const String gifs400 = 'assets/gifs/400.gif';
+  static const String gifs401 = 'assets/gifs/401.gif';
+  static const String gifs404 = 'assets/gifs/404.gif';
+  static const String gifs500 = 'assets/gifs/500.gif';
+  static const String gifsNoInternet = 'assets/gifs/no_internet.gif';
+  static const String gifsPageError = 'assets/gifs/page_error.gif';
   static const String imagesCakes = 'assets/images/cakes.jpg';
   static const String imagesFruits = 'assets/images/fruits.jpg';
   static const String imagesMilk = 'assets/images/milk.jpg';

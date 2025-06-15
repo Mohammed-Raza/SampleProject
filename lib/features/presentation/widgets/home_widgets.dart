@@ -1,29 +1,25 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sample_project/config/routes/routes.dart';
+import 'package:sample_project/core/extensions/widget_extensions.dart';
+import 'package:sample_project/core/utils/enums.dart';
 
 class GroceryCard extends StatelessWidget {
   final String name, assetPath;
-  const GroceryCard({super.key, required this.name, required this.assetPath});
+  final GroceryType groceryType;
+  const GroceryCard(
+      {super.key,
+      required this.name,
+      required this.assetPath,
+      required this.groceryType});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.teal.withValues(alpha: 0.4),
-              spreadRadius: 2,
-              blurRadius: 2,
-              offset: const Offset(2, 3), // changes position of shadow
-            ),
-          ]),
-      alignment: Alignment.center,
-      padding: const EdgeInsets.all(10),
+    return InkWell(
+      onTap: () => context.goNamed(Routes.groceriesMain, extra: groceryType),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ClipOval(
               child: Image.asset(assetPath,
@@ -32,7 +28,7 @@ class GroceryCard extends StatelessWidget {
           Text(name,
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500))
         ],
-      ),
+      ).mainDecorations(),
     );
   }
 }
@@ -40,7 +36,8 @@ class GroceryCard extends StatelessWidget {
 class BuildActiveItemView extends StatelessWidget {
   final String label;
   final IconData icon;
-  const BuildActiveItemView({super.key, required this.label, required this.icon});
+  const BuildActiveItemView(
+      {super.key, required this.label, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +50,8 @@ class BuildActiveItemView extends StatelessWidget {
           children: [
             Icon(icon, color: Colors.white),
             const SizedBox(width: 10),
-            Text(label, style: const TextStyle(fontSize: 18, color: Colors.white))
+            Text(label,
+                style: const TextStyle(fontSize: 18, color: Colors.white))
           ],
         ),
       ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sample_project/core/utils/enums.dart';
+import 'package:sample_project/features/presentation/pages/dashboard/cart.dart';
 import '../../../../generated/assets.dart';
 import '../../widgets/home_widgets.dart';
 import 'orders.dart';
@@ -14,7 +16,8 @@ class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
   static const List<Widget> widgets = <Widget>[
     DashboardScreen(),
-    OrdersScreen()
+    OrdersScreen(),
+    CartPage()
   ];
 
   @override
@@ -34,7 +37,9 @@ class _HomePageState extends State<HomePage> {
               items: <BottomNavigationBarItem>[
                 _bottomNavigationItem(label: 'Home', icon: Icons.home),
                 _bottomNavigationItem(
-                    label: 'Orders', icon: Icons.assignment_outlined)
+                    label: 'Orders', icon: Icons.assignment_outlined),
+                _bottomNavigationItem(
+                    label: 'Cart', icon: Icons.shopping_cart_outlined)
               ],
               currentIndex: selectedIndex,
               selectedItemColor: Colors.amber[800],
@@ -77,7 +82,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
       child: Column(
         children: [
           Expanded(
@@ -86,13 +91,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
               crossAxisCount: 2,
               crossAxisSpacing: 20,
               mainAxisSpacing: 20,
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               children: const [
                 GroceryCard(
-                    name: 'Vegetables', assetPath: Assets.imagesVeggies),
-                GroceryCard(name: 'Fruits', assetPath: Assets.imagesFruits),
+                    name: 'Vegetables',
+                    assetPath: Assets.imagesVeggies,
+                    groceryType: GroceryType.veggies),
                 GroceryCard(
-                    name: 'Milk Products', assetPath: Assets.imagesMilk),
-                GroceryCard(name: 'Cookies', assetPath: Assets.imagesCakes)
+                    name: 'Fruits',
+                    assetPath: Assets.imagesFruits,
+                    groceryType: GroceryType.fruits),
+                GroceryCard(
+                    name: 'Milk Products',
+                    assetPath: Assets.imagesMilk,
+                    groceryType: GroceryType.milkProducts),
+                GroceryCard(
+                    name: 'Cookies',
+                    assetPath: Assets.imagesCakes,
+                    groceryType: GroceryType.cookies)
               ],
             ),
           ),
