@@ -9,7 +9,10 @@ class LocalJsons {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsmeuI2GWlrmzmc0O8iXrneFlqQ4kZewfbrA&s",
           "https://oasisonline.com.au/cdn/shop/products/bananas.jpg?v=1613482485"
         ],
-        "prize": 100,
+        "prize": 6.7,
+        "content":
+            "They are a good source of potassium, which supports heart health and blood "
+                "pressure regulation, and fiber, which aids digestion and can help manage blood sugar levels"
       },
       {
         "id": 2,
@@ -19,7 +22,10 @@ class LocalJsons {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4gaUtn0o-pPqXPXksLdvzjsl9pS0eDJUtfWz9RNl6QGDtPzjKN-3kOiNJ4alEEOKpVoE&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXaBT3fuNIc4mROOfXsI_MSWhSfkQALKbHXicWpdNSvR-8oY6KCPBtCPk8GWK9qb_uveA&usqp=CAU"
         ],
-        "prize": 200,
+        "prize": 45,
+        "content":
+            "Apples offer a wide range of health benefits, including improved heart health, "
+                "digestive health, and potential cancer prevention."
       },
       {
         "id": 3,
@@ -29,8 +35,10 @@ class LocalJsons {
           "https://www.organics.ph/cdn/shop/products/mango-ripe-250grams-per-piece-fruits-vegetables-fresh-produce-979218.jpg?v=1601479990",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQynN7WeP_Obtg8W2gkP6e_rokTk_uIVFEqljW7Sh1f6WJMNr_vRDGJJq1KArxhlg5mlrU&usqp=CAU"
         ],
-        "prize": 150,
-        "tax": 20
+        "prize": 55.5,
+        "content":
+            "Mangoes offer a variety of health benefits due to their rich nutrient profile. "
+                "They are packed with vitamins A and C, which support immune function and skin health."
       },
       {
         "id": 4,
@@ -40,8 +48,10 @@ class LocalJsons {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVxjDxn254yJvnKWeZCVM6TBDIbc2VOdw7jg&s",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQK0M26PsIgrt8W6J1RKZVpaNSXZ_iRVRnzTx3SYTzDdIPz2mlg_tpVH0kJMFFrPLHxss&usqp=CAU"
         ],
-        "prize": 300,
-        "tax": 20
+        "prize": 76.45,
+        "content":
+            "These benefits include boosting immunity, promoting heart health, improving digestion, "
+                "enhancing skin health, and potentially reducing the risk of chronic diseases "
       }
     ]
   };
@@ -57,6 +67,8 @@ class LocalJsons {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNUqh8fX58X7VRPQ3ZYUVte3f_Ywf5v63TdQ&s"
         ],
         "prize": 100,
+        "content": "They are especially high in lycopene, a plant compound "
+            "linked to improved heart health, cancer prevention, and protection against sunburns"
       },
       {
         "id": 2,
@@ -67,6 +79,8 @@ class LocalJsons {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLiVylKtwyt6VSdnjTJ347pVkqvTemRk28isS45MsV7aN8Nv2UOYZfaPnqhgNFOlM_MA4&usqp=CAU"
         ],
         "prize": 200,
+        "content":
+            "They're rich in vitamin C, which is an antioxidant. Potatoes were a life-saving food source in early times because the vitamin C prevented scurvy"
       },
       {
         "id": 3,
@@ -77,7 +91,8 @@ class LocalJsons {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT19R1bEPEcwDc0VPL5P3gU9IIAJh9xBItCDawUtMm0RDe2Jx-e8j0shlv8Dh8RFtcPWgc&usqp=CAU"
         ],
         "prize": 100,
-        "tax": 20
+        "content":
+            "Cucumbers are a good source of several vitamins and minerals, including Vitamin K, Vitamin C, Vitamin A, and potassium, as well as magnesium, and manganese"
       },
       {
         "id": 4,
@@ -88,7 +103,8 @@ class LocalJsons {
           "https://fruitboxco.com/cdn/shop/products/2_b4b4926f-fe4a-495c-9656-98db6ca85fc9_800x.png?v=1643139469"
         ],
         "prize": 100,
-        "tax": 20
+        "content":
+            " It's a good source of vitamins (A, C, K, B6), minerals (folate, calcium, magnesium, potassium), and fiber, while being low in calories"
       }
     ]
   };
@@ -104,6 +120,7 @@ class LocalJsons {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSssC0zlb30WufGgh33CcG_NbAAxfSP29VW7b6-lw3mUmFxjq6FHOGD8x8mGc1LBbGgvpo&usqp=CAU"
         ],
         "prize": 100,
+        "content": "Millets offer numerous health benefits due to their rich nutrient profile, including being a good source of protein, fiber, and essential vitamins and minerals"
       },
       {
         "id": 2,
@@ -114,6 +131,7 @@ class LocalJsons {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFlgYuCKFtOzn2Pwkt1GekEZMqvuQmvA3B24fVGWyXupG62bHfS4XU1NOWLH3vWADpFLE&usqp=CAU"
         ],
         "prize": 200,
+        "content": "Basmati rice offers several health benefits including promoting heart health, aiding digestion, and potentially assisting with weight management"
       },
       {
         "id": 3,
@@ -124,7 +142,7 @@ class LocalJsons {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZQva45a0JmhiZRDuEQMNIFZlPVinCeaylNg&s"
         ],
         "prize": 100,
-        "tax": 20
+        "content": "Wheat, a staple grain, offers several health benefits due to its rich nutrient profile. It's a good source of carbohydrates, providing energy, and contains various vitamins and minerals"
       },
       {
         "id": 4,
@@ -135,7 +153,7 @@ class LocalJsons {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-YFV9ehiD9fYp-LzOZQ0qKMexjrIqUWE5uw&s"
         ],
         "prize": 100,
-        "tax": 20
+        "content": "Oats are a good source of nutrients and offer various health benefits, including heart health, weight management, and blood sugar control."
       }
     ]
   };
@@ -151,6 +169,8 @@ class LocalJsons {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8rl3XBQxCE_hPSDFd8_XnqUSDbGzORgVWTA&s"
         ],
         "prize": 100,
+        "content":
+            "Additionally, milk may play a role in heart health, reducing the risk of cardiovascular disease and high blood pressure"
       },
       {
         "id": 2,
@@ -161,6 +181,8 @@ class LocalJsons {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcggnt2RAYKO1FTsWimZKsaImJD4J5p5lug4xcqr1BVQTga-8OOt4LKgHUouaCnEnEFvg&usqp=CAU"
         ],
         "prize": 200,
+        "content":
+            " It aids digestion, boosts immunity, strengthens bones and teeth, promotes weight management, and can improve skin health"
       },
       {
         "id": 3,
@@ -171,7 +193,8 @@ class LocalJsons {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNMyfvgGLJiKaceLlgZ0rq9xTuVSd1yEE1-A&s"
         ],
         "prize": 100,
-        "tax": 20
+        "content":
+            "During weight loss, protein is crucial, and paneer might be an excellent vegetarian source of protein. Thus, adding paneer to your diet regime might help you lose body weight."
       },
       {
         "id": 4,
@@ -182,7 +205,8 @@ class LocalJsons {
           "https://rukminim2.flixcart.com/image/850/1000/ktlu9ow0/ghee/b/k/q/agmark-pouch-heritage-original-imag6wzdrbbydq2h.jpeg?q=90&crop=false"
         ],
         "prize": 100,
-        "tax": 20
+        "content":
+            "Ghee, a type of clarified butter, is lauded for its potential health benefits, including supporting heart health, aiding digestion, and potentially boosting the immune system"
       }
     ]
   };

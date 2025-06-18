@@ -1,10 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
 import 'package:sample_project/core/error/exception_handler.dart';
 import 'package:sample_project/core/utils/enums.dart';
 import 'package:sample_project/features/data/models/groceries_model.dart';
 import 'package:sample_project/features/domain/usecases/grocery_usecases.dart';
-
 import '../../../../core/utils/records_typedefs.dart';
 
 part 'groceries_event.dart';
@@ -14,9 +13,14 @@ class GroceriesBloc extends Bloc<GroceriesEvent, GroceriesState> {
   GroceriesBloc(this._groceryUserCases) : super(GroceriesInitial()) {
     on<GroceriesEvent>((event, emit) {});
     on<LoadGroceriesEvent>(_loadGroceries);
+    on<AddOutQtyEvent>(_onClickOfAddOutQty);
+    on<SubtractOutQtyEvent>(_onClickOfSubtractOutQty);
+    on<ChangeOutQtyEvent>(_onChangeOfTextField);
   }
 
   final GroceryUserCases _groceryUserCases;
+
+  List<GroceriesModel> groceries = [];
 
   ExceptionHandler exceptionHandler = ExceptionHandler();
 
@@ -30,9 +34,43 @@ class GroceriesBloc extends Bloc<GroceriesEvent, GroceriesState> {
       final result =
           await _groceryUserCases.loadGroceryItems(event.groceryType);
 
+      groceries = result;
+
       emit(GroceryItemsSuccess(result));
     } catch (e) {
       emit(GroceryItemsError(exceptionHandler.getPageErrorDetails(e)));
     }
+  }
+
+  /// On perform of out qty addition
+  void _onClickOfAddOutQty(AddOutQtyEvent event, Emitter<GroceriesState> emit) {
+    ++event.grocery.outQty;
+    _setOutQtyValue(event.grocery, emit);
+  }
+
+  /// On perform of out qty subtraction
+  void _onClickOfSubtractOutQty(
+      SubtractOutQtyEvent event, Emitter<GroceriesState> emit) {
+    if (event.grocery.outQty <= 0) return;
+    --event.grocery.outQty;
+    _setOutQtyValue(event.grocery, emit);
+  }
+
+  /// On change of out qty value
+  void _onChangeOfTextField(
+      ChangeOutQtyEvent event, Emitter<GroceriesState> emit) {
+    event.grocery.outQty =
+        int.parse(event.value.trim().isEmpty ? '0' : event.value);
+    _setOutQtyValue(event.grocery, emit);
+  }
+
+  /// Method is to set out qty value
+  void _setOutQtyValue(GroceriesModel grocery, Emitter<GroceriesState> emit) {
+    grocery.totalAmount = grocery.prize! * grocery.outQty;
+    grocery.controller.text =
+        (grocery.outQty == 0) ? '' : grocery.outQty.toString();
+    grocery.controller.selection = TextSelection.fromPosition(
+        TextPosition(offset: grocery.controller.text.length));
+    emit(GroceryItemsSuccess(groceries));
   }
 }

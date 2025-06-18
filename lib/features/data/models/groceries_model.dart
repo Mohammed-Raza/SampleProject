@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'groceries_model.g.dart';
@@ -12,7 +13,16 @@ class GroceriesModel {
 
   final double? prize;
 
-  const GroceriesModel(this.id,
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  TextEditingController controller = TextEditingController();
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  double totalAmount = 0.0;
+
+  @JsonKey(includeFromJson: false)
+  int outQty = 0;
+
+  GroceriesModel(this.id,
       {this.name = 'NA',
       this.content = 'NA',
       this.images = const [],
