@@ -4,8 +4,8 @@ import 'package:sample_project/config/routes/routing.dart';
 import 'package:sample_project/features/data/repository/groceries_repo_impl.dart';
 import 'package:sample_project/features/domain/usecases/grocery_usecases.dart';
 import 'package:sample_project/features/presentation/bloc/groceries/groceries_bloc.dart';
-
-import 'features/presentation/pages/dashboard/home.dart';
+import 'l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,6 +27,18 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
           routerConfig: Routing.router,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('en'), // English
+            Locale('te'), // Telugu
+            Locale('hi'), // Hindi
+            Locale('ur'), // Urdu
+          ],
           theme: ThemeData(
               // This is the theme of your application.
               //
