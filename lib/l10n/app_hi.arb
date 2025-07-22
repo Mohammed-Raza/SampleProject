@@ -1,3 +1,6 @@
 {
-  "helloWorld": "हैलो वर्ल्ड!"
+  "vegetables" :"सब्ज़ियाँ",
+  "fruits" :"फल",
+  "milkProducts" :"दुग्ध उत्पाद",
+  "cookies" :"कुकीज़"
 }

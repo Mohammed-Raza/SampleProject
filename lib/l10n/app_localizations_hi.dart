@@ -9,5 +9,14 @@ class AppLocalizationsHi extends AppLocalizations {
   AppLocalizationsHi([String locale = 'hi']) : super(locale);
 
   @override
-  String get helloWorld => 'हैलो वर्ल्ड!';
+  String get vegetables => 'सब्ज़ियाँ';
+
+  @override
+  String get fruits => 'फल';
+
+  @override
+  String get milkProducts => 'दुग्ध उत्पाद';
+
+  @override
+  String get cookies => 'कुकीज़';
 }

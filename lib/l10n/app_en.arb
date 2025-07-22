@@ -1,6 +1,6 @@
 {
-  "helloWorld": "Hello World!",
-  "@helloWorld": {
-    "description": "The conventional newborn programmer greeting"
-  }
+  "vegetables" :"Vegetables",
+  "fruits" :"Fruits",
+  "milkProducts" :"Milk Products",
+  "cookies" :"Cookies"
 }

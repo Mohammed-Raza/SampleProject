@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sample_project/core/mixins/language_mixin.dart';
 import 'package:sample_project/core/utils/enums.dart';
 import 'package:sample_project/features/presentation/pages/dashboard/cart.dart';
+import '../../../../config/routes/routes.dart';
 import '../../../../generated/assets.dart';
 import '../../widgets/home_widgets.dart';
 import 'orders.dart';
@@ -26,6 +29,11 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         appBar: AppBar(
             title: const Text('Home Page'),
+            actions: [
+              IconButton(
+                  onPressed: () => context.goNamed(Routes.profile),
+                  icon: const Icon(Icons.person, size: 30))
+            ],
             backgroundColor: Theme.of(context).colorScheme.inversePrimary),
         bottomNavigationBar: ClipRRect(
           borderRadius: const BorderRadius.only(
@@ -78,7 +86,7 @@ class DashboardScreen extends StatefulWidget {
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _DashboardScreenState extends State<DashboardScreen> with LanguageMixin {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -92,21 +100,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
               crossAxisSpacing: 20,
               mainAxisSpacing: 20,
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              children: const [
+              children: [
                 GroceryCard(
-                    name: 'Vegetables',
+                    name: translate(context).vegetables,
                     assetPath: Assets.imagesVeggies,
                     groceryType: GroceryType.veggies),
                 GroceryCard(
-                    name: 'Fruits',
+                    name: translate(context).fruits,
                     assetPath: Assets.imagesFruits,
                     groceryType: GroceryType.fruits),
                 GroceryCard(
-                    name: 'Milk Products',
+                    name: translate(context).milkProducts,
                     assetPath: Assets.imagesMilk,
                     groceryType: GroceryType.milkProducts),
                 GroceryCard(
-                    name: 'Cookies',
+                    name: translate(context).cookies,
                     assetPath: Assets.imagesCakes,
                     groceryType: GroceryType.cookies)
               ],
