@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sample_project/core/mixins/language_mixin.dart';
 import 'package:sample_project/core/utils/enums.dart';
 import 'package:sample_project/features/presentation/pages/dashboard/cart.dart';
+import 'package:sample_project/features/presentation/providers/language_provider.dart';
 import '../../../../config/routes/routes.dart';
 import '../../../../generated/assets.dart';
 import '../../widgets/home_widgets.dart';
@@ -26,7 +28,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
             title: const Text('Home Page'),
             actions: [

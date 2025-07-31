@@ -5,7 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_project/core/mixins/language_mixin.dart';
 import 'package:sample_project/features/presentation/pages/profile/language.dart';
+import 'package:sample_project/features/presentation/pages/profile/theme_screen.dart';
 import 'package:sample_project/features/presentation/providers/language_provider.dart';
+import 'package:sample_project/features/presentation/providers/theme_provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -18,8 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen> with LanguageMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal.shade50,
-      appBar: AppBar(backgroundColor: Colors.teal.shade50),
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -30,10 +31,12 @@ class _ProfileScreenState extends State<ProfileScreen> with LanguageMixin {
               padding: const EdgeInsets.fromLTRB(12, 15, 0, 15),
               child: Column(
                 children: [
-                  const BuildListTile(
-                      icon: FontAwesomeIcons.palette,
-                      label: 'Appearance',
-                      text: 'Light'),
+                  Consumer<ThemeProvider>(
+                      builder: (context, provider, child) => BuildListTile(
+                          icon: FontAwesomeIcons.palette,
+                          label: 'Appearance',
+                          text: provider.getSelectedTheme(),
+                          onTap: showThemeBottomSheet)),
                   Consumer<LanguageProvider>(
                       builder: (context, provider, child) => BuildListTile(
                           icon: FontAwesomeIcons.language,
@@ -51,6 +54,18 @@ class _ProfileScreenState extends State<ProfileScreen> with LanguageMixin {
         ),
       ),
     );
+  }
+
+  void showThemeBottomSheet() {
+    showModalBottomSheet(
+        useSafeArea: true,
+        isScrollControlled: true,
+        showDragHandle: true,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(10), topLeft: Radius.circular(10))),
+        context: context,
+        builder: (context) => const ThemeScreen());
   }
 }
 

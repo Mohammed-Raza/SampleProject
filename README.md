@@ -14,3 +14,9 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+# Currently Available Features:
+1. **Theme**
+2. **Routing** - Declarative Routing using GoRouter
+3. **Localization** - Bidirectional Support
+4. **Bloc Architecture** - by applying principles of Clean Architecture

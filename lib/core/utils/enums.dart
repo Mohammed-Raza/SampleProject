@@ -12,3 +12,5 @@ enum DataErrorStateType {
   pageNotFound,
   none
 }
+
+enum ThemeType { light, dark, system }

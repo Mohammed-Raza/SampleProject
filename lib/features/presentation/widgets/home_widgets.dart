@@ -18,17 +18,23 @@ class GroceryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => context.goNamed(Routes.groceriesMain, extra: groceryType),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ClipOval(
-              child: Image.asset(assetPath,
-                  height: 130, width: 130, fit: BoxFit.cover)),
-          const Gap(10),
-          Text(name,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500))
-        ],
-      ).mainDecorations(),
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClipOval(
+                  child: Image.asset(assetPath,
+                      height: 130, width: 130, fit: BoxFit.cover)),
+              const Gap(10),
+              Text(name,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w500))
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
