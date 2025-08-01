@@ -35,7 +35,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
           ),
           const CommonDivider(),
           const _BuildRadioButtons(),
-          const Gap(10),
+          const Gap(20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 7),
             child: ElevatedButton(
@@ -96,7 +96,7 @@ class _GetRadioViewState extends State<_GetRadioView> {
       return InkWell(
         onTap: () => provider.onChangeOfRadioButton(widget.type),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

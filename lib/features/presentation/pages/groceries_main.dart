@@ -34,10 +34,7 @@ class _GroceriesMainScreenState extends State<GroceriesMainScreen> {
   Widget build(BuildContext context) {
     var bloc = context.read<GroceriesBloc>();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.teal.shade200,
-        title: Text(widget.groceryType.name.toUpperCase()),
-      ),
+      appBar: AppBar(title: Text(widget.groceryType.name.toUpperCase())),
       body: Padding(
         padding: EdgeInsets.fromLTRB(10, 5, 10, context.bottomPadding),
         child: BlocBuilder<GroceriesBloc, GroceriesState>(
@@ -85,35 +82,40 @@ class _GroceryItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var bloc = context.read<GroceriesBloc>();
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        spacing: 10,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _BuildImagesCarousel(images: grocery.images!),
-          Text(grocery.name!,
-              style: GoogleFonts.poppins(
-                  fontSize: 17, fontWeight: FontWeight.bold)),
-          Text(grocery.content!, style: GoogleFonts.poppins(fontSize: 14)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                  '${Constants.rupee} ${CommonMixin.getNumberWithCommas(grocery.totalAmount.toStringAsFixed(2))}',
-                  style: GoogleFonts.alatsi(
-                      fontWeight: FontWeight.w500, fontSize: 20, color: Colors.teal)),
-              AddQtyTextField(
-                controller: grocery.controller,
-                onAdd: () => bloc.add(AddOutQtyEvent(grocery)),
-                onSubtract: () => bloc.add(SubtractOutQtyEvent(grocery)),
-                onClickOfTextField: (val) =>
-                    bloc.add(ChangeOutQtyEvent(grocery, val)),
-              )
-            ],
-          )
-        ],
-      ).mainDecorations(),
+    return Card(
+      margin: const EdgeInsets.all(8),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          spacing: 10,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _BuildImagesCarousel(images: grocery.images!),
+            Text(grocery.name!,
+                style: GoogleFonts.poppins(
+                    fontSize: 17, fontWeight: FontWeight.bold)),
+            Text(grocery.content!, style: GoogleFonts.poppins(fontSize: 14)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                    '${Constants.rupee} ${CommonMixin.getNumberWithCommas(grocery.totalAmount.toStringAsFixed(2))}',
+                    style: GoogleFonts.alatsi(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                        color: Colors.teal)),
+                AddQtyTextField(
+                  controller: grocery.controller,
+                  onAdd: () => bloc.add(AddOutQtyEvent(grocery)),
+                  onSubtract: () => bloc.add(SubtractOutQtyEvent(grocery)),
+                  onClickOfTextField: (val) =>
+                      bloc.add(ChangeOutQtyEvent(grocery, val)),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 }

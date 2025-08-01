@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:sample_project/core/extensions/build_extensions.dart';
 import 'package:sample_project/core/extensions/context_extension.dart';
 import 'package:sample_project/core/mixins/language_mixin.dart';
 import 'package:sample_project/core/utils/constants.dart';
@@ -26,7 +27,6 @@ class _LanguageScreenState extends State<LanguageScreen> with LanguageMixin {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: Colors.white,
       insetPadding: const EdgeInsets.all(10),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: SizedBox(
@@ -126,7 +126,8 @@ class _LanguageCard extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                  color: isSelected ? color : Colors.black26, width: 2)),
+                  color: isSelected ? color : context.languageBorderColor,
+                  width: 2)),
           padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
           child: Column(
             spacing: 10,

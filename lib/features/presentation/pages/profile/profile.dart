@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:sample_project/core/extensions/context_extension.dart';
 import 'package:sample_project/core/mixins/language_mixin.dart';
 import 'package:sample_project/features/presentation/pages/profile/language.dart';
 import 'package:sample_project/features/presentation/pages/profile/theme_screen.dart';
@@ -20,34 +22,39 @@ class _ProfileScreenState extends State<ProfileScreen> with LanguageMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: EdgeInsets.fromLTRB(
+            12, context.topPadding, 12, context.bottomPadding),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: 10,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              padding: const EdgeInsets.fromLTRB(12, 15, 0, 15),
-              child: Column(
-                children: [
-                  Consumer<ThemeProvider>(
-                      builder: (context, provider, child) => BuildListTile(
-                          icon: FontAwesomeIcons.palette,
-                          label: 'Appearance',
-                          text: provider.getSelectedTheme(),
-                          onTap: showThemeBottomSheet)),
-                  Consumer<LanguageProvider>(
-                      builder: (context, provider, child) => BuildListTile(
-                          icon: FontAwesomeIcons.language,
-                          label: 'Languages',
-                          text: getSelectedLanguage(
-                              provider.selectedLanguageCode),
-                          showDivider: false,
-                          onTap: () => showDialog(
-                              context: context,
-                              builder: (context) => const LanguageScreen())))
-                ],
+            IconButton(
+                onPressed: () => context.pop(),
+                icon: const Icon(Icons.arrow_back)),
+            Card(
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(12, 15, 0, 15),
+                child: Column(
+                  children: [
+                    Consumer<ThemeProvider>(
+                        builder: (context, provider, child) => BuildListTile(
+                            icon: FontAwesomeIcons.palette,
+                            label: 'Appearance',
+                            text: provider.getSelectedTheme(),
+                            onTap: showThemeBottomSheet)),
+                    Consumer<LanguageProvider>(
+                        builder: (context, provider, child) => BuildListTile(
+                            icon: FontAwesomeIcons.language,
+                            label: 'Languages',
+                            text: getSelectedLanguage(
+                                provider.selectedLanguageCode),
+                            showDivider: false,
+                            onTap: () => showDialog(
+                                context: context,
+                                builder: (context) => const LanguageScreen())))
+                  ],
+                ),
               ),
             )
           ],
@@ -103,9 +110,7 @@ class BuildListTile extends StatelessWidget {
                   children: [
                     Text(label,
                         style: GoogleFonts.alatsi(
-                            fontSize: 18,
-                            color: Colors.black.withValues(alpha: 0.7),
-                            fontWeight: FontWeight.w500)),
+                            fontSize: 18, fontWeight: FontWeight.w500)),
                     Row(
                       spacing: 10,
                       children: [
