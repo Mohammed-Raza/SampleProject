@@ -14,3 +14,5 @@ enum DataErrorStateType {
 }
 
 enum ThemeType { light, dark, system }
+
+enum DeviceResolutionType { mobile, tab, desktop }

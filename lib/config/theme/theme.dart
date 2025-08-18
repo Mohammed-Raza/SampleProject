@@ -9,6 +9,15 @@ class CustomTheme {
         extensions: const <ThemeExtension<dynamic>>[
           CustomThemeExtensions(greyWithColor: Colors.black26)
         ],
+        hoverColor: Colors.teal.shade200,
+        cardTheme: CardTheme(
+            color: Colors.white,
+            shadowColor: Colors.tealAccent,
+            elevation: 5,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            margin: EdgeInsets.zero,
+            surfaceTintColor: Colors.white),
         fontFamily: GoogleFonts.poppins().fontFamily,
         elevatedButtonTheme: _elevatedButtonTheme,
         scaffoldBackgroundColor: Colors.white,
@@ -16,14 +25,7 @@ class CustomTheme {
             elevation: 5, backgroundColor: Colors.amber.shade200),
         appBarTheme: AppBarTheme(backgroundColor: Colors.teal.shade200),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
-        dialogTheme: const DialogThemeData(backgroundColor: Colors.white),
-        cardTheme: CardThemeData(
-            color: Colors.white,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            margin: EdgeInsets.zero,
-            elevation: 5,
-            shadowColor: Colors.teal.withValues(alpha: 0.4)));
+        dialogTheme: const DialogThemeData(backgroundColor: Colors.white));
   }
 
   static ThemeData darkThemeData() {
@@ -53,13 +55,14 @@ class CustomTheme {
 
 @immutable
 class CustomThemeExtensions extends ThemeExtension<CustomThemeExtensions> {
-  const CustomThemeExtensions({this.greyWithColor});
+  const CustomThemeExtensions({required this.greyWithColor});
 
-  final Color? greyWithColor;
+  final Color greyWithColor;
 
   @override
-  ThemeExtension<CustomThemeExtensions> copyWith({Color? headerColor}) {
-    return const CustomThemeExtensions();
+  ThemeExtension<CustomThemeExtensions> copyWith({Color? greyWithColor}) {
+    return CustomThemeExtensions(
+        greyWithColor: greyWithColor ?? this.greyWithColor);
   }
 
   @override
@@ -68,6 +71,6 @@ class CustomThemeExtensions extends ThemeExtension<CustomThemeExtensions> {
     if (other is! CustomThemeExtensions) {
       return this;
     }
-    return const CustomThemeExtensions();
+    return CustomThemeExtensions(greyWithColor: greyWithColor);
   }
 }

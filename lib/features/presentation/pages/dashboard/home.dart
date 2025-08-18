@@ -4,6 +4,7 @@ import 'package:sample_project/core/mixins/language_mixin.dart';
 import 'package:sample_project/core/utils/enums.dart';
 import 'package:sample_project/features/presentation/pages/dashboard/cart.dart';
 import '../../../../config/routes/routes.dart';
+import '../../../../core/device/adaptive_layout_builder.dart';
 import '../../../../generated/assets.dart';
 import '../../widgets/home_widgets.dart';
 import 'orders.dart';
@@ -84,35 +85,43 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> with LanguageMixin {
   @override
   Widget build(BuildContext context) {
+    List<Widget> groceryCards = [
+      GroceryCard(
+          name: translate(context).vegetables,
+          assetPath: Assets.imagesVeggies,
+          groceryType: GroceryType.veggies),
+      GroceryCard(
+          name: translate(context).fruits,
+          assetPath: Assets.imagesFruits,
+          groceryType: GroceryType.fruits),
+      GroceryCard(
+          name: translate(context).milkProducts,
+          assetPath: Assets.imagesMilk,
+          groceryType: GroceryType.milkProducts),
+      GroceryCard(
+          name: translate(context).cookies,
+          assetPath: Assets.imagesCakes,
+          groceryType: GroceryType.cookies)
+    ];
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       child: Column(
         children: [
           Expanded(
-            child: GridView.count(
-              childAspectRatio: 0.9,
-              crossAxisCount: 2,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              children: [
-                GroceryCard(
-                    name: translate(context).vegetables,
-                    assetPath: Assets.imagesVeggies,
-                    groceryType: GroceryType.veggies),
-                GroceryCard(
-                    name: translate(context).fruits,
-                    assetPath: Assets.imagesFruits,
-                    groceryType: GroceryType.fruits),
-                GroceryCard(
-                    name: translate(context).milkProducts,
-                    assetPath: Assets.imagesMilk,
-                    groceryType: GroceryType.milkProducts),
-                GroceryCard(
-                    name: translate(context).cookies,
-                    assetPath: Assets.imagesCakes,
-                    groceryType: GroceryType.cookies)
-              ],
+            child: AdaptiveLayoutBuilder(
+              builder: (context, deviceType) => GridView.builder(
+                  itemCount: groceryCards.length,
+                  addAutomaticKeepAlives: true,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 20,
+                      crossAxisCount: switch (deviceType) {
+                        DeviceResolutionType.mobile => 2,
+                        DeviceResolutionType.tab => 3,
+                        DeviceResolutionType.desktop => 5
+                      }),
+                  itemBuilder: (_, index) => groceryCards[index]),
             ),
           ),
         ],
