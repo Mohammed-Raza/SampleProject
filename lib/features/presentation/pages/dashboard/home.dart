@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sample_project/core/environments/environment.dart';
 import 'package:sample_project/core/mixins/language_mixin.dart';
 import 'package:sample_project/core/utils/enums.dart';
 import 'package:sample_project/features/presentation/pages/dashboard/cart.dart';
@@ -27,11 +28,20 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Home Page'), actions: [
-          IconButton(
-              onPressed: () => context.goNamed(Routes.profile),
-              icon: const Icon(Icons.person, size: 30))
-        ]),
+        appBar: AppBar(
+            title: Text(Environment().configuration.orgName),
+            leading: Padding(
+              padding: const EdgeInsets.all(7),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(Environment().configuration.logoPath,
+                      height: 35, width: 35, alignment: Alignment.center)),
+            ),
+            actions: [
+              IconButton(
+                  onPressed: () => context.goNamed(Routes.profile),
+                  icon: const Icon(Icons.person, size: 30))
+            ]),
         bottomNavigationBar: ClipRRect(
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(15), topRight: Radius.circular(15)),
@@ -116,6 +126,7 @@ class _DashboardScreenState extends State<DashboardScreen> with LanguageMixin {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       mainAxisSpacing: 20,
                       crossAxisSpacing: 20,
+                      childAspectRatio: 0.9,
                       crossAxisCount: switch (deviceType) {
                         DeviceResolutionType.mobile => 2,
                         DeviceResolutionType.tab => 3,

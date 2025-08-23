@@ -46,6 +46,7 @@ dependencies:
   flutter_localization:
   font_awesome_flutter:
   flutter_secure_storage: ^9.2.4
+  flutter_launcher_icons: ^0.14.4
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -111,4 +112,5 @@ flutter:
     - assets/
     - assets/images/
     - assets/gifs/
+    - assets/logos/
 

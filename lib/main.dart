@@ -8,10 +8,12 @@ import 'package:sample_project/features/domain/usecases/grocery_usecases.dart';
 import 'package:sample_project/features/presentation/bloc/groceries/groceries_bloc.dart';
 import 'package:sample_project/features/presentation/providers/language_provider.dart';
 import 'package:sample_project/features/presentation/providers/theme_provider.dart';
+import 'core/environments/environment.dart';
 import 'core/mixins/language_mixin.dart';
 import 'l10n/app_localizations.dart';
 
 void main() {
+  Environment().configure();
   runApp(const MyApp());
 }
 

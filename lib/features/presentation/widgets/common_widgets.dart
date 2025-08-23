@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +10,7 @@ class CircularIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Transform.scale(
-          scale: Platform.isIOS ? 0.9 : 0.6,
+          scale: 0.6,
           child: CircularProgressIndicator.adaptive(
               backgroundColor: color ?? Colors.black)),
     );
@@ -73,4 +72,3 @@ class CommonDivider extends StatelessWidget {
     return const Divider(thickness: 0.8);
   }
 }
-

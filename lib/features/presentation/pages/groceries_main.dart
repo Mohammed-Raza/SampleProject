@@ -2,8 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sample_project/core/device/adaptive_layout_builder.dart';
 import 'package:sample_project/core/extensions/context_extension.dart';
-import 'package:sample_project/core/extensions/widget_extensions.dart';
 import 'package:sample_project/core/mixins/common_mixin.dart';
 import 'package:sample_project/core/utils/constants.dart';
 import 'package:sample_project/core/utils/enums.dart';
@@ -51,14 +51,30 @@ class _GroceriesMainScreenState extends State<GroceriesMainScreen> {
                         child: Text('No grocery items are available to show'));
                   }
                   return RefreshIndicator(
-                      child: ListView.builder(
-                          padding: EdgeInsets.zero,
-                          itemCount: successState.groceries.length,
-                          itemBuilder: (context, index) {
-                            GroceriesModel grocery =
-                                successState.groceries[index];
-                            return _GroceryItemCard(grocery: grocery);
-                          }),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: AdaptiveLayoutBuilder(
+                          builder: (context, deviceType) => GridView.builder(
+                              itemCount: successState.groceries.length,
+                              addAutomaticKeepAlives: true,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      mainAxisSpacing: 20,
+                                      crossAxisSpacing: 20,
+                                      childAspectRatio: switch (deviceType) {
+                                        DeviceResolutionType.mobile => 0.97,
+                                        DeviceResolutionType.tab => 0.9,
+                                        DeviceResolutionType.desktop => 0.8
+                                      },
+                                      crossAxisCount: switch (deviceType) {
+                                        DeviceResolutionType.mobile => 1,
+                                        DeviceResolutionType.tab => 2,
+                                        DeviceResolutionType.desktop => 4
+                                      }),
+                              itemBuilder: (_, index) => _GroceryItemCard(
+                                  grocery: successState.groceries[index])),
+                        ),
+                      ),
                       onRefresh: () async => afterTheBuild());
                 case const (GroceryItemsError):
                   var errorState = state as GroceryItemsError;
@@ -83,7 +99,7 @@ class _GroceryItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var bloc = context.read<GroceriesBloc>();
     return Card(
-      margin: const EdgeInsets.all(8),
+      margin: const EdgeInsets.symmetric(horizontal: 8),
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -94,7 +110,9 @@ class _GroceryItemCard extends StatelessWidget {
             Text(grocery.name!,
                 style: GoogleFonts.poppins(
                     fontSize: 17, fontWeight: FontWeight.bold)),
-            Text(grocery.content!, style: GoogleFonts.poppins(fontSize: 14)),
+            Expanded(
+                child: Text(grocery.content!,
+                    style: GoogleFonts.poppins(fontSize: 14))),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

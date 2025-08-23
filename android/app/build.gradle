@@ -37,6 +37,18 @@ android {
             signingConfig = signingConfigs.debug
         }
     }
+
+    flavorDimensions "flavors"
+
+    productFlavors {
+        farmersMarket {
+            dimension "flavors"
+        }
+
+        healthyFood {
+            dimension "flavors"
+        }
+    }
 }
 
 flutter {

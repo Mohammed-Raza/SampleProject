@@ -6,4 +6,12 @@ extension BuildExtension on BuildContext {
   Color get languageBorderColor =>
       Theme.of(this).extension<CustomThemeExtensions>()?.greyWithColor ??
       Colors.black26;
+
+  Color get groceryButtonBorderColor =>
+      Theme.of(this).extension<CustomThemeExtensions>()?.groceryButtonBorder ??
+      const Color.fromRGBO(0, 0, 0, 0.05);
+
+  Color get groceryButtonShadowColor =>
+      Theme.of(this).extension<CustomThemeExtensions>()?.groceryButtonShadow ??
+      const Color.fromRGBO(0, 0, 0, 0.16);
 }

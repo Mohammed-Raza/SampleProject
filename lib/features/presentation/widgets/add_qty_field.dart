@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sample_project/core/extensions/context_extension.dart';
+import 'package:sample_project/core/extensions/build_extensions.dart';
 
 class AddQtyTextField extends StatefulWidget {
   final Function() onSubtract, onAdd;
@@ -36,7 +36,7 @@ class _AddQtyTextFieldState extends State<AddQtyTextField> {
               iconColor: const Color.fromRGBO(255, 95, 109, 1),
               onTap: widget.onSubtract),
           Container(
-            width: context.width * 0.15,
+            width: 100,
             height: 32,
             alignment: Alignment.center,
             child: TextField(
@@ -94,16 +94,17 @@ class GradientBubbleButton extends StatelessWidget {
       radius: 22,
       child: Container(
         alignment: Alignment.center,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.fromBorderSide(
-                BorderSide(color: Color.fromRGBO(0, 0, 0, 0.05))),
+                BorderSide(color: context.groceryButtonBorderColor)),
             boxShadow: [
               BoxShadow(
-                  color: Color.fromRGBO(0, 0, 0, 0.16),
+                  color: context.groceryButtonShadowColor,
                   blurRadius: 1,
                   spreadRadius: 0),
-              BoxShadow(color: Colors.white, blurRadius: 4, spreadRadius: -1),
+              const BoxShadow(
+                  color: Colors.white, blurRadius: 4, spreadRadius: -1),
             ]),
         padding: const EdgeInsets.all(4),
         child: Icon(icon, size: 22.5, color: iconColor),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sample_project/config/routes/routes.dart';
-import 'package:sample_project/core/extensions/widget_extensions.dart';
 import 'package:sample_project/core/utils/enums.dart';
 
 class GroceryCard extends StatelessWidget {
@@ -17,7 +16,7 @@ class GroceryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.goNamed(Routes.groceriesMain, extra: groceryType),
+      onTap: () => context.pushNamed(Routes.groceriesMain, extra: groceryType),
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(10),
