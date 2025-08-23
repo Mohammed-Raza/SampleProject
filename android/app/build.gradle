@@ -43,10 +43,12 @@ android {
     productFlavors {
         farmersMarket {
             dimension "flavors"
+            applicationId "com.sp.farmersMarket"
         }
 
         healthyFood {
             dimension "flavors"
+            applicationId "com.sp.healthyFood"
         }
     }
 }
