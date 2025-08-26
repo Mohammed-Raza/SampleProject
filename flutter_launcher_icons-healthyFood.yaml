@@ -8,12 +8,12 @@ flutter_launcher_icons:
   background_color_ios: "#ffffff"
   web:
     generate: true
-    image_path: "assets/logos/healthy_food.jpg"
+    image_path: "assets/logos/grocery.jpg"
     "background_color": "#0175C2"
     "theme_color": "#0175C2"
   windows:
     generate: true
-    image_path: "assets/logos/healthy_food.jpg"
+    image_path: "assets/logos/grocery.jpg"
     icon_size: 48 # min:48, max:256, default: 48
   macos:
     generate: false

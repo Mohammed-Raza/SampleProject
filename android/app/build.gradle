@@ -1,12 +1,15 @@
 plugins {
     id "com.android.application"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
 }
 
 android {
-    namespace = "com.example.sp.sample_project"
+    namespace = "com.sp.groceries"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
 
@@ -21,13 +24,14 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.sp.sample_project"
+        applicationId = "com.sp.groceries"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        minSdkVersion 23
     }
 
     buildTypes {
@@ -43,12 +47,12 @@ android {
     productFlavors {
         farmersMarket {
             dimension "flavors"
-            applicationId "com.sp.farmersMarket"
+//            applicationId "com.sp.farmersMarket"
         }
 
         healthyFood {
             dimension "flavors"
-            applicationId "com.sp.healthyFood"
+//            applicationId "com.sp.healthyFood"
         }
     }
 }

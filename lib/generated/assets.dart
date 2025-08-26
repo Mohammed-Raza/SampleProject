@@ -13,6 +13,7 @@ class Assets {
   static const String imagesMilk = 'assets/images/milk.jpg';
   static const String imagesVeggies = 'assets/images/veggies.jpg';
   static const String logosFarmersMarket = 'assets/logos/farmers_market.jpg';
+  static const String logosGrocery = 'assets/logos/grocery.jpg';
   static const String logosHealthyFood = 'assets/logos/healthy_food.jpg';
 
 }

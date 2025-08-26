@@ -8,7 +8,7 @@
 PRODUCT_NAME = sample_project
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.sp.sampleProject
+PRODUCT_BUNDLE_IDENTIFIER = com.sp.groceries
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2025 com.example.sp. All rights reserved.

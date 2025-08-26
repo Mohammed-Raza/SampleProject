@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "361385379289",
+    "project_id": "farmers-market-c591f",
+    "storage_bucket": "farmers-market-c591f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:361385379289:android:52cab9bbb5901857dc45c8",
+        "android_client_info": {
+          "package_name": "com.sp.groceries"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs5K4VkwDggWxiqsr07kywj7IRplK48Tc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

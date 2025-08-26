@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
 import '../../generated/assets.dart';
 import '../mixins/helper_mixin.dart';
 import 'app_configuration.dart';
 
-enum EnvironmentType { farmersMarket, healthyFood }
+enum EnvironmentType { defaultFlavor, farmersMarket, healthyFood }
 
 class Environment {
   static final Environment _singleton = Environment._internal();
@@ -23,18 +22,29 @@ class Environment {
         const String.fromEnvironment('FLUTTER_APP_FLAVOR').isNotEmpty
             ? (HelperMixin.enumFromString(EnvironmentType.values,
                     const String.fromEnvironment('FLUTTER_APP_FLAVOR')) ??
-                EnvironmentType.farmersMarket)
-            : EnvironmentType.farmersMarket;
+                EnvironmentType.defaultFlavor)
+            : EnvironmentType.defaultFlavor;
 
     _configuration = switch (environmentType) {
       EnvironmentType.farmersMarket => farmersMarketConfig,
-      EnvironmentType.healthyFood => healthyFoodConfig
+      EnvironmentType.healthyFood => healthyFoodConfig,
+      EnvironmentType.defaultFlavor => defaultAppConfig,
     };
   }
 
   AppConfiguration get configuration {
     assert(_configuration != null, 'configure the Environment');
     return _configuration!;
+  }
+
+  AppConfiguration get defaultAppConfig {
+    return AppConfiguration(
+        logoPath: Assets.logosGrocery,
+        orgName: 'Home',
+        seedColor: Colors.teal,
+        hoverColor: Colors.teal.shade50,
+        shadowColor: Colors.tealAccent,
+        appBarColor: Colors.teal.shade200);
   }
 
   AppConfiguration get farmersMarketConfig {
