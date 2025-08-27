@@ -16,7 +16,8 @@ class GroceryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.pushNamed(Routes.groceriesMain, extra: groceryType),
+      onTap: () => context.go('${Routes.groceriesMainPath}/${groceryType.name}',
+          extra: groceryType),
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(10),

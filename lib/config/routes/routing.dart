@@ -18,10 +18,15 @@ class Routing {
               path: Routes.profilePath,
               builder: (context, state) => const ProfileScreen()),
           GoRoute(
-              name: Routes.groceriesMain,
-              path: Routes.groceriesMainPath,
-              builder: (context, state) =>
-                  GroceriesMainScreen(groceryType: state.extra as GroceryType)),
+              name: 'Groceries Main',
+              path: '/${Routes.groceriesMain}/:type',
+              builder: (context, state) {
+                final typeStr = state.pathParameters['type']!;
+                final type = GroceryType.values.firstWhere(
+                    (e) => e.name == typeStr,
+                    orElse: () => GroceryType.veggies);
+                return GroceriesMainScreen(groceryType: type);
+              })
         ]),
   ]);
 }
