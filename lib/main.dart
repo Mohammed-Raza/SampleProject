@@ -10,6 +10,7 @@ import 'package:sample_project/features/presentation/providers/language_provider
 import 'package:sample_project/features/presentation/providers/theme_provider.dart';
 import 'core/environments/environment.dart';
 import 'core/mixins/language_mixin.dart';
+import 'features/data/data_sources/remote/base_service.dart';
 import 'l10n/app_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -36,20 +37,15 @@ class _MyAppState extends State<MyApp>
     super.initState();
   }
 
-  // @override
-  // void didChangeLocales(List<Locale>? locales) {
-  //   context.read<LanguageProvider>().getLocale();
-  //   super.didChangeLocales(locales);
-  // }
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var baseService = BaseService.instance;
     return MultiBlocProvider(
       providers: [
         BlocProvider(
             create: (_) =>
-                GroceriesBloc(GroceryUserCases(GroceriesRepoImpl()))),
+                GroceriesBloc(GroceryUserCases(GroceriesRepoImpl(baseService)))),
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],

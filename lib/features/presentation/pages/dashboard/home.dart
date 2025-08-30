@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sample_project/core/environments/environment.dart';
 import 'package:sample_project/core/mixins/language_mixin.dart';
 import 'package:sample_project/core/utils/enums.dart';
+import 'package:sample_project/features/presentation/bloc/groceries/groceries_bloc.dart';
 import 'package:sample_project/features/presentation/pages/dashboard/cart.dart';
+import 'package:sample_project/features/presentation/widgets/common_widgets.dart';
+import 'package:sample_project/features/presentation/widgets/page_error.dart';
 import '../../../../config/routes/routes.dart';
 import '../../../../core/device/adaptive_layout_builder.dart';
 import '../../../../generated/assets.dart';
@@ -94,7 +98,16 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> with LanguageMixin {
   @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) => afterBuildTheView());
+    super.initState();
+  }
+
+  afterBuildTheView() =>
+      context.read<GroceriesBloc>().add(LoadGroceryCategoryEvent());
+  @override
   Widget build(BuildContext context) {
+    var bloc = context.read<GroceriesBloc>();
     List<Widget> groceryCards = [
       GroceryCard(
           name: translate(context).vegetables,
@@ -116,27 +129,45 @@ class _DashboardScreenState extends State<DashboardScreen> with LanguageMixin {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-      child: Column(
-        children: [
-          Expanded(
-            child: AdaptiveLayoutBuilder(
-              builder: (context, deviceType) => GridView.builder(
-                  itemCount: groceryCards.length,
-                  addAutomaticKeepAlives: true,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      mainAxisSpacing: 20,
-                      crossAxisSpacing: 20,
-                      childAspectRatio: 0.9,
-                      crossAxisCount: switch (deviceType) {
-                        DeviceResolutionType.mobile => 2,
-                        DeviceResolutionType.tab => 3,
-                        DeviceResolutionType.desktop => 5
-                      }),
-                  itemBuilder: (_, index) => groceryCards[index]),
-            ),
-          ),
-        ],
-      ),
+      child: BlocBuilder<GroceriesBloc, GroceriesState>(
+          bloc: bloc,
+          buildWhen: (p, c) => c is CategoriesMainState,
+          builder: (context, state) {
+            switch (state.runtimeType) {
+              case const (CategoriesLoading):
+                return const CircularIndicator();
+              case const (CategoriesSuccess):
+                return Column(
+                  children: [
+                    Expanded(
+                      child: AdaptiveLayoutBuilder(
+                        builder: (context, deviceType) => GridView.builder(
+                            itemCount: groceryCards.length,
+                            addAutomaticKeepAlives: true,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    mainAxisSpacing: 20,
+                                    crossAxisSpacing: 20,
+                                    childAspectRatio: 0.9,
+                                    crossAxisCount: switch (deviceType) {
+                                      DeviceResolutionType.mobile => 2,
+                                      DeviceResolutionType.tab => 3,
+                                      DeviceResolutionType.desktop => 5
+                                    }),
+                            itemBuilder: (_, index) => groceryCards[index]),
+                      ),
+                    ),
+                  ],
+                );
+              case const (CategoriesError):
+                var errorState = state as CategoriesError;
+                return PageErrorWidget(
+                    errorText: errorState.errorDetails.$1,
+                    errorImage: errorState.errorDetails.$2);
+              default:
+                return Container();
+            }
+          }),
     );
   }
 }

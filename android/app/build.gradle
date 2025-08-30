@@ -64,7 +64,7 @@ android {
     productFlavors {
         farmersMarket {
             dimension "flavors"
-//            applicationId "com.sp.farmersMarket"
+            applicationId "com.sp.groceries"
         }
 
         healthyFood {

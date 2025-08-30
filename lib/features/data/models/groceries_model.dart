@@ -1,7 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:sample_project/features/domain/entities/grocery_category_entity.dart';
 
 part 'groceries_model.g.dart';
+
+@JsonSerializable()
+class GroceryCategoryModel {
+  final String id, name, key;
+
+  GroceryCategoryModel(this.id, this.name, this.key);
+
+  factory GroceryCategoryModel.fromJson(Map<String, dynamic> json) =>
+      _$GroceryCategoryModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$GroceryCategoryModelToJson(this);
+
+  GroceryCategoryEntity toCategoryEntity() {
+    return GroceryCategoryEntity(id, name, key);
+  }
+}
 
 @JsonSerializable()
 class GroceriesModel {

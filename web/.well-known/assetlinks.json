@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.sp.groceries",
+    "sha256_cert_fingerprints":
+    ["A4:44:6F:93:99:52:66:58:4E:90:65:9F:40:D6:57:D0:F7:4B:0A:F2:9E:A7:B2:5C:65:C6:78:8D:74:16:7A:42"]
+  }
+}]

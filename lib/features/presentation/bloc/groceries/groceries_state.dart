@@ -5,6 +5,20 @@ sealed class GroceriesState {}
 
 final class GroceriesInitial extends GroceriesState {}
 
+class CategoriesMainState extends GroceriesState {}
+
+class CategoriesLoading extends CategoriesMainState {}
+
+class CategoriesSuccess extends CategoriesMainState {
+  final List<GroceryCategoryEntity> categories;
+  CategoriesSuccess(this.categories);
+}
+
+class CategoriesError extends CategoriesMainState {
+  final PageErrorDetails errorDetails;
+  CategoriesError(this.errorDetails);
+}
+
 class GroceryItemsLoading extends GroceriesState {}
 
 class GroceryItemsSuccess extends GroceriesState {

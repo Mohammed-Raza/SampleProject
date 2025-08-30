@@ -6,6 +6,22 @@ part of 'groceries_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+GroceryCategoryModel _$GroceryCategoryModelFromJson(
+        Map<String, dynamic> json) =>
+    GroceryCategoryModel(
+      json['id'] as String,
+      json['name'] as String,
+      json['key'] as String,
+    );
+
+Map<String, dynamic> _$GroceryCategoryModelToJson(
+        GroceryCategoryModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'key': instance.key,
+    };
+
 GroceriesModel _$GroceriesModelFromJson(Map<String, dynamic> json) =>
     GroceriesModel(
       (json['id'] as num).toInt(),
