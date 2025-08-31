@@ -7,15 +7,15 @@ import 'package:sample_project/core/extensions/context_extension.dart';
 import 'package:sample_project/core/mixins/common_mixin.dart';
 import 'package:sample_project/core/utils/constants.dart';
 import 'package:sample_project/core/utils/enums.dart';
-import 'package:sample_project/features/data/models/groceries_model.dart';
+import 'package:sample_project/features/domain/entities/groceries_entity.dart';
 import 'package:sample_project/features/presentation/bloc/groceries/groceries_bloc.dart';
 import '../widgets/add_qty_field.dart';
 import '../widgets/common_widgets.dart';
 import '../widgets/page_error.dart';
 
 class GroceriesMainScreen extends StatefulWidget {
-  final GroceryType groceryType;
-  const GroceriesMainScreen({super.key, required this.groceryType});
+  final (GroceryType, String) details;
+  const GroceriesMainScreen({super.key, required this.details});
 
   @override
   State<GroceriesMainScreen> createState() => _GroceriesMainScreenState();
@@ -29,12 +29,12 @@ class _GroceriesMainScreenState extends State<GroceriesMainScreen> {
   }
 
   afterTheBuild() =>
-      context.read<GroceriesBloc>().add(LoadGroceriesEvent(widget.groceryType));
+      context.read<GroceriesBloc>().add(LoadGroceriesEvent(widget.details.$2));
   @override
   Widget build(BuildContext context) {
     var bloc = context.read<GroceriesBloc>();
     return Scaffold(
-      appBar: AppBar(title: Text(widget.groceryType.name.toUpperCase())),
+      appBar: AppBar(title: Text(widget.details.$1.name.toUpperCase())),
       body: Padding(
         padding: EdgeInsets.fromLTRB(10, 5, 10, context.bottomPadding),
         child: BlocBuilder<GroceriesBloc, GroceriesState>(
@@ -92,7 +92,7 @@ class _GroceriesMainScreenState extends State<GroceriesMainScreen> {
 }
 
 class _GroceryItemCard extends StatelessWidget {
-  final GroceriesModel grocery;
+  final GroceriesEntity grocery;
   const _GroceryItemCard({required this.grocery});
 
   @override

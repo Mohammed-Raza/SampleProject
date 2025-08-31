@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sample_project/core/environments/environment.dart';
+import 'package:sample_project/core/mixins/helper_mixin.dart';
 import 'package:sample_project/core/mixins/language_mixin.dart';
 import 'package:sample_project/core/utils/enums.dart';
 import 'package:sample_project/features/presentation/bloc/groceries/groceries_bloc.dart';
@@ -10,7 +11,6 @@ import 'package:sample_project/features/presentation/widgets/common_widgets.dart
 import 'package:sample_project/features/presentation/widgets/page_error.dart';
 import '../../../../config/routes/routes.dart';
 import '../../../../core/device/adaptive_layout_builder.dart';
-import '../../../../generated/assets.dart';
 import '../../widgets/home_widgets.dart';
 import 'orders.dart';
 
@@ -108,24 +108,6 @@ class _DashboardScreenState extends State<DashboardScreen> with LanguageMixin {
   @override
   Widget build(BuildContext context) {
     var bloc = context.read<GroceriesBloc>();
-    List<Widget> groceryCards = [
-      GroceryCard(
-          name: translate(context).vegetables,
-          assetPath: Assets.imagesVeggies,
-          groceryType: GroceryType.veggies),
-      GroceryCard(
-          name: translate(context).fruits,
-          assetPath: Assets.imagesFruits,
-          groceryType: GroceryType.fruits),
-      GroceryCard(
-          name: translate(context).milkProducts,
-          assetPath: Assets.imagesMilk,
-          groceryType: GroceryType.milkProducts),
-      GroceryCard(
-          name: translate(context).cookies,
-          assetPath: Assets.imagesCakes,
-          groceryType: GroceryType.cookies)
-    ];
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
@@ -134,15 +116,21 @@ class _DashboardScreenState extends State<DashboardScreen> with LanguageMixin {
           buildWhen: (p, c) => c is CategoriesMainState,
           builder: (context, state) {
             switch (state.runtimeType) {
+              case const (GroceriesInitial):
               case const (CategoriesLoading):
                 return const CircularIndicator();
               case const (CategoriesSuccess):
+                var successState = state as CategoriesSuccess;
+                if (successState.categories.isEmpty) {
+                  return const Center(
+                      child: Text('No categories are available to show'));
+                }
                 return Column(
                   children: [
                     Expanded(
                       child: AdaptiveLayoutBuilder(
                         builder: (context, deviceType) => GridView.builder(
-                            itemCount: groceryCards.length,
+                            itemCount: successState.categories.length,
                             addAutomaticKeepAlives: true,
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
@@ -154,7 +142,15 @@ class _DashboardScreenState extends State<DashboardScreen> with LanguageMixin {
                                       DeviceResolutionType.tab => 3,
                                       DeviceResolutionType.desktop => 5
                                     }),
-                            itemBuilder: (_, index) => groceryCards[index]),
+                            itemBuilder: (_, index) {
+                              var category = successState.categories[index];
+                              return GroceryCard(
+                                  id: category.id,
+                                  groceryKey: category.key,
+                                  groceryType: HelperMixin.enumFromString(
+                                          GroceryType.values, category.key) ??
+                                      GroceryType.veggies);
+                            }),
                       ),
                     ),
                   ],

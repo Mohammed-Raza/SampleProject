@@ -1,11 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:sample_project/core/error/exception_handler.dart';
-import 'package:sample_project/core/utils/enums.dart';
-import 'package:sample_project/features/data/models/groceries_model.dart';
+import 'package:sample_project/features/domain/entities/groceries_entity.dart';
 import 'package:sample_project/features/domain/usecases/grocery_usecases.dart';
 import '../../../../core/utils/records_typedefs.dart';
-import '../../../domain/entities/grocery_category_entity.dart';
+import '../../../data/models/groceries_model.dart';
 
 part 'groceries_event.dart';
 part 'groceries_state.dart';
@@ -22,10 +21,11 @@ class GroceriesBloc extends Bloc<GroceriesEvent, GroceriesState> {
 
   final GroceryUserCases _groceryUserCases;
 
-  List<GroceriesModel> groceries = [];
+  List<GroceriesEntity> groceries = [];
 
   ExceptionHandler exceptionHandler = ExceptionHandler();
 
+  /// Load grocery categories
   void _loadGroceryCategories(
       LoadGroceryCategoryEvent event, Emitter<GroceriesState> emit) async {
     try {
@@ -39,15 +39,13 @@ class GroceriesBloc extends Bloc<GroceriesEvent, GroceriesState> {
     }
   }
 
+  /// Load groceries
   void _loadGroceries(
       LoadGroceriesEvent event, Emitter<GroceriesState> emit) async {
     try {
       emit(GroceryItemsLoading());
 
-      await Future.delayed(const Duration(seconds: 2));
-
-      final result =
-          await _groceryUserCases.loadGroceryItems(event.groceryType);
+      final result = await _groceryUserCases.loadGroceryItems(event.groceryId);
 
       groceries = result;
 
@@ -80,7 +78,7 @@ class GroceriesBloc extends Bloc<GroceriesEvent, GroceriesState> {
   }
 
   /// Method is to set out qty value
-  void _setOutQtyValue(GroceriesModel grocery, Emitter<GroceriesState> emit) {
+  void _setOutQtyValue(GroceriesEntity grocery, Emitter<GroceriesState> emit) {
     grocery.totalAmount = grocery.prize! * grocery.outQty;
     grocery.controller.text =
         (grocery.outQty == 0) ? '' : grocery.outQty.toString();

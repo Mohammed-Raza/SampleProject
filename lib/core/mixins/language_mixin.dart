@@ -18,6 +18,6 @@ mixin LanguageMixin {
     }
   }
 
-  AppLocalizations translate(BuildContext context) =>
+  static AppLocalizations translate(BuildContext context) =>
       AppLocalizations.of(context)!;
 }

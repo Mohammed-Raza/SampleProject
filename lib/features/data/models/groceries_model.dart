@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:sample_project/features/domain/entities/grocery_category_entity.dart';
+import 'package:sample_project/features/domain/entities/groceries_entity.dart';
 
 part 'groceries_model.g.dart';
 
@@ -14,30 +13,17 @@ class GroceryCategoryModel {
       _$GroceryCategoryModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$GroceryCategoryModelToJson(this);
-
-  GroceryCategoryEntity toCategoryEntity() {
-    return GroceryCategoryEntity(id, name, key);
-  }
 }
 
 @JsonSerializable()
 class GroceriesModel {
-  final int id;
+  final String id;
 
   final String? name, content;
 
   final List<String>? images;
 
   final double? prize;
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  TextEditingController controller = TextEditingController();
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  double totalAmount = 0.0;
-
-  @JsonKey(includeFromJson: false)
-  int outQty = 0;
 
   GroceriesModel(this.id,
       {this.name = 'NA',
@@ -49,4 +35,9 @@ class GroceriesModel {
       _$GroceriesModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$GroceriesModelToJson(this);
+
+  GroceriesEntity toGroceryEntity() {
+    return GroceriesEntity(id,
+        content: content, images: images, prize: prize, name: name);
+  }
 }

@@ -25,7 +25,8 @@ class Routing {
                 final type = GroceryType.values.firstWhere(
                     (e) => e.name == typeStr,
                     orElse: () => GroceryType.veggies);
-                return GroceriesMainScreen(groceryType: type);
+                return GroceriesMainScreen(
+                    details: (type, state.extra) as (GroceryType, String));
               })
         ]),
   ]);

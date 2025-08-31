@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sample_project/config/routes/routes.dart';
+import 'package:sample_project/core/mixins/common_mixin.dart';
 import 'package:sample_project/core/utils/enums.dart';
 
 class GroceryCard extends StatelessWidget {
-  final String name, assetPath;
+  final String id, groceryKey;
   final GroceryType groceryType;
   const GroceryCard(
       {super.key,
-      required this.name,
-      required this.assetPath,
+      required this.id,
+      required this.groceryKey,
       required this.groceryType});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => context.go('${Routes.groceriesMainPath}/${groceryType.name}',
-          extra: groceryType),
+          extra: id),
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(10),
@@ -25,10 +26,13 @@ class GroceryCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ClipOval(
-                  child: Image.asset(assetPath,
-                      height: 130, width: 130, fit: BoxFit.cover)),
+                  child: Image.asset(
+                      CommonMixin.getGroceryAssetPath(groceryType),
+                      height: 130,
+                      width: 130,
+                      fit: BoxFit.cover)),
               const Gap(10),
-              Text(name,
+              Text(CommonMixin.getGroceryName(context, groceryType),
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.w500))
             ],

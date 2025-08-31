@@ -10,7 +10,7 @@ class CategoriesMainState extends GroceriesState {}
 class CategoriesLoading extends CategoriesMainState {}
 
 class CategoriesSuccess extends CategoriesMainState {
-  final List<GroceryCategoryEntity> categories;
+  final List<GroceryCategoryModel> categories;
   CategoriesSuccess(this.categories);
 }
 
@@ -22,7 +22,7 @@ class CategoriesError extends CategoriesMainState {
 class GroceryItemsLoading extends GroceriesState {}
 
 class GroceryItemsSuccess extends GroceriesState {
-  final List<GroceriesModel> groceries;
+  final List<GroceriesEntity> groceries;
   GroceryItemsSuccess(this.groceries);
 }
 

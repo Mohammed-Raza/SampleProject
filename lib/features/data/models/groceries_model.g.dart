@@ -24,7 +24,7 @@ Map<String, dynamic> _$GroceryCategoryModelToJson(
 
 GroceriesModel _$GroceriesModelFromJson(Map<String, dynamic> json) =>
     GroceriesModel(
-      (json['id'] as num).toInt(),
+      json['id'] as String,
       name: json['name'] as String? ?? 'NA',
       content: json['content'] as String? ?? 'NA',
       images: (json['images'] as List<dynamic>?)

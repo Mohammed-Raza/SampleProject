@@ -8,22 +8,22 @@ class LoadGroceryCategoryEvent extends GroceriesEvent {
 }
 
 class LoadGroceriesEvent extends GroceriesEvent {
-  final GroceryType groceryType;
-  LoadGroceriesEvent(this.groceryType);
+  final String groceryId;
+  LoadGroceriesEvent(this.groceryId);
 }
 
 final class AddOutQtyEvent extends GroceriesEvent {
-  final GroceriesModel grocery;
+  final GroceriesEntity grocery;
   AddOutQtyEvent(this.grocery);
 }
 
 final class SubtractOutQtyEvent extends GroceriesEvent {
-  final GroceriesModel grocery;
+  final GroceriesEntity grocery;
   SubtractOutQtyEvent(this.grocery);
 }
 
 final class ChangeOutQtyEvent extends GroceriesEvent {
-  final GroceriesModel grocery;
+  final GroceriesEntity grocery;
   final String value;
   ChangeOutQtyEvent(this.grocery, this.value);
 }

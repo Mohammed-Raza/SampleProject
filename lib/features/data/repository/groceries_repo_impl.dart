@@ -1,9 +1,7 @@
-import 'package:sample_project/core/utils/query_params.dart';
 import 'package:sample_project/features/data/data_sources/remote/base_service.dart';
 import 'package:sample_project/features/data/data_sources/remote/urls.dart';
 import 'package:sample_project/features/data/models/groceries_model.dart';
 import 'package:sample_project/features/domain/repository/groceries_repo.dart';
-import '../../domain/entities/grocery_category_entity.dart';
 
 class GroceriesRepoImpl implements GroceriesRepository {
   GroceriesRepoImpl(this.baseService);
@@ -11,36 +9,34 @@ class GroceriesRepoImpl implements GroceriesRepository {
   final BaseService baseService;
 
   @override
-  Future<List<GroceryCategoryEntity>> fetchGroceryCategories() async {
+  Future<List<GroceryCategoryModel>> fetchGroceryCategories() async {
     List<GroceryCategoryModel> categories = [];
 
     final response =
         await baseService.makeRequest(url: '${Urls.groceryCategory}.json');
 
     if (response is Map) {
-      categories = response[QueryParams.groceryCategoryKey]
+      categories = (response.values.first as Map)
           .entries
           .map<GroceryCategoryModel>(
               (json) => GroceryCategoryModel.fromJson(json.value))
           .toList();
     }
 
-    /// Converting DTO to entities
-    List<GroceryCategoryEntity> entities =
-        categories.map((category) => category.toCategoryEntity()).toList();
-
-    return entities;
+    return categories;
   }
 
   @override
-  Future<List<GroceriesModel>> fetchGroceryItems(Map localJson) async {
+  Future<List<GroceriesModel>> fetchGroceryItems(String id) async {
     List<GroceriesModel> groceries = [];
 
-    final response = localJson;
+    final response =
+        await baseService.makeRequest(url: '${Urls.getGroceries}/$id.json');
 
-    if (response != null && response[QueryParams.data] != null) {
-      groceries = response[QueryParams.data]
-          .map<GroceriesModel>((json) => GroceriesModel.fromJson(json))
+    if (response is Map) {
+      groceries = (response.values.first as Map)
+          .entries
+          .map<GroceriesModel>((json) => GroceriesModel.fromJson(json.value))
           .toList();
     }
     return groceries;

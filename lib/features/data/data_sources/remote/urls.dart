@@ -4,4 +4,5 @@ class Urls {
 
   /// end points
   static const String groceryCategory = 'groceryCategory';
+  static const String getGroceries = 'groceries';
 }
