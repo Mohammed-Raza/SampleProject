@@ -14,8 +14,8 @@ import '../widgets/common_widgets.dart';
 import '../widgets/page_error.dart';
 
 class GroceriesMainScreen extends StatefulWidget {
-  final (GroceryType, String) details;
-  const GroceriesMainScreen({super.key, required this.details});
+  final GroceryType groceryType;
+  const GroceriesMainScreen({super.key, required this.groceryType});
 
   @override
   State<GroceriesMainScreen> createState() => _GroceriesMainScreenState();
@@ -28,13 +28,14 @@ class _GroceriesMainScreenState extends State<GroceriesMainScreen> {
     super.initState();
   }
 
-  afterTheBuild() =>
-      context.read<GroceriesBloc>().add(LoadGroceriesEvent(widget.details.$2));
+  afterTheBuild() => context
+      .read<GroceriesBloc>()
+      .add(LoadGroceriesEvent(widget.groceryType.name));
   @override
   Widget build(BuildContext context) {
     var bloc = context.read<GroceriesBloc>();
     return Scaffold(
-      appBar: AppBar(title: Text(widget.details.$1.name.toUpperCase())),
+      appBar: AppBar(title: Text(widget.groceryType.name.toUpperCase())),
       body: Padding(
         padding: EdgeInsets.fromLTRB(10, 5, 10, context.bottomPadding),
         child: BlocBuilder<GroceriesBloc, GroceriesState>(

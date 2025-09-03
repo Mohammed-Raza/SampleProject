@@ -1,0 +1,11 @@
+{
+  "applinks": {
+      "apps": [],
+      "details": [
+      {
+        "appID": "U27M666L6P.com.sp.groceries",
+        "paths": ["/home/*"]
+      }
+    ]
+  }
+}

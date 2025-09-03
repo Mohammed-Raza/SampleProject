@@ -8,8 +8,8 @@ class LoadGroceryCategoryEvent extends GroceriesEvent {
 }
 
 class LoadGroceriesEvent extends GroceriesEvent {
-  final String groceryId;
-  LoadGroceriesEvent(this.groceryId);
+  final String groceryKey;
+  LoadGroceriesEvent(this.groceryKey);
 }
 
 final class AddOutQtyEvent extends GroceriesEvent {

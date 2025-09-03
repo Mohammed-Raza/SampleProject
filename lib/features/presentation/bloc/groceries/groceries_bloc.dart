@@ -45,7 +45,7 @@ class GroceriesBloc extends Bloc<GroceriesEvent, GroceriesState> {
     try {
       emit(GroceryItemsLoading());
 
-      final result = await _groceryUserCases.loadGroceryItems(event.groceryId);
+      final result = await _groceryUserCases.loadGroceryItems(event.groceryKey);
 
       groceries = result;
 

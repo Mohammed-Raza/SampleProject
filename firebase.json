@@ -1,43 +1,4 @@
 {
-  "flutter": {
-    "platforms": {
-      "android": {
-        "default": {
-          "projectId": "farmers-market-c591f",
-          "appId": "1:361385379289:android:52cab9bbb5901857dc45c8",
-          "fileOutput": "android/app/google-services.json"
-        }
-      },
-      "ios": {
-        "default": {
-          "projectId": "farmers-market-c591f",
-          "appId": "1:361385379289:ios:baf196b808ac1392dc45c8",
-          "uploadDebugSymbols": false,
-          "fileOutput": "ios/Runner/GoogleService-Info.plist"
-        }
-      },
-      "macos": {
-        "default": {
-          "projectId": "farmers-market-c591f",
-          "appId": "1:361385379289:ios:baf196b808ac1392dc45c8",
-          "uploadDebugSymbols": false,
-          "fileOutput": "macos/Runner/GoogleService-Info.plist"
-        }
-      },
-      "dart": {
-        "lib/firebase_options.dart": {
-          "projectId": "farmers-market-c591f",
-          "configurations": {
-            "android": "1:361385379289:android:52cab9bbb5901857dc45c8",
-            "ios": "1:361385379289:ios:baf196b808ac1392dc45c8",
-            "macos": "1:361385379289:ios:baf196b808ac1392dc45c8",
-            "web": "1:361385379289:web:9651675311b1f863dc45c8",
-            "windows": "1:361385379289:web:4f171ac1bebc2292dc45c8"
-          }
-        }
-      }
-    }
-  },
   "hosting": {
     "public": "build/web",
     "ignore": [
@@ -49,10 +10,13 @@
       {
         "source": "/.well-known/assetlinks.json",
         "headers": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
+          { "key": "Content-Type", "value": "application/json" }
+        ]
+      },
+      {
+        "source": "/.well-known/apple-app-site-association",
+        "headers": [
+          { "key": "Content-Type", "value": "application/json" }
         ]
       }
     ],
@@ -61,6 +25,9 @@
         "source": "**",
         "destination": "/index.html"
       }
-    ]
+    ],
+    "frameworksBackend": {
+      "region": "us-central1"
+    }
   }
 }
