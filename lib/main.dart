@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_project/config/routes/routing.dart';
 import 'package:sample_project/config/theme/theme.dart';
+import 'package:sample_project/core/firebase/push_notifications.dart';
 import 'package:sample_project/features/data/repository/groceries_repo_impl.dart';
 import 'package:sample_project/features/domain/usecases/grocery_usecases.dart';
 import 'package:sample_project/features/presentation/bloc/groceries/groceries_bloc.dart';
@@ -70,4 +72,12 @@ void initializeFirebase() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await FirebasePushNotifications().requestPermissions();
+
+  String? token = await FirebasePushNotifications().registrationToken;
+
+  if (kDebugMode) {
+    print('Token : $token');
+  }
 }

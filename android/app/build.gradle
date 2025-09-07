@@ -38,6 +38,7 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         minSdkVersion 23
+        multiDexEnabled true
     }
 
     signingConfigs {
@@ -62,9 +63,13 @@ android {
     flavorDimensions "flavors"
 
     productFlavors {
+        defaultFlavor {
+            dimension "flavors"
+        }
+
         farmersMarket {
             dimension "flavors"
-            applicationId "com.sp.groceries"
+//            applicationId "com.sp.groceries"
         }
 
         healthyFood {
