@@ -15,7 +15,7 @@ class CustomTheme {
               groceryButtonShadow: Color.fromRGBO(0, 0, 0, 0.16))
         ],
         hoverColor: config.hoverColor,
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
             color: Colors.white,
             shadowColor: config.shadowColor,
             elevation: 5,
