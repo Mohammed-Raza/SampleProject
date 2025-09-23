@@ -12,3 +12,6 @@ PRODUCT_BUNDLE_IDENTIFIER = com.sp.groceries
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2025 com.example.sp. All rights reserved.
+
+MACOSX_DEPLOYMENT_TARGET = 11.5
+

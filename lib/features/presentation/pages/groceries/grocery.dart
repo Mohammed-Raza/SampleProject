@@ -9,9 +9,9 @@ import 'package:sample_project/core/utils/constants.dart';
 import 'package:sample_project/core/utils/enums.dart';
 import 'package:sample_project/features/domain/entities/groceries_entity.dart';
 import 'package:sample_project/features/presentation/bloc/groceries/groceries_bloc.dart';
-import '../widgets/add_qty_field.dart';
-import '../widgets/common_widgets.dart';
-import '../widgets/page_error.dart';
+import '../../widgets/add_qty_field.dart';
+import '../../widgets/common_widgets.dart';
+import '../../widgets/page_error.dart';
 
 class GroceriesMainScreen extends StatefulWidget {
   final GroceryType groceryType;

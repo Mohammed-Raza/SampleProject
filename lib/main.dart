@@ -19,7 +19,7 @@ import 'firebase_options.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  initializeFirebase();
+  // initializeFirebase();
   Environment().configure();
   runApp(const MyApp());
 }

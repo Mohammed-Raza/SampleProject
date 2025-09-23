@@ -42,7 +42,7 @@ class Environment {
         logoPath: Assets.logosGrocery,
         orgName: 'Home',
         seedColor: Colors.teal,
-        hoverColor: Colors.teal.shade50,
+        hoverColor: Colors.green.shade100,
         shadowColor: Colors.tealAccent,
         appBarColor: Colors.teal.shade200);
   }

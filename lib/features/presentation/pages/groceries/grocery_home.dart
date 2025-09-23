@@ -1,30 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:sample_project/core/environments/environment.dart';
 import 'package:sample_project/core/mixins/helper_mixin.dart';
 import 'package:sample_project/core/mixins/language_mixin.dart';
 import 'package:sample_project/core/utils/enums.dart';
 import 'package:sample_project/features/presentation/bloc/groceries/groceries_bloc.dart';
-import 'package:sample_project/features/presentation/pages/dashboard/cart.dart';
+import 'package:sample_project/features/presentation/pages/groceries/cart.dart';
 import 'package:sample_project/features/presentation/widgets/common_widgets.dart';
 import 'package:sample_project/features/presentation/widgets/page_error.dart';
-import '../../../../config/routes/routes.dart';
 import '../../../../core/device/adaptive_layout_builder.dart';
 import '../../widgets/home_widgets.dart';
-import 'orders.dart';
+import '../groceries/orders.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class GroceriesHomePage extends StatefulWidget {
+  const GroceriesHomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<GroceriesHomePage> createState() => _GroceriesHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _GroceriesHomePageState extends State<GroceriesHomePage> {
   int selectedIndex = 0;
   static const List<Widget> widgets = <Widget>[
-    DashboardScreen(),
+    GroceriesMainBody(),
     OrdersScreen(),
     CartPage()
   ];
@@ -32,20 +29,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: Text(Environment().configuration.orgName),
-            leading: Padding(
-              padding: const EdgeInsets.all(7),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(Environment().configuration.logoPath,
-                      height: 35, width: 35, alignment: Alignment.center)),
-            ),
-            actions: [
-              IconButton(
-                  onPressed: () => context.goNamed(Routes.profile),
-                  icon: const Icon(Icons.person, size: 30))
-            ]),
+        appBar: AppBar(title: const Text('Groceries Home')),
         bottomNavigationBar: ClipRRect(
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(15), topRight: Radius.circular(15)),
@@ -89,14 +73,15 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({super.key});
+class GroceriesMainBody extends StatefulWidget {
+  const GroceriesMainBody({super.key});
 
   @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
+  State<GroceriesMainBody> createState() => _GroceriesMainBodyState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> with LanguageMixin {
+class _GroceriesMainBodyState extends State<GroceriesMainBody>
+    with LanguageMixin {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) => afterBuildTheView());

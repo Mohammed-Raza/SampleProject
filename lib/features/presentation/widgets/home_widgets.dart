@@ -16,10 +16,12 @@ class GroceryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () =>
-          context.go('${Routes.groceriesMainPath}/${groceryType.name}'),
-      child: Card(
+    return Card(
+      child: InkWell(
+        onTap: () =>
+            context.go('${Routes.groceriesMainPath}/${groceryType.name}'),
+        customBorder: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10))),
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
