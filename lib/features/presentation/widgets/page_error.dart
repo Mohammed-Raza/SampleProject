@@ -30,7 +30,7 @@ class PageErrorWidget extends StatelessWidget {
                     color: Colors.teal),
                 children: [TextSpan(text: errorText)]),
           ),
-          Gap(8),
+          const Gap(8),
           ElevatedButton.icon(
               onPressed: retry,
               style: ElevatedButton.styleFrom(

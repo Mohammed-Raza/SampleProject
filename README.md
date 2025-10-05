@@ -16,13 +16,13 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 # Currently Available Features:
-1. **Theme**
+1. **Theme** - Supports Light, Dark & System.
 2. **Routing** - Declarative Routing using GoRouter
 3. **Localization** - Bidirectional Support
-4. **Bloc Architecture** - by applying principles of Clean Architecture
-5. **Integrated REST Api's** - using Firebase Realtime Database.
+4. **Bloc Architecture** - By applying principles of Clean Architecture
+5. **Integrated REST Api's** - Using Firebase Realtime Database.
 6. **Deep Linking** - Using flutter deep-linking
-7. **Remote Push Notifications** - using Firebase
+7. **Remote Push Notifications** - Using Firebase
 8. **Flavor Support** - Android, IOS & macOS
 
 # Theme:

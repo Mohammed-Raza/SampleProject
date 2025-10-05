@@ -9,6 +9,7 @@ import 'package:sample_project/features/data/repository/groceries_repo_impl.dart
 import 'package:sample_project/features/domain/usecases/grocery_usecases.dart';
 import 'package:sample_project/features/presentation/bloc/groceries/groceries_bloc.dart';
 import 'package:sample_project/features/presentation/providers/language_provider.dart';
+import 'package:sample_project/features/presentation/providers/media_provider.dart';
 import 'package:sample_project/features/presentation/providers/theme_provider.dart';
 import 'core/environments/environment.dart';
 import 'core/mixins/language_mixin.dart';
@@ -46,10 +47,11 @@ class _MyAppState extends State<MyApp>
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (_) =>
-                GroceriesBloc(GroceryUserCases(GroceriesRepoImpl(baseService)))),
+            create: (_) => GroceriesBloc(
+                GroceryUserCases(GroceriesRepoImpl(baseService)))),
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => MediaProvider())
       ],
       child: Consumer2<LanguageProvider, ThemeProvider>(
           builder: (context, languageProv, themeProv, child) {
