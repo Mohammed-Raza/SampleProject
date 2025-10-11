@@ -4,10 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_project/config/routes/routing.dart';
 import 'package:sample_project/config/theme/theme.dart';
-import 'package:sample_project/core/firebase/push_notifications.dart';
+import 'package:sample_project/core/firebase/firebase_messaging.dart';
 import 'package:sample_project/features/data/repository/groceries_repo_impl.dart';
 import 'package:sample_project/features/domain/usecases/grocery_usecases.dart';
+import 'package:sample_project/features/presentation/bloc/drop_downs/drop_down_cubit.dart';
 import 'package:sample_project/features/presentation/bloc/groceries/groceries_bloc.dart';
+import 'package:sample_project/features/presentation/bloc/notifications/push_notifications_bloc.dart';
 import 'package:sample_project/features/presentation/providers/language_provider.dart';
 import 'package:sample_project/features/presentation/providers/media_provider.dart';
 import 'package:sample_project/features/presentation/providers/theme_provider.dart';
@@ -20,7 +22,7 @@ import 'firebase_options.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // initializeFirebase();
+  initializeFirebase();
   Environment().configure();
   runApp(const MyApp());
 }
@@ -51,7 +53,11 @@ class _MyAppState extends State<MyApp>
                 GroceryUserCases(GroceriesRepoImpl(baseService)))),
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ChangeNotifierProvider(create: (_) => MediaProvider())
+        ChangeNotifierProvider(create: (_) => MediaProvider()),
+        BlocProvider(create: (_) => PushNotificationsBloc()),
+        BlocProvider(
+            create: (_) => DropDownCubit(
+                GroceryUserCases(GroceriesRepoImpl(baseService)))),
       ],
       child: Consumer2<LanguageProvider, ThemeProvider>(
           builder: (context, languageProv, themeProv, child) {
@@ -74,12 +80,12 @@ void initializeFirebase() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  await FirebasePushNotifications().requestPermissions();
-
-  String? token = await FirebasePushNotifications().registrationToken;
-
-  if (kDebugMode) {
-    print('Token : $token');
-  }
+  //
+  // await FirebasePushNotifications().requestPermissions();
+  //
+  // String? token = await FirebasePushNotifications().registrationToken;
+  //
+  // if (kDebugMode) {
+  //   print('Token : $token');
+  // }
 }

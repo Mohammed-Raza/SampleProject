@@ -126,7 +126,7 @@ void isolateImageCompress(ImageIsolateData isolateData) async {
   BackgroundIsolateBinaryMessenger.ensureInitialized(isolateData.token);
 
   for (var i = 0; i < 50; i++) {
-    await Future.delayed(const Duration(milliseconds: 300));
+    await Future.delayed(const Duration(milliseconds: 100));
     var compressedImage = await ImageMixin.addWatermarkToImage(
         originalImage: File(isolateData.imagePath),
         waterMarkText: 'Index : $i');

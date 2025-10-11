@@ -26,13 +26,16 @@ class CustomTheme {
         fontFamily: GoogleFonts.poppins().fontFamily,
         elevatedButtonTheme: _elevatedButtonTheme,
         scaffoldBackgroundColor: Colors.white,
+        dropdownMenuTheme:
+            DropdownMenuThemeData(inputDecorationTheme: lightInputThemeData),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
             elevation: 5, backgroundColor: Colors.amber.shade200),
         appBarTheme: AppBarTheme(
             backgroundColor: config.appBarColor,
             titleTextStyle: const TextStyle(color: Colors.white, fontSize: 25)),
         colorScheme: ColorScheme.fromSeed(seedColor: config.seedColor),
-        dialogTheme: const DialogThemeData(backgroundColor: Colors.white));
+        dialogTheme: const DialogThemeData(backgroundColor: Colors.white),
+        inputDecorationTheme: lightInputThemeData);
   }
 
   static ThemeData darkThemeData() {
@@ -49,6 +52,9 @@ class CustomTheme {
         elevatedButtonTheme: _elevatedButtonTheme,
         scaffoldBackgroundColor: Colors.black45,
         appBarTheme: const AppBarTheme(elevation: 5),
+        dropdownMenuTheme:
+            DropdownMenuThemeData(inputDecorationTheme: darkInputThemeData),
+        inputDecorationTheme: darkInputThemeData,
         cardTheme: CardThemeData(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -62,6 +68,24 @@ class CustomTheme {
             backgroundColor: Environment().configuration.seedColor,
             foregroundColor: Colors.white));
   }
+
+  static get lightInputThemeData => InputDecorationThemeData(
+      border: _border(Colors.black45),
+      errorBorder: _border(Colors.red),
+      focusedBorder: _border(Colors.black45),
+      enabledBorder: _border(Colors.black45),
+      focusedErrorBorder: _border(Colors.red));
+
+  static get darkInputThemeData => InputDecorationThemeData(
+      border: _border(Colors.white),
+      errorBorder: _border(Colors.tealAccent),
+      focusedBorder: _border(Colors.white),
+      enabledBorder: _border(Colors.white),
+      focusedErrorBorder: _border(Colors.tealAccent));
+
+  static OutlineInputBorder _border(Color color) => OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: BorderSide(color: color));
 }
 
 @immutable

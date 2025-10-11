@@ -11,6 +11,10 @@ class Routes {
   static const String isolatesMain = 'isolatesMain';
   static const String isolatesMainPath = '$homePath/$isolatesMain';
 
+  static const String pushNotificationsMain = 'pushNotificationsMain';
+  static const String pushNotificationsMainPath =
+      '$homePath/$pushNotificationsMain';
+
   /// Profile Paths
   static const String profile = 'profile';
   static const String profilePath = '$homePath/$profile';

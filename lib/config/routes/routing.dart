@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:sample_project/config/routes/routes.dart';
 import 'package:sample_project/core/utils/enums.dart';
+import 'package:sample_project/features/presentation/pages/fcm/push_notifications.dart';
 import 'package:sample_project/features/presentation/pages/groceries/grocery_home.dart';
 import 'package:sample_project/features/presentation/pages/home.dart';
 import 'package:sample_project/features/presentation/pages/groceries/grocery.dart';
@@ -39,6 +40,10 @@ class Routing {
               name: 'Isolates',
               path: Routes.isolatesMain,
               builder: (context, state) => const IsolatesMainScreen()),
+          GoRoute(
+              name: 'PN',
+              path: Routes.pushNotificationsMain,
+              builder: (context, state) => const PushNotificationsScreen()),
         ]),
   ]);
 }

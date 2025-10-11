@@ -10,7 +10,10 @@ mixin ImageMixin {
       final image = img.decodeImage(originalImage.readAsBytesSync())!;
 
       img.drawString(image, waterMarkText,
-          font: img.arial48, x: 50, y: 50, color: img.ColorRgb8(255, 172, 28));
+          font: img.arial48,
+          x: 100,
+          y: 100,
+          color: img.ColorRgb8(255, 172, 28));
       final tempDir = await getTemporaryDirectory();
 
       var file =

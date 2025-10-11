@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>NSCameraUsageDescription</key>
+    <string>Allow the user to capture the picture for login purpose</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app requires access to the photo library to update the profile picture of user</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>your usage description here</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>

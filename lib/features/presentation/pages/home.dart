@@ -24,8 +24,14 @@ class _HomePageState extends State<HomePage> {
     (
       Icons.code,
       'Isolates',
-      'Currently  works in mobile application only',
+      'Currently works in mobile application only',
       Routes.isolatesMainPath
+    ),
+    (
+      Icons.notifications_active,
+      'Push Notifications',
+      'Firebase Cloud Messaging',
+      Routes.pushNotificationsMainPath
     )
   ];
   @override
