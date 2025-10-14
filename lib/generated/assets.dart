@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String assetsServiceAccount = 'assets/service_account.json';
   static const String gifs400 = 'assets/gifs/400.gif';
   static const String gifs401 = 'assets/gifs/401.gif';
   static const String gifs404 = 'assets/gifs/404.gif';
@@ -15,5 +16,4 @@ class Assets {
   static const String logosFarmersMarket = 'assets/logos/farmers_market.jpg';
   static const String logosGrocery = 'assets/logos/grocery.jpg';
   static const String logosHealthyFood = 'assets/logos/healthy_food.jpg';
-
 }

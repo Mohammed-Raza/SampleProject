@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:sample_project/core/error/exception_handler.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:sample_project/features/domain/repository/firebase_repo.dart';
+import 'package:sample_project/generated/assets.dart';
 import '../../../../core/firebase/firebase_messaging.dart';
 import '../../../../core/mixins/notifier_mixin.dart';
 
@@ -99,7 +100,7 @@ class PushNotificationsBloc
     /// Generate New private key
     try {
       final serviceAccountJson =
-          await rootBundle.loadString('assets/service_account.json');
+          await rootBundle.loadString(Assets.assetsServiceAccount);
 
       final accountCredentials =
           ServiceAccountCredentials.fromJson(json.decode(serviceAccountJson));
