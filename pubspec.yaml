@@ -125,4 +125,5 @@ flutter:
     - assets/images/
     - assets/gifs/
     - assets/logos/
+    - assets/service_account.json
 
