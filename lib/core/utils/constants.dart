@@ -1,6 +1,8 @@
 class Constants {
   static const String rupee = '₹';
 
+  static const String success = 'success';
+
   /// Language codes
   static const String english = 'en';
   static const String hindi = 'hi';

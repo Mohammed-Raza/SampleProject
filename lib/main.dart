@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:sample_project/config/routes/routing.dart';
 import 'package:sample_project/config/theme/theme.dart';
 import 'package:sample_project/core/firebase/firebase_messaging.dart';
+import 'package:sample_project/features/data/repository/firebase_repo_impl.dart';
 import 'package:sample_project/features/data/repository/groceries_repo_impl.dart';
 import 'package:sample_project/features/domain/usecases/grocery_usecases.dart';
 import 'package:sample_project/features/presentation/bloc/drop_downs/drop_down_cubit.dart';
@@ -20,9 +21,10 @@ import 'l10n/app_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  initializeFirebase();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebasePushNotifications().requestPermissions();
   Environment().configure();
   runApp(const MyApp());
 }
@@ -54,7 +56,9 @@ class _MyAppState extends State<MyApp>
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => MediaProvider()),
-        BlocProvider(create: (_) => PushNotificationsBloc()),
+        BlocProvider(
+            create: (_) =>
+                PushNotificationsBloc(FirebaseRepoImpl(baseService))),
         BlocProvider(
             create: (_) => DropDownCubit(
                 GroceryUserCases(GroceriesRepoImpl(baseService)))),
@@ -74,18 +78,4 @@ class _MyAppState extends State<MyApp>
       }),
     );
   }
-}
-
-void initializeFirebase() async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  //
-  // await FirebasePushNotifications().requestPermissions();
-  //
-  // String? token = await FirebasePushNotifications().registrationToken;
-  //
-  // if (kDebugMode) {
-  //   print('Token : $token');
-  // }
 }

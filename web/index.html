@@ -33,12 +33,12 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-<script src="flutter_bootstrap.js" async>
+<script src="main.dart.js" type="application/javascript"></script>
+<script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('firebase-messaging-sw.js', {
-        scope: '/firebase-cloud-messaging-push-scope',
-      });
+      navigator.serviceWorker.register('/firebase-messaging-sw.js);
+       var serviceWorkerUrl = 'flutter_service_worker.js?v=' + serviceWorkerVersion;
     });
   }
 </script>

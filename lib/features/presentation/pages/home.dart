@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sample_project/core/environments/environment.dart';
+import 'package:sample_project/core/firebase/firebase_messaging.dart';
 import 'package:sample_project/core/utils/enums.dart';
 import '../../../config/routes/routes.dart';
 import '../../../core/device/adaptive_layout_builder.dart';
@@ -14,6 +15,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    FirebasePushNotifications().initiateTheFirebaseListeners();
+    FirebasePushNotifications.initializeLocalPushNotifications();
+    super.initState();
+  }
+
   List<(IconData, String, String, String)> homeCards = [
     (
       Icons.dashboard,

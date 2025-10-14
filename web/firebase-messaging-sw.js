@@ -1,7 +1,7 @@
 // Import the Firebase scripts needed
 // Import the functions you need from the SDKs you need
-importScripts("https://www.gstatic.com/firebasejs/12.2.1/firebase-app-compat.js");
-importScripts("https://www.gstatic.com/firebasejs/12.2.1/firebase-messaging-compat.js");
+importScripts("https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js");
+importScripts("https://www.gstatic.com/firebasejs/12.2.1/firebase-messaging.js");
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,7 +19,6 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const app = firebase.initializeApp(firebaseConfig);
 // Retrieve an instance of Firebase Messaging
 const messaging = firebase.messaging();

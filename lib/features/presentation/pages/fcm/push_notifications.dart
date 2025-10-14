@@ -56,7 +56,7 @@ class _PushNotificationsScreenState extends State<PushNotificationsScreen> {
               const GroceriesDropdown(),
               const SizedBox(height: 1),
               ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => bloc.add(RequestNotificationEvent(context)),
                   style: ElevatedButton.styleFrom(
                       fixedSize: Size(context.width, 50),
                       shape: RoundedRectangleBorder(
