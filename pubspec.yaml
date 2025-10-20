@@ -59,6 +59,7 @@ dependencies:
   image:
   flutter_local_notifications: ^19.4.2
   googleapis_auth: ^2.0.0
+  flutter_native_splash: ^2.4.7
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -125,5 +126,6 @@ flutter:
     - assets/images/
     - assets/gifs/
     - assets/logos/
+    - assets/splash/
     - assets/service_account.json
 

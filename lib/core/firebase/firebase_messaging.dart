@@ -43,16 +43,21 @@ class FirebasePushNotifications {
   }
 
   Future<String?> get registrationToken async {
-    if (kIsWeb) {
-      return await messaging.getToken(vapidKey: webVapidKey);
-    } else {
-      if (Platform.isIOS || Platform.isMacOS) {
-        final apnsToken = await FirebaseMessaging.instance.getAPNSToken();
-        if (apnsToken != null) {
-          return await messaging.getToken();
+    try {
+      if (kIsWeb) {
+        return await messaging.getToken(vapidKey: webVapidKey);
+      } else {
+        if (Platform.isIOS || Platform.isMacOS) {
+          final apnsToken = await FirebaseMessaging.instance.getAPNSToken();
+          if (apnsToken != null) {
+            return await messaging.getToken();
+          }
         }
+        return await messaging.getToken();
       }
-      return await messaging.getToken();
+    } catch (e) {
+      _exceptionHandler.handleException(e);
+      return null;
     }
   }
 
