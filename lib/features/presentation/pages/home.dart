@@ -40,6 +40,12 @@ class _HomePageState extends State<HomePage> {
       'Push Notifications',
       'Firebase Cloud Messaging',
       Routes.pushNotificationsMainPath
+    ),
+    (
+      Icons.share,
+      'Share PDF',
+      'Share Dynamic PDF with image',
+      Routes.dynamicPdfMainPath
     )
   ];
   @override

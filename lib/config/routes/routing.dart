@@ -6,6 +6,7 @@ import 'package:sample_project/features/presentation/pages/groceries/grocery_hom
 import 'package:sample_project/features/presentation/pages/home.dart';
 import 'package:sample_project/features/presentation/pages/groceries/grocery.dart';
 import 'package:sample_project/features/presentation/pages/isolates/isolates_main.dart';
+import 'package:sample_project/features/presentation/pages/pdf/share_pdf.dart';
 import 'package:sample_project/features/presentation/pages/profile/profile.dart';
 
 class Routing {
@@ -44,6 +45,10 @@ class Routing {
               name: 'PN',
               path: Routes.pushNotificationsMain,
               builder: (context, state) => const PushNotificationsScreen()),
+          GoRoute(
+              name: 'DynamicPdf',
+              path: Routes.dynamicPdfMain,
+              builder: (context, state) => const ShareDynamicPdfScreen()),
         ]),
   ]);
 }

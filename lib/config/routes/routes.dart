@@ -15,6 +15,9 @@ class Routes {
   static const String pushNotificationsMainPath =
       '$homePath/$pushNotificationsMain';
 
+  static const String dynamicPdfMain = 'dynamicPdfMain';
+  static const String dynamicPdfMainPath = '$homePath/$dynamicPdfMain';
+
   /// Profile Paths
   static const String profile = 'profile';
   static const String profilePath = '$homePath/$profile';

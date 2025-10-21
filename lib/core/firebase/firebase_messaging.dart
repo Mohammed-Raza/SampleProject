@@ -150,6 +150,11 @@ class FirebasePushNotifications {
 
   static void deleteToken() async =>
       await FirebaseMessaging.instance.deleteToken();
+
+  bool get _isAuthorized =>
+      notificationSettings != null &&
+      notificationSettings?.authorizationStatus ==
+          AuthorizationStatus.authorized;
 }
 
 @pragma('vm:entry-point')

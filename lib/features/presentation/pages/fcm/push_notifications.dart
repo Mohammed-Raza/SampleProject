@@ -46,7 +46,7 @@ class _PushNotificationsScreenState extends State<PushNotificationsScreen> {
                       fixedSize: Size(context.width, 50),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8)),
-                      backgroundColor: Colors.indigo),
+                      backgroundColor: Colors.cyan),
                   child: const Text('Get Access Token',
                       style: TextStyle(color: Colors.white))),
               const SizedBox(height: 1),
