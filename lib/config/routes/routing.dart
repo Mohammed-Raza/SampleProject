@@ -8,6 +8,7 @@ import 'package:sample_project/features/presentation/pages/groceries/grocery.dar
 import 'package:sample_project/features/presentation/pages/isolates/isolates_main.dart';
 import 'package:sample_project/features/presentation/pages/pdf/share_pdf.dart';
 import 'package:sample_project/features/presentation/pages/profile/profile.dart';
+import 'package:sample_project/global_variables.dart';
 
 class Routing {
   static final GoRouter router =
@@ -51,4 +52,13 @@ class Routing {
               builder: (context, state) => const ShareDynamicPdfScreen()),
         ]),
   ]);
+
+  static redirectToHome({int index = 0}) {
+    var context = navigatorKey.currentContext!;
+    while (GoRouter.of(context).canPop()) {
+      GoRouter.of(context).pop();
+    }
+
+    GoRouter.of(context).pushReplacement(Routes.home, extra: index);
+  }
 }

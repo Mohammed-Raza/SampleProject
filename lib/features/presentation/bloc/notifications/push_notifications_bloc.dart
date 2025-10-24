@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sample_project/core/error/exception_handler.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:sample_project/features/domain/repository/firebase_repo.dart';
+import 'package:sample_project/features/presentation/bloc/drop_downs/drop_down_cubit.dart';
 import 'package:sample_project/generated/assets.dart';
+import '../../../../config/routes/routes.dart';
 import '../../../../core/firebase/firebase_messaging.dart';
 import '../../../../core/mixins/notifier_mixin.dart';
 
@@ -26,6 +28,10 @@ class PushNotificationsBloc
   final FirebaseRepository _repository;
 
   final _globalKey = GlobalKey<ScaffoldState>();
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  bool autoValidate = false;
 
   void _getAccessTokenEvent(
       GetAccessTokenEvent event, Emitter<PushNotificationsState> emit) async {
@@ -48,6 +54,16 @@ class PushNotificationsBloc
     try {
       // if (!(formKey.currentState?.validate() ?? true)) return;
 
+      if (!formKey.currentState!.validate()) {
+        autoValidate = true;
+        emit(NotificationsMainState());
+        return;
+      }
+
+      autoValidate = false;
+
+      var dropdownBloc = event.context.read<DropDownCubit>();
+
       Map body = {
         "message": {
           "token": tokenCtrl.text.trim(),
@@ -55,7 +71,10 @@ class PushNotificationsBloc
             "title": "Good Morning",
             "body": "Hii, Have a nice day"
           },
-          "data": {"path": ""}
+          "data": {
+            "path":
+                "${Routes.groceriesMainPath}/${dropdownBloc.selectedCategoryId}"
+          }
         }
       };
 

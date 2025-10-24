@@ -97,16 +97,16 @@ class _GetRadioViewState extends State<_GetRadioView> {
         onTap: () => provider.onChangeOfRadioButton(widget.type),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(widget.label),
-              Radio<ThemeType>(
-                  value: widget.type,
-                  groupValue: provider.themeType,
-                  onChanged: provider.onChangeOfRadioButton),
-            ],
-          ),
+          child: RadioGroup<ThemeType>(
+              groupValue: provider.themeType,
+              onChanged: provider.onChangeOfRadioButton,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(widget.label),
+                  Radio<ThemeType>(value: widget.type),
+                ],
+              )),
         ),
       );
     });

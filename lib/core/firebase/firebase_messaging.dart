@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:sample_project/config/routes/routing.dart';
 import 'package:sample_project/core/error/exception_handler.dart';
 import 'package:sample_project/core/mixins/notifier_mixin.dart';
 
@@ -172,6 +174,11 @@ void handleMessage(RemoteMessage? message) async {
   if (message == null || message.notification == null) return;
   try {
     if (message.notification != null) {}
+    var path = message.data["path"];
+    if (path != null && path.isNotEmpty) {
+      Routing.redirectToHome(index: 1);
+      navigatorKey.currentContext!.push(path);
+    }
   } catch (e) {
     ExceptionHandler().handleExceptionWithToastNotifier(e);
   }
