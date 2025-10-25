@@ -18,3 +18,7 @@ enum ThemeType { light, dark, system }
 enum DeviceResolutionType { mobile, tab, desktop }
 
 enum StateType { loading, success, error }
+
+enum TableColumnType { name, price, quantity, date }
+
+enum ShareType { pdf, image }

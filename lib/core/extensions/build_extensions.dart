@@ -14,4 +14,8 @@ extension BuildExtension on BuildContext {
   Color get groceryButtonShadowColor =>
       Theme.of(this).extension<CustomThemeExtensions>()?.groceryButtonShadow ??
       const Color.fromRGBO(0, 0, 0, 0.16);
+
+  Color get tableBorderColor =>
+      Theme.of(this).extension<CustomThemeExtensions>()?.tableBorderColor ??
+      Colors.black38;
 }

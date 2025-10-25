@@ -8,6 +8,7 @@ import 'package:sample_project/features/data/repository/firebase_repo_impl.dart'
 import 'package:sample_project/features/data/repository/groceries_repo_impl.dart';
 import 'package:sample_project/features/domain/usecases/grocery_usecases.dart';
 import 'package:sample_project/features/presentation/bloc/drop_downs/drop_down_cubit.dart';
+import 'package:sample_project/features/presentation/bloc/dynamic_pdf/share_pdf_cubit.dart';
 import 'package:sample_project/features/presentation/bloc/groceries/groceries_bloc.dart';
 import 'package:sample_project/features/presentation/bloc/notifications/push_notifications_bloc.dart';
 import 'package:sample_project/features/presentation/providers/language_provider.dart';
@@ -61,6 +62,7 @@ class _MyAppState extends State<MyApp>
         BlocProvider(
             create: (_) => DropDownCubit(
                 GroceryUserCases(GroceriesRepoImpl(baseService)))),
+        BlocProvider(create: (_) => SharePdfCubit()),
       ],
       child: Consumer2<LanguageProvider, ThemeProvider>(
           builder: (context, languageProv, themeProv, child) {

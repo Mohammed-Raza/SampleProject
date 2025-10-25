@@ -12,7 +12,8 @@ class CustomTheme {
           CustomThemeExtensions(
               greyWithColor: Colors.black26,
               groceryButtonBorder: Color.fromRGBO(0, 0, 0, 0.05),
-              groceryButtonShadow: Color.fromRGBO(0, 0, 0, 0.16))
+              groceryButtonShadow: Color.fromRGBO(0, 0, 0, 0.16),
+              tableBorderColor: Colors.black38)
         ],
         hoverColor: config.hoverColor,
         cardTheme: CardThemeData(
@@ -46,7 +47,8 @@ class CustomTheme {
           CustomThemeExtensions(
               greyWithColor: Colors.white60,
               groceryButtonBorder: Colors.white54,
-              groceryButtonShadow: Colors.white)
+              groceryButtonShadow: Colors.white,
+              tableBorderColor: Colors.white54)
         ],
         fontFamily: GoogleFonts.poppins().fontFamily,
         elevatedButtonTheme: _elevatedButtonTheme,
@@ -93,19 +95,25 @@ class CustomThemeExtensions extends ThemeExtension<CustomThemeExtensions> {
   const CustomThemeExtensions(
       {required this.greyWithColor,
       required this.groceryButtonShadow,
-      required this.groceryButtonBorder});
+      required this.groceryButtonBorder,
+      required this.tableBorderColor});
 
-  final Color greyWithColor, groceryButtonBorder, groceryButtonShadow;
+  final Color greyWithColor,
+      groceryButtonBorder,
+      groceryButtonShadow,
+      tableBorderColor;
 
   @override
   ThemeExtension<CustomThemeExtensions> copyWith(
       {Color? greyWithColor,
       Color? groceryButtonBorder,
-      Color? groceryButtonShadow}) {
+      Color? groceryButtonShadow,
+      Color? tableBorder}) {
     return CustomThemeExtensions(
         greyWithColor: greyWithColor ?? this.greyWithColor,
         groceryButtonShadow: groceryButtonShadow ?? this.groceryButtonShadow,
-        groceryButtonBorder: groceryButtonBorder ?? this.groceryButtonBorder);
+        groceryButtonBorder: groceryButtonBorder ?? this.groceryButtonBorder,
+        tableBorderColor: tableBorder ?? tableBorderColor);
   }
 
   @override
@@ -117,6 +125,7 @@ class CustomThemeExtensions extends ThemeExtension<CustomThemeExtensions> {
     return CustomThemeExtensions(
         greyWithColor: greyWithColor,
         groceryButtonShadow: groceryButtonShadow,
-        groceryButtonBorder: groceryButtonBorder);
+        groceryButtonBorder: groceryButtonBorder,
+        tableBorderColor: tableBorderColor);
   }
 }
