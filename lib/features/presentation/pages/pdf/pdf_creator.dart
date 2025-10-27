@@ -14,20 +14,31 @@ class PdfCreator {
   final List<List<String>>? tableData;
   final String fileName;
   final Size size;
+  final List<String> capturedImages;
   const PdfCreator(this.tableHeaderList, this.tableData, this.size,
-      {this.fileName = 'groceries'});
+      {this.fileName = 'groceries', this.capturedImages = const []});
 
   void buildPdf() async {
     final doc = pw.Document();
 
-    var image = await getPdfImage(doc);
+    var logo = await getPdfImage(doc);
+
+    var imagesList = [];
+    if (capturedImages.isNotEmpty) {
+      for (var imagePath in (capturedImages)) {
+        var imageFile = File(imagePath);
+        final Uint8List imageBytes = await imageFile.readAsBytes();
+        final image = pw.MemoryImage(imageBytes);
+        imagesList.add(image);
+      }
+    }
 
     doc.addPage(pw.MultiPage(
         pageFormat: _pdfPaddings,
-        // footer: (context) => PdfUtils().buildPdfFooter(incImage),
         build: (context) => [
-              buildPdfHeader(image),
-              buildTableView(tableHeaderList, tableData)
+              buildPdfHeader(logo),
+              buildTableView(tableHeaderList, tableData),
+              if (imagesList.isNotEmpty) _imagesView(imagesList)
             ]));
 
     final Directory directory = await getApplicationDocumentsDirectory();
@@ -66,6 +77,26 @@ class PdfCreator {
         cellHeight: 30,
         cellPadding: const pw.EdgeInsets.symmetric(vertical: 10),
         data: tableData ?? []);
+  }
+
+  pw.Widget _imagesView(List<dynamic> imagesList) {
+    return pw.Wrap(
+        direction: pw.Axis.horizontal,
+        spacing: 10,
+        runSpacing: 10,
+        children: List.generate(
+            imagesList.length,
+            (index) => pw.Container(
+                  height: 250,
+                  margin: const pw.EdgeInsets.only(top: 15),
+                  decoration: pw.BoxDecoration(
+                      borderRadius: pw.BorderRadius.circular(15),
+                      border: pw.Border.all(color: PdfColors.green800)),
+                  child: pw.ClipRRect(
+                      horizontalRadius: 15,
+                      verticalRadius: 15,
+                      child: pw.Image(imagesList[index])),
+                )));
   }
 
   pw.Widget buildPdfHeader(pw.ImageProvider image) {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sample_project/features/presentation/bloc/dynamic_pdf/share_pdf_cubit.dart';
+import 'package:sample_project/features/presentation/widgets/image_upload.dart';
 
 import 'create_table.dart';
 
@@ -138,9 +140,16 @@ class _AnimatedFloatingActionButtonsState
                     icon: Icons.add,
                     color: Colors.pinkAccent,
                     toolTip: 'Add Images',
-                    onClick: () {
-                      debugPrint('add image');
-                    }),
+                    onClick: () => showModalBottomSheet(
+                        context: context,
+                        builder: (context) =>
+                            UploadAttachmentView(captureImage: () {
+                              context.pop();
+                              cubit.onClickOfCamera();
+                            }, uploadImage: () {
+                              context.pop();
+                              cubit.onClickOfCamera(isCamera: false);
+                            }))),
               ),
             ),
             Transform(

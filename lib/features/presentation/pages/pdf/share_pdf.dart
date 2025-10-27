@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
@@ -7,6 +9,7 @@ import 'package:sample_project/features/presentation/pages/pdf/animated_fab.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/enums.dart';
 import '../../bloc/dynamic_pdf/share_pdf_cubit.dart';
+import '../../widgets/common_widgets.dart';
 
 class ShareDynamicPdfScreen extends StatefulWidget {
   const ShareDynamicPdfScreen({super.key});
@@ -27,17 +30,40 @@ class _ShareDynamicPdfScreenState extends State<ShareDynamicPdfScreen>
             width: context.width,
             height: context.height,
             child: const Stack(
-              alignment: Alignment.center,
               clipBehavior: Clip.none,
               children: [
                 Padding(
                   padding: EdgeInsets.all(15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Gap(20),
-                      Expanded(child: SharePdfTableView()),
-                    ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: 10,
+                      children: [
+                        Column(
+                          spacing: 5,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _BuildText(
+                                label:
+                                    'Here on click of floating action menu button, you can'),
+                            _BuildText(
+                                label:
+                                    '1. Create customized table with Rows & Columns ',
+                                color: Colors.cyan),
+                            _BuildText(
+                                label:
+                                    '2. Share PDF with Customized table data & added images',
+                                color: Colors.deepOrange),
+                            _BuildText(
+                                label: '3. Capture Image / Upload from Gallery',
+                                color: Colors.pink),
+                          ],
+                        ),
+                        SharePdfTableView(),
+                        Gap(5),
+                        ImageCaptureView()
+                      ],
+                    ),
                   ),
                 ),
                 AnimatedFloatingActionButtons()
@@ -47,6 +73,19 @@ class _ShareDynamicPdfScreenState extends State<ShareDynamicPdfScreen>
         },
       ),
     );
+  }
+}
+
+class _BuildText extends StatelessWidget {
+  final String label;
+  final Color? color;
+  const _BuildText({required this.label, this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(label,
+        style:
+            TextStyle(color: color, fontSize: 13, fontWeight: FontWeight.bold));
   }
 }
 
@@ -67,58 +106,61 @@ class SharePdfTableView extends StatelessWidget {
 
         return Visibility(
           visible: filteredColumns.isNotEmpty,
-          child: Expanded(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: DataTable(
-                  columnSpacing: 50,
-                  border: TableBorder.all(
-                      borderRadius: BorderRadius.circular(8),
-                      color: context.tableBorderColor),
-                  columns: filteredColumns
-                      .map((col) =>
-                          DataColumn(label: Center(child: Text(col.name))))
-                      .toList(),
-                  rows: List.generate(cubit.tableRows.length, (rowIndex) {
-                    final rowItems = cubit.tableRows[rowIndex];
-                    return DataRow(
-                      cells: List.generate(rowItems.length, (colIndex) {
-                        final dataCell = rowItems[colIndex];
+          child: Row(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: DataTable(
+                    columnSpacing: 50,
+                    border: TableBorder.all(
+                        borderRadius: BorderRadius.circular(8),
+                        color: context.tableBorderColor),
+                    columns: filteredColumns
+                        .map((col) =>
+                            DataColumn(label: Center(child: Text(col.name))))
+                        .toList(),
+                    rows: List.generate(cubit.tableRows.length, (rowIndex) {
+                      final rowItems = cubit.tableRows[rowIndex];
+                      return DataRow(
+                        cells: List.generate(rowItems.length, (colIndex) {
+                          final dataCell = rowItems[colIndex];
 
-                        return DataCell(SizedBox.expand(
-                          child: dataCell.type == TableColumnType.date
-                              ? TextFieldWithDate(
-                                  ctrl: dataCell.ctrl,
-                                  onTap: () => cubit.onChangeDate(context,
-                                      dataCell.ctrl, rowIndex, colIndex))
-                              : TextFormField(
-                                  controller: dataCell.ctrl,
-                                  maxLength: 10,
-                                  keyboardType: _getKeyboardType(dataCell.type),
-                                  inputFormatters:
-                                      _getInputFormatter(dataCell.type),
-                                  textAlign: TextAlign.center,
-                                  decoration: InputDecoration(
-                                    isDense: true,
-                                    filled: true,
-                                    counterText: '',
-                                    fillColor: Colors.transparent,
-                                    border: _border,
-                                    focusedBorder: _border,
-                                    enabledBorder: _border,
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 8),
+                          return DataCell(SizedBox.expand(
+                            child: dataCell.type == TableColumnType.date
+                                ? TextFieldWithDate(
+                                    ctrl: dataCell.ctrl,
+                                    onTap: () => cubit.onChangeDate(context,
+                                        dataCell.ctrl, rowIndex, colIndex))
+                                : TextFormField(
+                                    controller: dataCell.ctrl,
+                                    maxLength: 10,
+                                    keyboardType:
+                                        _getKeyboardType(dataCell.type),
+                                    inputFormatters:
+                                        _getInputFormatter(dataCell.type),
+                                    textAlign: TextAlign.center,
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      filled: true,
+                                      counterText: '',
+                                      fillColor: Colors.transparent,
+                                      border: _border,
+                                      focusedBorder: _border,
+                                      enabledBorder: _border,
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 8, vertical: 8),
+                                    ),
                                   ),
-                                ),
-                        ));
-                      }),
-                    );
-                  }),
+                          ));
+                        }),
+                      );
+                    }),
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
         );
       },
@@ -181,6 +223,54 @@ class TextFieldWithDate extends StatelessWidget {
 
   get _border => const OutlineInputBorder(
       borderSide: BorderSide(color: Colors.transparent));
+}
+
+class ImageCaptureView extends StatelessWidget {
+  const ImageCaptureView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var cubit = context.read<SharePdfCubit>();
+    return BlocBuilder<SharePdfCubit, SharePdfState>(
+      builder: (context, state) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 20,
+          children: [
+            state is ImageCaptureLoadingState
+                ? const CircularIndicator()
+                : cubit.processedImage != null
+                    ? Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(9),
+                            border: Border.all(color: Colors.black26)),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.file(File(cubit.processedImage ?? ''),
+                              height: context.height * 0.45,
+                              width: context.width,
+                              fit: BoxFit.fill),
+                        ),
+                      )
+                    : const SizedBox(),
+            Visibility(
+              visible: cubit.processedImage != null &&
+                  state is! ImageCaptureLoadingState,
+              child: ElevatedButton(
+                  onPressed: cubit.deleteProcessedImage,
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: Size(context.width, 45),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      backgroundColor: Colors.red),
+                  child: const Text('Delete Image',
+                      style: TextStyle(color: Colors.white))),
+            )
+          ],
+        );
+      },
+    );
+  }
 }
 
 class AlwaysDisabledFocusNode extends FocusNode {

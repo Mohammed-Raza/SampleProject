@@ -1,8 +1,12 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sample_project/core/extensions/string_extensions.dart';
+import '../../../../core/error/exception_handler.dart';
 import '../../../../core/utils/enums.dart';
 import '../../pages/pdf/pdf_creator.dart';
+import '../../providers/media_provider.dart';
 
 part 'share_pdf_state.dart';
 
@@ -19,6 +23,12 @@ class SharePdfCubit extends Cubit<SharePdfState> {
   int rowsCount = 0;
 
   List<List<TableRowData>> tableRows = [];
+
+  final ImagePicker _picker = ImagePicker();
+
+  String? processedImage;
+
+  final ExceptionHandler _exceptionHandler = ExceptionHandler();
 
   void onChangeOfCheckBox(TableColumData cellData) {
     cellData.status = !cellData.status;
@@ -76,8 +86,32 @@ class SharePdfCubit extends Cubit<SharePdfState> {
       return tableCell.map((e) => e.ctrl.text.trim()).toList();
     }).toList();
 
-    PdfCreator(headersList, tableDataList, MediaQuery.of(context).size)
+    PdfCreator(headersList, tableDataList, MediaQuery.of(context).size,
+            capturedImages: processedImage != null ? [processedImage!] : [])
         .buildPdf();
+  }
+
+  /// Method is to capture picture / upload from gallery
+  Future<void> onClickOfCamera({bool isCamera = true}) async {
+    try {
+      emit(ImageCaptureLoadingState());
+
+      final XFile? capturedImage = await _picker.pickImage(
+          source: isCamera ? ImageSource.camera : ImageSource.gallery);
+
+      if (capturedImage != null) {
+        processedImage = await compute(processImage, capturedImage.path);
+      }
+
+      emit(SharePdfMainState());
+    } catch (e) {
+      _exceptionHandler.handleExceptionWithToastNotifier(e);
+    }
+  }
+
+  void deleteProcessedImage() {
+    processedImage = null;
+    emit(SharePdfMainState());
   }
 }
 
