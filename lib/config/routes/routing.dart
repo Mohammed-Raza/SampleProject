@@ -8,6 +8,7 @@ import 'package:sample_project/features/presentation/pages/groceries/grocery.dar
 import 'package:sample_project/features/presentation/pages/isolates/isolates_main.dart';
 import 'package:sample_project/features/presentation/pages/pdf/share_pdf.dart';
 import 'package:sample_project/features/presentation/pages/profile/profile.dart';
+import 'package:sample_project/features/presentation/pages/sqflite/sqflite_main.dart';
 import 'package:sample_project/global_variables.dart';
 
 class Routing {
@@ -50,6 +51,10 @@ class Routing {
               name: 'DynamicPdf',
               path: Routes.dynamicPdfMain,
               builder: (context, state) => const ShareDynamicPdfScreen()),
+          GoRoute(
+              name: 'LocalDB',
+              path: Routes.sqfLiteMain,
+              builder: (context, state) => const SqfLiteMain()),
         ]),
   ]);
 

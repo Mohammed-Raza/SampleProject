@@ -36,7 +36,7 @@ class CustomizedDropDown extends StatelessWidget {
         child: DropdownButtonFormField(
             initialValue: id == null
                 ? null
-                : (items.any((element) => element.id == id) ? id : null),
+                : (items.any((element) => element.key == id) ? id : null),
             isExpanded: true,
             isDense: true,
             validator: validator,
@@ -48,7 +48,7 @@ class CustomizedDropDown extends StatelessWidget {
             iconDisabledColor: Colors.grey,
             disabledHint: hintText(),
             hint: hintText(color: Colors.teal),
-            items: items.map((e) => dropDownMenuItems(e.id, e.name)).toList(),
+            items: items.map((e) => dropDownMenuItems(e.key, e.name)).toList(),
             onChanged: callback),
       ),
     );

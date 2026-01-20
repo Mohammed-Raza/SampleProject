@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_app_badge_control/flutter_app_badge_control.dart';
 import 'package:go_router/go_router.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -157,6 +158,12 @@ class FirebasePushNotifications {
       notificationSettings != null &&
       notificationSettings?.authorizationStatus ==
           AuthorizationStatus.authorized;
+
+  void clearNotificationBadge() async {
+    if (await FlutterAppBadgeControl.isAppBadgeSupported()) {
+      FlutterAppBadgeControl.removeBadge();
+    }
+  }
 }
 
 @pragma('vm:entry-point')

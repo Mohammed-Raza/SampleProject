@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sample_project/core/environments/environment.dart';
 import 'package:sample_project/core/firebase/firebase_messaging.dart';
@@ -17,7 +18,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    FirebasePushNotifications().initiateTheFirebaseListeners();
+    FirebasePushNotifications()
+      ..initiateTheFirebaseListeners()
+      ..clearNotificationBadge();
     FirebasePushNotifications.initializeLocalPushNotifications();
     super.initState();
   }
@@ -46,6 +49,12 @@ class _HomePageState extends State<HomePage> {
       'Share PDF',
       'Share Dynamic PDF with image',
       Routes.dynamicPdfMainPath
+    ),
+    (
+      FontAwesomeIcons.database,
+      'SqfLite',
+      'Handling local DB operations for Android, IOS & MacOS',
+      Routes.sqfLiteMainPath
     )
   ];
   @override

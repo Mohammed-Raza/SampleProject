@@ -37,7 +37,7 @@ class DropDownCubit extends Cubit<DropDownState> {
       if (response.isNotEmpty) {
         categories.clear();
         for (var e in response) {
-          categories.add(DropDownEntity(e.key, e.name));
+          categories.add(DropDownEntity(e.key, e.name, id: int.parse(e.id)));
         }
       }
       emit(CategorySuccess());

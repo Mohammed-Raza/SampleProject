@@ -22,7 +22,7 @@ samples, guidance on mobile development, and a full API reference.
 4. **Bloc Architecture** - By applying principles of Clean Architecture
 5. **Integrated REST Api's** - Using Firebase Realtime Database.
 6. **Deep Linking** - Using flutter deep-linking
-7. **Remote Push Notifications** - Using Firebase
+7. **Remote Push Notifications** - Using Firebase cloud messaging
 8. **Flavor Support** - Android, IOS & macOS
 
 # Theme:
@@ -47,4 +47,4 @@ samples, guidance on mobile development, and a full API reference.
 
   **Android:** https://farmers-market-c591f.web.app/.well-known/assetlinks.json
 
-  **iOS:** https://farmers-market-c591f.web.app/.well-known/apple-app-site-association
+  **IOS:** https://farmers-market-c591f.web.app/.well-known/apple-app-site-association

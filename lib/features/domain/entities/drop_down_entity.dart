@@ -1,5 +1,7 @@
 class DropDownEntity {
-  String id, name;
+  String key, name;
 
-  DropDownEntity(this.id, this.name);
+  int id;
+
+  DropDownEntity(this.key, this.name, {this.id = 0});
 }

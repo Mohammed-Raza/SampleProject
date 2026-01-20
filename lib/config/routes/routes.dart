@@ -18,6 +18,9 @@ class Routes {
   static const String dynamicPdfMain = 'dynamicPdfMain';
   static const String dynamicPdfMainPath = '$homePath/$dynamicPdfMain';
 
+  static const String sqfLiteMain = 'sqfLiteMain';
+  static const String sqfLiteMainPath = '$homePath/$sqfLiteMain';
+
   /// Profile Paths
   static const String profile = 'profile';
   static const String profilePath = '$homePath/$profile';

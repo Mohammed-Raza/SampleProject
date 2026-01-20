@@ -6,8 +6,8 @@ import '../bloc/drop_downs/drop_down_cubit.dart';
 import '../widgets/drop_down_widget.dart';
 
 class GroceryCategoryDropdown extends StatefulWidget {
-  final void Function() onChange;
-  const GroceryCategoryDropdown({super.key, required this.onChange});
+  final void Function()? onChange;
+  const GroceryCategoryDropdown({super.key, this.onChange});
 
   @override
   State<GroceryCategoryDropdown> createState() =>
@@ -36,7 +36,9 @@ class _GroceryCategoryDropdownState extends State<GroceryCategoryDropdown>
               items: bloc.categories,
               callback: (id) {
                 bloc.onChangeOfCategory(id);
-                widget.onChange();
+                if (widget.onChange != null) {
+                  widget.onChange!();
+                }
               },
               type: _getStateType(state),
               label: 'Category',

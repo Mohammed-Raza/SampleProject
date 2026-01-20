@@ -52,7 +52,7 @@ class CustomTheme {
         ],
         fontFamily: GoogleFonts.poppins().fontFamily,
         elevatedButtonTheme: _elevatedButtonTheme,
-        scaffoldBackgroundColor: Colors.black45,
+        scaffoldBackgroundColor: Colors.black,
         appBarTheme: const AppBarTheme(elevation: 5),
         dropdownMenuTheme:
             DropdownMenuThemeData(inputDecorationTheme: darkInputThemeData),
@@ -80,6 +80,7 @@ class CustomTheme {
 
   static get darkInputThemeData => InputDecorationThemeData(
       border: _border(Colors.white),
+      labelStyle: const TextStyle(color: Colors.white),
       errorBorder: _border(Colors.tealAccent),
       focusedBorder: _border(Colors.white),
       enabledBorder: _border(Colors.white),
