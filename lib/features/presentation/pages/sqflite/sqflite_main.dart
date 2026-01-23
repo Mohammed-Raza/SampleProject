@@ -7,6 +7,7 @@ import 'package:sample_project/features/presentation/bloc/local_db/local_db_cubi
 import 'package:sample_project/features/presentation/pages/sqflite/create_db.dart';
 import 'package:sample_project/features/presentation/pages/sqflite/update_db.dart';
 import '../../../../core/database/db_helper.dart';
+import '../../../../core/mixins/common_mixin.dart';
 import '../../../data/models/category_model.dart';
 import '../../widgets/common_widgets.dart';
 import '../../widgets/page_error.dart';
@@ -70,9 +71,7 @@ class _SqfLiteMainState extends State<SqfLiteMain> with ValidatorsMixin {
                           ),
                         ),
                         // List of items in this category
-                        ...items
-                            .map((item) => GroceryItemCard(item: item))
-                            .toList(),
+                        ...items.map((item) => GroceryItemCard(item: item))
                       ],
                     );
                   },
@@ -155,7 +154,8 @@ class GroceryItemCard extends StatelessWidget {
                 style: TextStyle(color: Colors.grey[700], fontSize: 13),
               ),
               GestureDetector(
-                onTap: () => _showFullDescription(context),
+                onTap: () => CommonMixin.showFullDescription(
+                    context, item.name, item.description),
                 child: const Padding(
                   padding: EdgeInsets.only(top: 4.0),
                   child: Text(
@@ -171,57 +171,6 @@ class GroceryItemCard extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  void _showFullDescription(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (context) {
-        return DraggableScrollableSheet(
-          initialChildSize: 0.4,
-          maxChildSize: 0.9,
-          minChildSize: 0.3,
-          expand: false,
-          builder: (context, scrollController) {
-            return SingleChildScrollView(
-              controller: scrollController,
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Container(
-                      width: 40,
-                      height: 5,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(item.name,
-                      style: const TextStyle(
-                          fontSize: 22, fontWeight: FontWeight.bold)),
-                  const Divider(),
-                  const SizedBox(height: 10),
-                  const Text("Full Description",
-                      style: TextStyle(
-                          color: Colors.teal, fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 10),
-                  Text(item.description,
-                      style: const TextStyle(fontSize: 16, height: 1.5)),
-                ],
-              ),
-            );
-          },
-        );
-      },
     );
   }
 

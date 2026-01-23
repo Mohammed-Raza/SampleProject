@@ -25,36 +25,48 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  List<(IconData, String, String, String)> homeCards = [
+  List<(IconData, String, String, String, {bool isFaIcon})> homeCards = [
     (
       Icons.dashboard,
       'Groceries',
       'It contains groceries with different types',
-      Routes.groceryHomePath
+      Routes.groceryHomePath,
+      isFaIcon: false
     ),
     (
       Icons.code,
       'Isolates',
       'Currently works in mobile application only',
-      Routes.isolatesMainPath
+      Routes.isolatesMainPath,
+      isFaIcon: false
     ),
     (
       Icons.notifications_active,
       'Push Notifications',
       'Firebase Cloud Messaging',
-      Routes.pushNotificationsMainPath
+      Routes.pushNotificationsMainPath,
+      isFaIcon: false
     ),
     (
       Icons.share,
       'Share PDF',
       'Share Dynamic PDF with image',
-      Routes.dynamicPdfMainPath
+      Routes.dynamicPdfMainPath,
+      isFaIcon: false
     ),
     (
       FontAwesomeIcons.database,
       'SqfLite',
       'Handling local DB operations for Android, IOS & MacOS',
-      Routes.sqfLiteMainPath
+      Routes.sqfLiteMainPath,
+      isFaIcon: true
+    ),
+    (
+      FontAwesomeIcons.scroll,
+      'Scrolls',
+      'Different types of scrolls that support in flutter',
+      Routes.scrollsMainPath,
+      isFaIcon: true
     )
   ];
   @override
@@ -95,7 +107,8 @@ class _HomePageState extends State<HomePage> {
                       icon: details.$1,
                       title: details.$2,
                       description: details.$3,
-                      route: details.$4);
+                      route: details.$4,
+                      isFaIcon: details.isFaIcon);
                 }),
           ),
         ));
@@ -105,11 +118,13 @@ class _HomePageState extends State<HomePage> {
 class _BuildHomeCard extends StatelessWidget {
   final String title, description, route;
   final IconData icon;
+  final bool isFaIcon;
   const _BuildHomeCard(
       {required this.title,
       required this.description,
       required this.icon,
-      required this.route});
+      required this.route,
+      required this.isFaIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +139,9 @@ class _BuildHomeCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 10,
             children: [
-              Icon(icon, size: 32, color: Colors.orange),
+              isFaIcon
+                  ? FaIcon(icon, size: 30, color: Colors.orange)
+                  : Icon(icon, size: 32, color: Colors.orange),
               Text(
                 'Title : $title',
                 style: context.titleMedium,

@@ -21,7 +21,25 @@ class Routes {
   static const String sqfLiteMain = 'sqfLiteMain';
   static const String sqfLiteMainPath = '$homePath/$sqfLiteMain';
 
+  static const String scrollsMain = 'scrollsMain';
+  static const String scrollsMainPath = '$homePath/$scrollsMain';
+
   /// Profile Paths
   static const String profile = 'profile';
   static const String profilePath = '$homePath/$profile';
+
+  /// Different Types of Scroll Paths
+  static const String customScroll = 'customScroll';
+  static const String customScrollFullPath = '$scrollsMainPath/$customScroll';
+
+  static const String nestedScroll = 'nestedScroll';
+  static const String nestedScrollFullPath = '$scrollsMainPath/$nestedScroll';
+
+  static const String carouselScroll = 'carouselScroll';
+  static const String carouselScrollFullPath =
+      '$scrollsMainPath/$carouselScroll';
+
+  static const String paginationScroll = 'paginationScroll';
+  static const String paginationScrollFullPath =
+      '$scrollsMainPath/$paginationScroll';
 }

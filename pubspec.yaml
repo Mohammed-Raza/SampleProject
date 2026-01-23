@@ -65,6 +65,7 @@ dependencies:
   sqflite: ^2.4.2
   flutter_app_badge_control: ^0.0.2
   path:
+  infinite_scroll_pagination: ^5.1.1
 
 
   # The following adds the Cupertino Icons font to your application.

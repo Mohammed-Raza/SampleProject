@@ -8,8 +8,14 @@ import 'package:sample_project/features/presentation/pages/groceries/grocery.dar
 import 'package:sample_project/features/presentation/pages/isolates/isolates_main.dart';
 import 'package:sample_project/features/presentation/pages/pdf/share_pdf.dart';
 import 'package:sample_project/features/presentation/pages/profile/profile.dart';
+import 'package:sample_project/features/presentation/pages/scrolls/carousel_scroll.dart';
+import 'package:sample_project/features/presentation/pages/scrolls/custom_scroll.dart';
+import 'package:sample_project/features/presentation/pages/scrolls/nested_scroll.dart';
+import 'package:sample_project/features/presentation/pages/scrolls/scroll_types.dart';
 import 'package:sample_project/features/presentation/pages/sqflite/sqflite_main.dart';
 import 'package:sample_project/global_variables.dart';
+
+import '../../features/presentation/pages/scrolls/pagination_scroll.dart';
 
 class Routing {
   static final GoRouter router =
@@ -55,8 +61,34 @@ class Routing {
               name: 'LocalDB',
               path: Routes.sqfLiteMain,
               builder: (context, state) => const SqfLiteMain()),
+          GoRoute(
+              name: 'ScrollTypes',
+              path: Routes.scrollsMain,
+              builder: (context, state) => const ScrollTypesMainScreen(),
+              routes: _scrollRoutes),
         ]),
   ]);
+
+  static List<RouteBase> get _scrollRoutes {
+    return [
+      GoRoute(
+          name: 'CustomScrollScreen',
+          path: Routes.customScroll,
+          builder: (context, state) => const CustomScrollScreen()),
+      GoRoute(
+          name: 'NestedScrollScreen',
+          path: Routes.nestedScroll,
+          builder: (context, state) => const NestedScrollScreen()),
+      GoRoute(
+          name: 'PaginationScrollScreen',
+          path: Routes.paginationScroll,
+          builder: (context, state) => const PaginationScrollScreen()),
+      GoRoute(
+          name: 'CarouselScrollScreen',
+          path: Routes.carouselScroll,
+          builder: (context, state) => const CarouselScrollScreen()),
+    ];
+  }
 
   static redirectToHome({int index = 0}) {
     var context = navigatorKey.currentContext!;
