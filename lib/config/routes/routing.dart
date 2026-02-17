@@ -13,6 +13,7 @@ import 'package:sample_project/features/presentation/pages/scrolls/custom_scroll
 import 'package:sample_project/features/presentation/pages/scrolls/nested_scroll.dart';
 import 'package:sample_project/features/presentation/pages/scrolls/scroll_types.dart';
 import 'package:sample_project/features/presentation/pages/sqflite/sqflite_main.dart';
+import 'package:sample_project/features/presentation/pages/web_socket/web_socket_main.dart';
 import 'package:sample_project/global_variables.dart';
 
 import '../../features/presentation/pages/scrolls/pagination_scroll.dart';
@@ -66,6 +67,10 @@ class Routing {
               path: Routes.scrollsMain,
               builder: (context, state) => const ScrollTypesMainScreen(),
               routes: _scrollRoutes),
+          GoRoute(
+              name: 'WebSockets',
+              path: Routes.webSocket,
+              builder: (context, state) => const WebSocketMainScreen()),
         ]),
   ]);
 

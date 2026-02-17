@@ -24,6 +24,9 @@ class Routes {
   static const String scrollsMain = 'scrollsMain';
   static const String scrollsMainPath = '$homePath/$scrollsMain';
 
+  static const String webSocket = 'webSocket';
+  static const String webSocketPath = '$homePath/$webSocket';
+
   /// Profile Paths
   static const String profile = 'profile';
   static const String profilePath = '$homePath/$profile';

@@ -67,6 +67,13 @@ class _HomePageState extends State<HomePage> {
       'Different types of scrolls that support in flutter',
       Routes.scrollsMainPath,
       isFaIcon: true
+    ),
+    (
+      FontAwesomeIcons.cloudflare,
+      'Web Socket',
+      'Bidirectional communication between a client and a server',
+      Routes.webSocketPath,
+      isFaIcon: true
     )
   ];
   @override
@@ -87,11 +94,12 @@ class _HomePageState extends State<HomePage> {
                   icon: const Icon(Icons.person, size: 30))
             ]),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: AdaptiveLayoutBuilder(
             builder: (context, deviceType) => GridView.builder(
                 itemCount: homeCards.length,
                 addAutomaticKeepAlives: true,
+                padding: const EdgeInsets.all(5),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     mainAxisSpacing: 20,
                     crossAxisSpacing: 20,
