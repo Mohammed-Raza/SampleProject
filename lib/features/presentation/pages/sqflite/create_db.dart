@@ -59,7 +59,7 @@ class _CreateDbAndAddDataState extends State<CreateDbAndAddData>
 
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Grocery Saved Locally!')),
+            SnackBar(content: Text(context.l10n.grocerySavedLocally)),
           );
           // Clear fields
           _nameController.clear();
@@ -67,7 +67,7 @@ class _CreateDbAndAddDataState extends State<CreateDbAndAddData>
         }
       } else if (dropdownCubit.selectedCategoryId == null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Please select a category type')),
+          SnackBar(content: Text(context.l10n.pleaseSelectCategoryType)),
         );
       }
     } catch (e) {
@@ -93,7 +93,7 @@ class _CreateDbAndAddDataState extends State<CreateDbAndAddData>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const SizedBox(width: 10),
-                Text("Add Grocery Data", style: context.bodyLarge),
+                Text(context.l10n.addGroceryData, style: context.bodyLarge),
                 IconButton(
                     onPressed: () => context.pop(),
                     icon: const Icon(Icons.close))
@@ -106,19 +106,20 @@ class _CreateDbAndAddDataState extends State<CreateDbAndAddData>
             const SizedBox(height: 20),
             TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(
-                  labelText: "Grocery Name",
+                decoration: InputDecoration(
+                  labelText: context.l10n.groceryName,
                   border: OutlineInputBorder(),
                 ),
-                validator: (val) =>
-                    valueEmptyValidator(val!, context, 'grocery name')),
+                validator: (val) => valueEmptyValidator(
+                    val!, context, context.l10n.groceryName)),
             const SizedBox(height: 20),
             TextFormField(
                 controller: _descController,
                 maxLines: 3,
-                decoration: const InputDecoration(labelText: "Description"),
-                validator: (val) =>
-                    valueEmptyValidator(val!, context, 'description')),
+                decoration:
+                    InputDecoration(labelText: context.l10n.description),
+                validator: (val) => valueEmptyValidator(
+                    val!, context, context.l10n.description)),
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: _saveToDatabase,
@@ -127,7 +128,8 @@ class _CreateDbAndAddDataState extends State<CreateDbAndAddData>
                   backgroundColor: Colors.teal),
               child: loaderEnable
                   ? const CircularIndicator()
-                  : const Text("SUBMIT", style: TextStyle(color: Colors.white)),
+                  : Text(context.l10n.submit,
+                      style: const TextStyle(color: Colors.white)),
             ),
           ],
         ),

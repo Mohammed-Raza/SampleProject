@@ -1,6 +1,193 @@
 {
-  "vegetables" :"Vegetables",
-  "fruits" :"Fruits",
-  "milkProducts" :"Milk Products",
-  "cookies" :"Cookies"
+  "vegetables": "Vegetables",
+  "fruits": "Fruits",
+  "milkProducts": "Milk Products",
+  "cookies": "Cookies",
+  "groceries": "Groceries",
+  "isolates": "Isolates",
+  "pushNotifications": "Push Notifications",
+  "getAccessToken": "Get Access Token",
+  "sharePdf": "Share PDF",
+  "sqfLite": "SqfLite",
+  "scrolls": "Scrolls",
+  "webSocket": "Web Socket",
+  "groceriesHome": "Groceries Home",
+  "home": "Home",
+  "orders": "Orders",
+  "cart": "Cart",
+  "profileAppearance": "Appearance",
+  "languages": "Languages",
+  "selectLanguage": "Select Language",
+  "apply": "Apply",
+  "saveAppearance": "Save Appearance",
+  "lightTheme": "Light theme",
+  "darkTheme": "Dark theme",
+  "useDeviceTheme": "Use device theme",
+  "light": "Light",
+  "dark": "Dark",
+  "automatic": "Automatic",
+  "retry": "Retry",
+  "open": "Open",
+  "readMore": "Read More...",
+  "price": "Price",
+  "uploadImage": "Upload Image",
+  "photos": "Photos",
+  "camera": "Camera",
+  "tapToTakeImage": "Tap to take image",
+  "deleteImage": "Delete Image",
+  "deleteAllImages": "Delete All Images",
+  "sendMessage": "Send message",
+  "sendAMessage": "Send a message",
+  "modules": "Modules",
+  "homeHub": "Home Hub",
+  "exploreSampleApp": "Explore the sample app",
+  "beautifulDemosOnePolishedEntryPoint": "Beautiful demos, one polished entry point.",
+  "browseGroceriesNotificationsPdfsSocketsStorageDemosAndMore": "Browse groceries, notifications, PDFs, sockets, storage demos and more from one cleaner dashboard.",
+  "groceriesHomeDescription": "Browse shopping categories with a cleaner retail-style entry point.",
+  "isolatesDescription": "Performance-focused demo for background work on mobile.",
+  "pushNotificationsDescription": "Firebase Cloud Messaging flows in one polished space.",
+  "sharePdfDescription": "Create and share dynamic PDF documents with images.",
+  "sqfLiteDescription": "Local database operations across Android, iOS, and macOS.",
+  "scrollsDescription": "Explore scrolling patterns and UI behaviors in Flutter.",
+  "webSocketDescription": "Realtime client and server communication examples.",
+  "freshPicksAndEverydayEssentials": "Fresh picks and everyday essentials",
+  "freshGroceriesThoughtfullyPresented": "Fresh groceries, thoughtfully presented.",
+  "pickCategoryBrowseHandpickedEssentials": "Pick a category to browse handpicked essentials with a cleaner shopping flow.",
+  "collectionSuffix": "COLLECTION",
+  "freshPicksCleanerShoppingExperience": "Fresh picks with a cleaner shopping experience.",
+  "swipeScanAdjustDescription": "Swipe through imagery, scan descriptions, and adjust quantity from beautifully organized product cards.",
+  "yourCartIsReadyForGlowUp": "Your cart is ready for a glow-up.",
+  "cartDescription": "Items you add from the grocery catalog can be highlighted here with totals, offers, and a clearer checkout summary.",
+  "ordersCanFeelMorePremium": "Orders can feel more premium here.",
+  "ordersDescription": "This tab now has a designed placeholder instead of a blank screen, ready for order tracking, status chips, and purchase history.",
+  "noCategoriesAvailableToShow": "No categories are available to show",
+  "noGroceryItemsAvailableToShow": "No grocery items are available to show",
+  "sharePdfInstructionsIntro": "Here on click of floating action menu button, you can",
+  "sharePdfInstructionCreateTable": "1. Create customized table with Rows & Columns",
+  "sharePdfInstructionSharePdf": "2. Share PDF with customized table data and added images",
+  "sharePdfInstructionAddImages": "3. Capture image or upload from gallery",
+  "createTable": "Create Table",
+  "sharePdfAction": "Share PDF",
+  "addImages": "Add Images",
+  "columns": "Columns",
+  "rowsCount": "Rows Count",
+  "selectDate": "Select Date",
+  "removeImage": "Remove Image",
+  "isolation": "Isolation",
+  "shortLived": "Short-Lived",
+  "longLived": "Long-Lived",
+  "shortLivedIntroPrefix": "Here ",
+  "shortLivedIntroHighlight": "Isolate.run / compute ",
+  "shortLivedIntroSuffix": "method is used. This method spawns an isolate, passes a callback to the spawned isolate to start some computation, returns a value from the computation, and then shuts the isolate down when the computation is complete.",
+  "shortLivedImageCompressionDescription": "Here after capturing the image it will be compressed with compute method",
+  "longLivedIntroPrefix": "Here ",
+  "longLivedIntroHighlight": "Isolate.spawn, SendPort & ReceivePort ",
+  "longLivedIntroSuffix": "are used. Long-lived isolates are useful when you have a specific process that either needs to be run repeatedly throughout the lifetime of your application.",
+  "longLivedImageGenerationDescription": "Here after capturing the image, 50 images are generated with index number as water-mark on image and with compression.",
+  "unableToLoadImage": "Unable to load image",
+  "category": "Category",
+  "grocery": "Grocery",
+  "loading": "Loading...",
+  "noDataAvailable": "No data is available",
+  "somethingWentWrong": "Something went wrong !!",
+  "fullDescription": "Full Description",
+  "scrollTypes": "Scroll Types",
+  "customScroll": "Custom Scroll",
+  "nestedScroll": "Nested Scroll",
+  "carousel": "Carousel",
+  "pagination": "Pagination",
+  "customScrollDescription": "The CustomScrollView in Flutter is a powerful scrolling widget that builds custom scroll effects using special, low-level widgets called slivers. Unlike ListView or SingleChildScrollView, which are designed for simple lists or single-screen content, CustomScrollView provides fine-grained control to combine different scrollable areas like lists, grids, and expanding app bars into a single, cohesive scrolling experience.",
+  "nestedScrollDescription": "The Flutter NestedScrollView is a widget designed to coordinate scrolling between multiple nested scrollable areas, making them behave as a single, unified scrolling experience. It is commonly used in UIs that feature a flexible app bar with a TabBar and a TabBarView.",
+  "paginationDescription": "Pagination in Flutter is a technique for efficiently loading and displaying large datasets in small, manageable chunks, which improves performance and user experience. The most common approach is infinite scrolling, where new data loads automatically as the user scrolls to the end of a list.",
+  "carouselDescription": "In Flutter, a carousel is a UI widget that displays a series of items like images or cards in a horizontally or vertically scrolling format, typically showing one item at a time with smooth transitions.",
+  "getLocalDbData": "Get Local DB Data",
+  "noLocalDataAvailableToShow": "No local data is available to show",
+  "addGroceryData": "Add Grocery Data",
+  "groceryName": "Grocery Name",
+  "description": "Description",
+  "submit": "Submit",
+  "grocerySavedLocally": "Grocery saved locally!",
+  "pleaseSelectCategoryType": "Please select a category type",
+  "editGroceryItem": "Edit Grocery Item",
+  "cancel": "Cancel",
+  "update": "Update",
+  "itemUpdatedSuccessfully": "Item updated successfully",
+  "deleteItemQuestion": "Delete Item?",
+  "delete": "Delete",
+  "deleteItemConfirmation": "Are you sure you want to delete '{itemName}'?",
+  "@deleteItemConfirmation": {
+    "placeholders": {
+      "itemName": {}
+    }
+  },
+  "itemDeletedSuccessfully": "{itemName} deleted successfully",
+  "@itemDeletedSuccessfully": {
+    "placeholders": {
+      "itemName": {}
+    }
+  },
+  "selectField": "Select {label}",
+  "@selectField": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "enterField": "Enter {label}",
+  "@enterField": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "enterValue": "Enter value",
+  "dotNotAllowed": "Dot is not allowed",
+  "spacesAreNotAllowed": "Spaces are not allowed",
+  "errorOccurred": "Error occurred",
+  "checkInternetConnection": "Check your internet connection",
+  "checkInternetConnectionLoud": "Check your Internet connection!!!",
+  "unableToConnectServerWithCode": "{statusCode} : Unable to connect the Server!!!",
+  "@unableToConnectServerWithCode": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "unknownExceptionOccurred": "Unknown exception occurred",
+  "unknownExceptionOccurredLoud": "Unknown Exception occurred!!!",
+  "somethingWentWrongLoud": "Something went wrong !!",
+  "unknownExceptionWithCode": "{statusCode} : Unknown Exception occurred!!!",
+  "@unknownExceptionWithCode": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "notAuthorizedWithCode": "{statusCode} : Not Authorized!!!",
+  "@notAuthorizedWithCode": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "timeoutException": "Timeout Exception !!!",
+  "timeoutExceptionLoud": "Timeout Exception!!!",
+  "pageNotFoundErrorWithCode": "{statusCode} : Page not found error",
+  "@pageNotFoundErrorWithCode": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "unableToConnectServerShort": "{statusCode} : Unable to connect server",
+  "@unableToConnectServerShort": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "badRequest": "Bad request",
+  "badRequestWithCode": "{statusCode} : Bad request",
+  "@badRequestWithCode": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "pageNotFound": "Page not found",
+  "internalServerError": "Internal server error",
+  "unauthorizedNoAccess": "Unauthorized, you don't have access",
+  "dontWorryTeamIsWorkingOnIt": "Don't worry, team is working on it"
 }

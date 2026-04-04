@@ -25,7 +25,7 @@ class CustomizedDropDown extends StatelessWidget {
       this.onTapOfRetry,
       this.errorText,
       this.validator,
-      this.selectLabel = 'Select items'});
+      this.selectLabel = ''});
 
   @override
   Widget build(BuildContext context) {
@@ -46,16 +46,16 @@ class CustomizedDropDown extends StatelessWidget {
                 label: Text(label)),
             icon: getIcon,
             iconDisabledColor: Colors.grey,
-            disabledHint: hintText(),
-            hint: hintText(color: Colors.teal),
+            disabledHint: hintText(context),
+            hint: hintText(context, color: Colors.teal),
             items: items.map((e) => dropDownMenuItems(e.key, e.name)).toList(),
             onChanged: callback),
       ),
     );
   }
 
-  Text hintText({Color color = Colors.grey}) =>
-      Text(getHintText, style: TextStyle(fontSize: 12, color: color));
+  Text hintText(BuildContext context, {Color color = Colors.grey}) =>
+      Text(getHintText(context), style: TextStyle(fontSize: 12, color: color));
 
   DropdownMenuItem dropDownMenuItems(String? id, String? value,
       {bool isSelected = false}) {
@@ -81,15 +81,19 @@ class CustomizedDropDown extends StatelessWidget {
     }
   }
 
-  String get getHintText {
+  String getHintText(BuildContext context) {
     switch (type) {
       case StateType.loading:
-        return 'Loading...';
+        return context.l10n.loading;
       case StateType.success:
         return errorText ??
-            (isDataEmpty ? 'No data is available' : selectLabel);
+            (isDataEmpty
+                ? context.l10n.noDataAvailable
+                : (selectLabel.isEmpty
+                    ? context.l10n.selectField(label)
+                    : selectLabel));
       case StateType.error:
-        return errorText ?? 'Something went wrong !!';
+        return errorText ?? context.l10n.somethingWentWrong;
     }
   }
 

@@ -1,6 +1,194 @@
 {
-  "vegetables" :"కూరగాయలు",
-  "fruits" :"పండ్లు",
-  "milkProducts" :"పాల ఉత్పత్తులు",
-  "cookies" :"కుక్కీలు"
+  "@@locale": "te",
+  "vegetables": "కూరగాయలు",
+  "fruits": "పండ్లు",
+  "milkProducts": "పాల ఉత్పత్తులు",
+  "cookies": "కుక్కీలు",
+  "groceries": "కిరాణా",
+  "isolates": "ఐసోలేట్స్",
+  "pushNotifications": "పుష్ నోటిఫికేషన్స్",
+  "getAccessToken": "యాక్సెస్ టోకెన్ పొందండి",
+  "sharePdf": "పిడిఎఫ్ పంచుకోండి",
+  "sqfLite": "SqfLite",
+  "scrolls": "స్క్రోల్స్",
+  "webSocket": "వెబ్ సాకెట్",
+  "groceriesHome": "కిరాణా హోమ్",
+  "home": "హోమ్",
+  "orders": "ఆర్డర్లు",
+  "cart": "కార్ట్",
+  "profileAppearance": "రూపం",
+  "languages": "భాషలు",
+  "selectLanguage": "భాషను ఎంచుకోండి",
+  "apply": "వర్తించు",
+  "saveAppearance": "రూపాన్ని సేవ్ చేయండి",
+  "lightTheme": "లైట్ థీమ్",
+  "darkTheme": "డార్క్ థీమ్",
+  "useDeviceTheme": "డివైస్ థీమ్ ఉపయోగించు",
+  "light": "లైట్",
+  "dark": "డార్క్",
+  "automatic": "స్వయంచాలక",
+  "retry": "మళ్లీ ప్రయత్నించండి",
+  "open": "తెరువు",
+  "readMore": "ఇంకా చదవండి...",
+  "price": "ధర",
+  "uploadImage": "చిత్రాన్ని అప్లోడ్ చేయండి",
+  "photos": "ఫోటోలు",
+  "camera": "కెమెరా",
+  "tapToTakeImage": "చిత్రం తీయడానికి ట్యాప్ చేయండి",
+  "deleteImage": "చిత్రాన్ని తొలగించండి",
+  "deleteAllImages": "అన్ని చిత్రాలు తొలగించండి",
+  "sendMessage": "సందేశం పంపు",
+  "sendAMessage": "ఒక సందేశం పంపండి",
+  "modules": "మాడ్యూల్స్",
+  "homeHub": "హోమ్ హబ్",
+  "exploreSampleApp": "సాంపిల్ యాప్‌ని అన్వేషించండి",
+  "beautifulDemosOnePolishedEntryPoint": "అందమైన డెమోలు, ఒక శుభ్రమైన ప్రారంభ స్థానం.",
+  "browseGroceriesNotificationsPdfsSocketsStorageDemosAndMore": "కిరాణా, నోటిఫికేషన్స్, పిడిఎఫ్‌లు, సాకెట్లు, స్టోరేజ్ డెమోలు మరియు మరెన్నో ఒక శుభ్రమైన డ్యాష్‌బోర్డ్‌లో చూడండి.",
+  "groceriesHomeDescription": "శుభ్రమైన రిటైల్ శైలిలో షాపింగ్ కేటగిరీలను బ్రౌజ్ చేయండి.",
+  "isolatesDescription": "మొబైల్‌లో బ్యాక్‌గ్రౌండ్ పనికి పనితీరు-కేంద్రీకృత డెమో.",
+  "pushNotificationsDescription": "Firebase Cloud Messaging ప్రవాహాలు ఒక మెరుగైన స్థలంలో.",
+  "sharePdfDescription": "చిత్రాలతో డైనమిక్ పిడిఎఫ్ పత్రాలను సృష్టించి పంచుకోండి.",
+  "sqfLiteDescription": "Android, iOS మరియు macOS కోసం లోకల్ డేటాబేస్ ఆపరేషన్స్.",
+  "scrollsDescription": "Flutter లో స్క్రోలింగ్ నమూనాలు మరియు UI ప్రవర్తనలను అన్వేషించండి.",
+  "webSocketDescription": "రియల్‌టైమ్ క్లయింట్ మరియు సర్వర్ కమ్యూనికేషన్ ఉదాహరణలు.",
+  "freshPicksAndEverydayEssentials": "తాజా ఎంపికలు మరియు రోజువారీ అవసరాలు",
+  "freshGroceriesThoughtfullyPresented": "తాజా కిరాణా, ఆలోచనాత్మకంగా అందించబడింది.",
+  "pickCategoryBrowseHandpickedEssentials": "ఒక కేటగిరీని ఎంచుకుని శుభ్రమైన షాపింగ్ అనుభవంతో ఎంపిక చేసిన అవసరాలను చూడండి.",
+  "collectionSuffix": "కలెక్షన్",
+  "freshPicksCleanerShoppingExperience": "శుభ్రమైన షాపింగ్ అనుభవంతో తాజా ఎంపికలు.",
+  "swipeScanAdjustDescription": "చిత్రాలను స్వైప్ చేయండి, వివరాలను స్కాన్ చేయండి, అందంగా అమర్చిన ఉత్పత్తి కార్డుల నుండి పరిమాణాన్ని సర్దుబాటు చేయండి.",
+  "yourCartIsReadyForGlowUp": "మీ కార్ట్ మెరుగుదలకు సిద్ధంగా ఉంది.",
+  "cartDescription": "మీరు కిరాణా జాబితా నుండి జోడించే వస్తువులను ఇక్కడ మొత్తాలు, ఆఫర్లు మరియు స్పష్టమైన చెకౌట్ సారాంశంతో చూపించవచ్చు.",
+  "ordersCanFeelMorePremium": "ఇక్కడ ఆర్డర్లు మరింత ప్రీమియంగా అనిపించవచ్చు.",
+  "ordersDescription": "ఈ ట్యాబ్ ఇప్పుడు ఖాళీ స్క్రీన్ స్థానంలో డిజైన్ చేసిన ప్లేస్‌హోల్డర్‌తో ఉంది, ఆర్డర్ ట్రాకింగ్, స్టేటస్ చిప్స్ మరియు కొనుగోలు చరిత్ర కోసం సిద్ధంగా ఉంది.",
+  "noCategoriesAvailableToShow": "చూపడానికి ఏ కేటగిరీలు లేవు",
+  "noGroceryItemsAvailableToShow": "చూపడానికి ఎలాంటి కిరాణా వస్తువులు లేవు",
+  "sharePdfInstructionsIntro": "ఫ్లోటింగ్ యాక్షన్ మెనూ బటన్‌పై క్లిక్ చేసినప్పుడు, మీరు చేయగలరు",
+  "sharePdfInstructionCreateTable": "1. వరుసలు మరియు కాలమ్స్‌తో అనుకూల పట్టికను సృష్టించండి",
+  "sharePdfInstructionSharePdf": "2. అనుకూల పట్టిక డేటా మరియు జోడించిన చిత్రాలతో పిడిఎఫ్‌ను పంచుకోండి",
+  "sharePdfInstructionAddImages": "3. చిత్రం తీసుకోండి లేదా గ్యాలరీ నుండి అప్లోడ్ చేయండి",
+  "createTable": "పట్టిక సృష్టించండి",
+  "sharePdfAction": "పిడిఎఫ్ పంచుకోండి",
+  "addImages": "చిత్రాలు జోడించండి",
+  "columns": "కాలమ్స్",
+  "rowsCount": "వరుసల సంఖ్య",
+  "selectDate": "తేదీ ఎంచుకోండి",
+  "removeImage": "చిత్రాన్ని తొలగించండి",
+  "isolation": "ఐసోలేషన్",
+  "shortLived": "షార్ట్-లివ్డ్",
+  "longLived": "లాంగ్-లివ్డ్",
+  "shortLivedIntroPrefix": "ఇక్కడ ",
+  "shortLivedIntroHighlight": "Isolate.run / compute ",
+  "shortLivedIntroSuffix": "method is used. This method spawns an isolate, passes a callback to the spawned isolate to start some computation, returns a value from the computation, and then shuts the isolate down when the computation is complete.",
+  "shortLivedImageCompressionDescription": "ఇక్కడ చిత్రం తీసుకున్న తర్వాత అది compute method తో compress చేయబడుతుంది",
+  "longLivedIntroPrefix": "ఇక్కడ ",
+  "longLivedIntroHighlight": "Isolate.spawn, SendPort & ReceivePort ",
+  "longLivedIntroSuffix": "are used. Long-lived isolates are useful when you have a specific process that either needs to be run repeatedly throughout the lifetime of your application.",
+  "longLivedImageGenerationDescription": "ఇక్కడ చిత్రం తీసుకున్న తర్వాత, watermark మరియు compression తో 50 చిత్రాలు రూపొందించబడతాయి.",
+  "unableToLoadImage": "చిత్రాన్ని లోడ్ చేయలేకపోయాము",
+  "category": "వర్గం",
+  "grocery": "కిరాణా",
+  "loading": "లోడ్ అవుతోంది...",
+  "noDataAvailable": "డేటా అందుబాటులో లేదు",
+  "somethingWentWrong": "ఏదో తప్పు జరిగింది !!",
+  "fullDescription": "పూర్తి వివరణ",
+  "scrollTypes": "స్క్రోల్ రకాలు",
+  "customScroll": "కస్టమ్ స్క్రోల్",
+  "nestedScroll": "నెస్టెడ్ స్క్రోల్",
+  "carousel": "క్యారసెల్",
+  "pagination": "పేజినేషన్",
+  "customScrollDescription": "The CustomScrollView in Flutter is a powerful scrolling widget that builds custom scroll effects using special, low-level widgets called slivers. Unlike ListView or SingleChildScrollView, which are designed for simple lists or single-screen content, CustomScrollView provides fine-grained control to combine different scrollable areas like lists, grids, and expanding app bars into a single, cohesive scrolling experience.",
+  "nestedScrollDescription": "The Flutter NestedScrollView is a widget designed to coordinate scrolling between multiple nested scrollable areas, making them behave as a single, unified scrolling experience. It is commonly used in UIs that feature a flexible app bar with a TabBar and a TabBarView.",
+  "paginationDescription": "Pagination in Flutter is a technique for efficiently loading and displaying large datasets in small, manageable chunks, which improves performance and user experience. The most common approach is infinite scrolling, where new data loads automatically as the user scrolls to the end of a list.",
+  "carouselDescription": "In Flutter, a carousel is a UI widget that displays a series of items like images or cards in a horizontally or vertically scrolling format, typically showing one item at a time with smooth transitions.",
+  "getLocalDbData": "లోకల్ DB డేటా పొందండి",
+  "noLocalDataAvailableToShow": "చూపడానికి లోకల్ డేటా లేదు",
+  "addGroceryData": "కిరాణా డేటా జోడించండి",
+  "groceryName": "కిరాణా పేరు",
+  "description": "వివరణ",
+  "submit": "సమర్పించండి",
+  "grocerySavedLocally": "కిరాణా లోకల్‌గా సేవ్ చేయబడింది!",
+  "pleaseSelectCategoryType": "దయచేసి ఒక వర్గాన్ని ఎంచుకోండి",
+  "editGroceryItem": "కిరాణా అంశాన్ని సవరించండి",
+  "cancel": "రద్దు",
+  "update": "అప్డేట్",
+  "itemUpdatedSuccessfully": "అంశం విజయవంతంగా అప్డేట్ అయింది",
+  "deleteItemQuestion": "అంశాన్ని తొలగించాలా?",
+  "delete": "తొలగించు",
+  "deleteItemConfirmation": "మీరు '{itemName}'ను తొలగించాలని ఖచ్చితంగా అనుకుంటున్నారా?",
+  "@deleteItemConfirmation": {
+    "placeholders": {
+      "itemName": {}
+    }
+  },
+  "itemDeletedSuccessfully": "{itemName} విజయవంతంగా తొలగించబడింది",
+  "@itemDeletedSuccessfully": {
+    "placeholders": {
+      "itemName": {}
+    }
+  },
+  "selectField": "{label} ఎంచుకోండి",
+  "@selectField": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "enterField": "{label} నమోదు చేయండి",
+  "@enterField": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "enterValue": "విలువ నమోదు చేయండి",
+  "dotNotAllowed": "డాట్ అనుమతించబడదు",
+  "spacesAreNotAllowed": "స్పేస్‌లు అనుమతించబడవు",
+  "errorOccurred": "లోపం సంభవించింది",
+  "checkInternetConnection": "మీ ఇంటర్నెట్ కనెక్షన్‌ను తనిఖీ చేయండి",
+  "checkInternetConnectionLoud": "మీ ఇంటర్నెట్ కనెక్షన్‌ను తనిఖీ చేయండి!!!",
+  "unableToConnectServerWithCode": "{statusCode} : సర్వర్‌కు కనెక్ట్ కాలేకపోయాము!!!",
+  "@unableToConnectServerWithCode": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "unknownExceptionOccurred": "తెలియని లోపం సంభవించింది",
+  "unknownExceptionOccurredLoud": "తెలియని లోపం సంభవించింది!!!",
+  "somethingWentWrongLoud": "ఏదో తప్పు జరిగింది !!",
+  "unknownExceptionWithCode": "{statusCode} : తెలియని లోపం సంభవించింది!!!",
+  "@unknownExceptionWithCode": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "notAuthorizedWithCode": "{statusCode} : అనుమతి లేదు!!!",
+  "@notAuthorizedWithCode": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "timeoutException": "సమయం ముగిసింది !!!",
+  "timeoutExceptionLoud": "సమయం ముగిసింది!!!",
+  "pageNotFoundErrorWithCode": "{statusCode} : పేజీ కనబడలేదు",
+  "@pageNotFoundErrorWithCode": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "unableToConnectServerShort": "{statusCode} : సర్వర్‌కు కనెక్ట్ కాలేకపోయాము",
+  "@unableToConnectServerShort": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "badRequest": "తప్పుడు అభ్యర్థన",
+  "badRequestWithCode": "{statusCode} : తప్పుడు అభ్యర్థన",
+  "@badRequestWithCode": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "pageNotFound": "పేజీ కనబడలేదు",
+  "internalServerError": "అంతర్గత సర్వర్ లోపం",
+  "unauthorizedNoAccess": "అనధికారికం, మీకు యాక్సెస్ లేదు",
+  "dontWorryTeamIsWorkingOnIt": "ఆందోళన చెందకండి, బృందం దీనిపై పని చేస్తోంది"
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_project/core/extensions/context_extension.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class WebSocketMainScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _WebSocketMainScreenState extends State<WebSocketMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Web Socket')),
+      appBar: AppBar(title: Text(context.l10n.webSocket)),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -26,7 +27,8 @@ class _WebSocketMainScreenState extends State<WebSocketMainScreen> {
             Form(
               child: TextFormField(
                 controller: _controller,
-                decoration: const InputDecoration(labelText: 'Send a message'),
+                decoration:
+                    InputDecoration(labelText: context.l10n.sendAMessage),
               ),
             ),
             const SizedBox(height: 24),
@@ -41,7 +43,7 @@ class _WebSocketMainScreenState extends State<WebSocketMainScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _sendMessage,
-        tooltip: 'Send message',
+        tooltip: context.l10n.sendMessage,
         child: const Icon(Icons.send),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

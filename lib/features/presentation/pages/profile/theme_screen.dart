@@ -29,9 +29,10 @@ class _ThemeScreenState extends State<ThemeScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: Text('Appearance', style: TextStyle(fontSize: 20)),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Text(context.l10n.profileAppearance,
+                style: const TextStyle(fontSize: 20)),
           ),
           const CommonDivider(),
           const _BuildRadioButtons(),
@@ -47,7 +48,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
                   context.read<ThemeProvider>().onSelectionOfAppearance();
                   context.pop();
                 },
-                child: const Text('Save Appearance')),
+                child: Text(context.l10n.saveAppearance)),
           )
         ],
       ),
@@ -66,17 +67,27 @@ class _BuildRadioButtonsState extends State<_BuildRadioButtons> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(builder: (context, provider, child) {
-      return const Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          _GetRadioView(label: 'Light theme', type: ThemeType.light),
-          CommonDivider(),
-          _GetRadioView(label: 'Dark theme', type: ThemeType.dark),
-          CommonDivider(),
-          _GetRadioView(label: 'Use device theme', type: ThemeType.system),
-        ],
-      );
+      return const _ThemeOptions();
     });
+  }
+}
+
+class _ThemeOptions extends StatelessWidget {
+  const _ThemeOptions();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        _GetRadioView(label: context.l10n.lightTheme, type: ThemeType.light),
+        const CommonDivider(),
+        _GetRadioView(label: context.l10n.darkTheme, type: ThemeType.dark),
+        const CommonDivider(),
+        _GetRadioView(
+            label: context.l10n.useDeviceTheme, type: ThemeType.system),
+      ],
+    );
   }
 }
 

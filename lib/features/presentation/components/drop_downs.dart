@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sample_project/core/extensions/context_extension.dart';
 import '../../../core/mixins/validators_mixin.dart';
 import '../../../core/utils/enums.dart';
 import '../bloc/drop_downs/drop_down_cubit.dart';
@@ -41,8 +42,9 @@ class _GroceryCategoryDropdownState extends State<GroceryCategoryDropdown>
                 }
               },
               type: _getStateType(state),
-              label: 'Category',
-              validator: (id) => dropdownEmptyValidator(id, 'category'),
+              label: context.l10n.category,
+              validator: (id) =>
+                  dropdownEmptyValidator(context, id, context.l10n.category),
               errorText: state.runtimeType is CategoryError
                   ? (state as CategoryError).errorText
                   : null,
@@ -86,8 +88,9 @@ class _GroceriesDropdownState extends State<GroceriesDropdown>
               items: bloc.groceries,
               callback: bloc.onChangeOfGrocery,
               type: _getStateType(state),
-              label: 'Grocery',
-              validator: (id) => dropdownEmptyValidator(id, 'grocery'),
+              label: context.l10n.grocery,
+              validator: (id) =>
+                  dropdownEmptyValidator(context, id, context.l10n.grocery),
               errorText: state.runtimeType is GroceriesError
                   ? (state as GroceriesError).errorText
                   : null,
