@@ -28,7 +28,7 @@ class _IsolatesMainScreenState extends State<IsolatesMainScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Isolation')),
+      appBar: AppBar(title: Text(context.l10n.isolation)),
       body: Column(
         children: [
           TabBar(
@@ -38,8 +38,8 @@ class _IsolatesMainScreenState extends State<IsolatesMainScreen>
               labelPadding: const EdgeInsets.symmetric(vertical: 10),
               controller: tabController,
               tabs: [
-                Text('Short-Lived', style: context.titleMedium),
-                Text('Long-Lived', style: context.titleMedium)
+                Text(context.l10n.shortLived, style: context.titleMedium),
+                Text(context.l10n.longLived, style: context.titleMedium)
               ]),
           Expanded(
               child: TabBarView(controller: tabController, children: const [
@@ -70,22 +70,17 @@ class _ShortLivedIsolationState extends State<ShortLivedIsolation> {
           spacing: 10,
           children: [
             RichText(
-                text: TextSpan(style: context.labelLarge, children: const [
-              TextSpan(text: 'Here '),
+                text: TextSpan(style: context.labelLarge, children: [
+              TextSpan(text: context.l10n.shortLivedIntroPrefix),
               TextSpan(
-                  text: 'Isolate.run / compute ',
+                  text: context.l10n.shortLivedIntroHighlight,
                   style: TextStyle(
                       color: Colors.blueAccent,
                       fontSize: 16,
                       fontWeight: FontWeight.bold)),
-              TextSpan(
-                  text:
-                      'method is used. This method spawns an isolate, passes a callback to the spawned'
-                      ' isolate to start some computation, returns a value from the computation, and '
-                      'then shuts the isolate down when the computation is complete.')
+              TextSpan(text: context.l10n.shortLivedIntroSuffix)
             ])),
-            Text(
-                'Here after capturing the image it will be compressed with compute method',
+            Text(context.l10n.shortLivedImageCompressionDescription,
                 style: context.titleMedium?.apply(fontWeightDelta: -1)),
             Expanded(
               child: Column(
@@ -115,7 +110,7 @@ class _ShortLivedIsolationState extends State<ShortLivedIsolation> {
                                   const Icon(Icons.add_a_photo_outlined,
                                       size: 70),
                                   const SizedBox(height: 6),
-                                  Text('Tap to take image',
+                                  Text(context.l10n.tapToTakeImage,
                                       style: context.labelLarge)
                                 ],
                               ))),
@@ -128,7 +123,7 @@ class _ShortLivedIsolationState extends State<ShortLivedIsolation> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                             backgroundColor: Colors.red),
-                        child: const Text('Delete Image',
+                        child: Text(context.l10n.deleteImage,
                             style: TextStyle(color: Colors.white))),
                   )
                 ],

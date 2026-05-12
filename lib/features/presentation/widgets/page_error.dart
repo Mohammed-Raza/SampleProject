@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:sample_project/core/extensions/context_extension.dart';
 
 class PageErrorWidget extends StatelessWidget {
   final String errorImage;
@@ -38,7 +39,8 @@ class PageErrorWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8)),
                   backgroundColor: Theme.of(context).primaryColor),
               icon: const Icon(Icons.refresh, color: Colors.white),
-              label: const Text('Retry', style: TextStyle(color: Colors.white)))
+              label: Text(context.l10n.retry,
+                  style: const TextStyle(color: Colors.white)))
         ],
       ),
     );

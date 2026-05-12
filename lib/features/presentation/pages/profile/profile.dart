@@ -40,13 +40,13 @@ class _ProfileScreenState extends State<ProfileScreen> with LanguageMixin {
                     Consumer<ThemeProvider>(
                         builder: (context, provider, child) => BuildListTile(
                             icon: FontAwesomeIcons.palette,
-                            label: 'Appearance',
-                            text: provider.getSelectedTheme(),
+                            label: context.l10n.profileAppearance,
+                            text: provider.getSelectedTheme(context.l10n),
                             onTap: showThemeBottomSheet)),
                     Consumer<LanguageProvider>(
                         builder: (context, provider, child) => BuildListTile(
                             icon: FontAwesomeIcons.language,
-                            label: 'Languages',
+                            label: context.l10n.languages,
                             text: getSelectedLanguage(
                                 provider.selectedLanguageCode),
                             showDivider: false,

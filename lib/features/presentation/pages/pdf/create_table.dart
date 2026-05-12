@@ -29,7 +29,7 @@ class _CreateTableDialogState extends State<CreateTableDialog> {
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: 10,
               children: [
-                const HeaderText(text: 'Columns'),
+                HeaderText(text: context.l10n.columns),
                 GridView.count(
                   crossAxisCount: 2,
                   mainAxisSpacing: 5,
@@ -41,7 +41,7 @@ class _CreateTableDialogState extends State<CreateTableDialog> {
                       .map((e) => TableColumCellData(cellData: e))
                       .toList(),
                 ),
-                const HeaderText(text: 'Rows Count'),
+                HeaderText(text: context.l10n.rowsCount),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Row(
@@ -89,7 +89,7 @@ class _CreateTableDialogState extends State<CreateTableDialog> {
                               backgroundColor: Colors.blueGrey,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8))),
-                          child: const Text('Back',
+                          child: Text(context.l10n.cancel,
                               style: TextStyle(color: Colors.white))),
                     ),
                     Expanded(
@@ -102,7 +102,7 @@ class _CreateTableDialogState extends State<CreateTableDialog> {
                               fixedSize: Size(context.width, 44),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8))),
-                          child: const Text('Update',
+                          child: Text(context.l10n.update,
                               style: TextStyle(color: Colors.white))),
                     ),
                   ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sample_project/core/utils/enums.dart';
+import 'package:sample_project/l10n/app_localizations.dart';
 
 class ThemeProvider with ChangeNotifier {
   ThemeType themeType = ThemeType.light;
@@ -38,14 +39,14 @@ class ThemeProvider with ChangeNotifier {
     }
   }
 
-  String getSelectedTheme() {
+  String getSelectedTheme(AppLocalizations l10n) {
     switch (selectedThemeMode) {
       case ThemeMode.light:
-        return 'Light';
+        return l10n.light;
       case ThemeMode.dark:
-        return 'Dark';
+        return l10n.dark;
       case ThemeMode.system:
-        return 'Automatic';
+        return l10n.automatic;
     }
   }
 }

@@ -29,7 +29,7 @@ class _UploadAttachmentViewState extends State<UploadAttachmentView> {
                 children: [
                   const Icon(Icons.upload_file),
                   Gap(context.width * 0.03),
-                  Text("Upload Image",
+                  Text(context.l10n.uploadImage,
                       style:
                           _style.apply(fontWeightDelta: 10, fontSizeDelta: 3)),
                 ],
@@ -50,13 +50,14 @@ class _UploadAttachmentViewState extends State<UploadAttachmentView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               BuildIconWithText(
-                  text: 'Photos',
+                  text: context.l10n.photos,
                   icon: Icons.image_outlined,
                   color: Colors.lightBlue,
                   onTap: widget.uploadImage),
               Gap(context.width * 0.1),
               BuildIconWithText(
-                  text: 'Camera',color: Colors.amber,
+                  text: context.l10n.camera,
+                  color: Colors.amber,
                   icon: Icons.camera_alt_outlined,
                   onTap: widget.captureImage),
             ],

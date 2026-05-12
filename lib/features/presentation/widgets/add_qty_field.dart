@@ -22,9 +22,14 @@ class _AddQtyTextFieldState extends State<AddQtyTextField> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Card(
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20))),
+      color: colorScheme.surfaceContainerLowest.withValues(alpha: 0.94),
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          side: BorderSide(color: colorScheme.outlineVariant)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,6 +44,10 @@ class _AddQtyTextFieldState extends State<AddQtyTextField> {
             alignment: Alignment.center,
             child: TextField(
                 controller: widget.controller,
+                style: TextStyle(
+                  color: colorScheme.onSurface,
+                  fontWeight: FontWeight.w700,
+                ),
                 keyboardType: TextInputType.number,
                 maxLength: 3,
                 maxLines: 1,
@@ -54,7 +63,7 @@ class _AddQtyTextFieldState extends State<AddQtyTextField> {
                 focusNode: focusNode,
                 decoration: InputDecoration(
                     hintText: '0',
-                    hintStyle: const TextStyle(color: Colors.grey),
+                    hintStyle: TextStyle(color: colorScheme.onSurfaceVariant),
                     counter: const Offstage(),
                     enabledBorder: _textFieldBorder,
                     border: _textFieldBorder,
@@ -87,6 +96,8 @@ class GradientBubbleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return InkResponse(
       onTap: onTap,
       radius: 22,
@@ -101,8 +112,10 @@ class GradientBubbleButton extends StatelessWidget {
                   color: context.groceryButtonShadowColor,
                   blurRadius: 1,
                   spreadRadius: 0),
-              const BoxShadow(
-                  color: Colors.white, blurRadius: 4, spreadRadius: -1),
+              BoxShadow(
+                  color: colorScheme.surfaceContainerLowest,
+                  blurRadius: 4,
+                  spreadRadius: -1),
             ]),
         padding: const EdgeInsets.all(4),
         child: Icon(icon, size: 22.5, color: iconColor),

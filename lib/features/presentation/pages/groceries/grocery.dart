@@ -1,8 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sample_project/core/device/adaptive_layout_builder.dart';
 import 'package:sample_project/core/extensions/context_extension.dart';
 import 'package:sample_project/core/mixins/common_mixin.dart';
 import 'package:sample_project/core/utils/constants.dart';
@@ -15,6 +13,7 @@ import '../../widgets/page_error.dart';
 
 class GroceriesMainScreen extends StatefulWidget {
   final GroceryType groceryType;
+
   const GroceriesMainScreen({super.key, required this.groceryType});
 
   @override
@@ -28,17 +27,34 @@ class _GroceriesMainScreenState extends State<GroceriesMainScreen> {
     super.initState();
   }
 
-  afterTheBuild() => context
+  void afterTheBuild() => context
       .read<GroceriesBloc>()
       .add(LoadGroceriesEvent(widget.groceryType.name));
+
   @override
   Widget build(BuildContext context) {
-    var bloc = context.read<GroceriesBloc>();
+    final bloc = context.read<GroceriesBloc>();
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
-      appBar: AppBar(title: Text(widget.groceryType.name.toUpperCase())),
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(10, 5, 10, context.bottomPadding),
-        child: BlocBuilder<GroceriesBloc, GroceriesState>(
+      appBar: AppBar(
+        title: Text(CommonMixin.getGroceryName(context, widget.groceryType)),
+      ),
+      body: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              colorScheme.primary.withValues(alpha: 0.08),
+              colorScheme.surfaceContainerLow,
+              colorScheme.surface,
+            ],
+          ),
+        ),
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(14, 6, 14, context.bottomPadding),
+          child: BlocBuilder<GroceriesBloc, GroceriesState>(
             bloc: bloc,
             builder: (context, state) {
               switch (state.runtimeType) {
@@ -48,45 +64,142 @@ class _GroceriesMainScreenState extends State<GroceriesMainScreen> {
                 case const (GroceryItemsSuccess):
                   final successState = state as GroceryItemsSuccess;
                   if (successState.groceries.isEmpty) {
-                    return const Center(
-                        child: Text('No grocery items are available to show'));
+                    return Center(
+                      child: Text(context.l10n.noGroceryItemsAvailableToShow),
+                    );
                   }
                   return RefreshIndicator(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: AdaptiveLayoutBuilder(
-                          builder: (context, deviceType) => GridView.builder(
-                              itemCount: successState.groceries.length,
-                              addAutomaticKeepAlives: true,
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      mainAxisSpacing: 20,
-                                      crossAxisSpacing: 20,
-                                      childAspectRatio: switch (deviceType) {
-                                        DeviceResolutionType.mobile => 0.97,
-                                        DeviceResolutionType.tab => 0.9,
-                                        DeviceResolutionType.desktop => 0.8
-                                      },
-                                      crossAxisCount: switch (deviceType) {
-                                        DeviceResolutionType.mobile => 1,
-                                        DeviceResolutionType.tab => 2,
-                                        DeviceResolutionType.desktop => 4
-                                      }),
-                              itemBuilder: (_, index) => _GroceryItemCard(
-                                  grocery: successState.groceries[index])),
+                    onRefresh: () async => afterTheBuild(),
+                    child: CustomScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      slivers: [
+                        SliverToBoxAdapter(
+                          child:
+                              _GroceriesHero(groceryType: widget.groceryType),
                         ),
-                      ),
-                      onRefresh: () async => afterTheBuild());
+                        SliverPadding(
+                          padding: const EdgeInsets.only(top: 18, bottom: 12),
+                          sliver: SliverLayoutBuilder(
+                            builder: (context, constraints) {
+                              final crossAxisExtent =
+                                  constraints.crossAxisExtent;
+                              final deviceType = switch (crossAxisExtent) {
+                                < 600 => DeviceResolutionType.mobile,
+                                < 1024 => DeviceResolutionType.tab,
+                                _ => DeviceResolutionType.desktop,
+                              };
+                              final childAspectRatio = switch (deviceType) {
+                                DeviceResolutionType.mobile => 0.83,
+                                DeviceResolutionType.tab => 0.9,
+                                DeviceResolutionType.desktop => 0.84
+                              };
+                              final crossAxisCount = switch (deviceType) {
+                                DeviceResolutionType.mobile => 1,
+                                DeviceResolutionType.tab => 2,
+                                DeviceResolutionType.desktop => 3
+                              };
+
+                              return SliverGrid.builder(
+                                itemCount: successState.groceries.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  mainAxisSpacing: 20,
+                                  crossAxisSpacing: 20,
+                                  childAspectRatio: childAspectRatio,
+                                  crossAxisCount: crossAxisCount,
+                                ),
+                                itemBuilder: (_, index) => _GroceryItemCard(
+                                  grocery: successState.groceries[index],
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
                 case const (GroceryItemsError):
-                  var errorState = state as GroceryItemsError;
+                  final errorState = state as GroceryItemsError;
                   return PageErrorWidget(
-                      errorText: errorState.pageErrorDetails.$1,
-                      errorImage: errorState.pageErrorDetails.$2,
-                      retry: afterTheBuild);
+                    errorText: errorState.pageErrorDetails.$1,
+                    errorImage: errorState.pageErrorDetails.$2,
+                    retry: afterTheBuild,
+                  );
                 default:
                   return Container();
               }
-            }),
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _GroceriesHero extends StatelessWidget {
+  final GroceryType groceryType;
+
+  const _GroceriesHero({required this.groceryType});
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Container(
+      padding: const EdgeInsets.all(22),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            colorScheme.primary.withValues(alpha: isDark ? 0.72 : 0.92),
+            colorScheme.secondary.withValues(alpha: isDark ? 0.28 : 0.82),
+          ],
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: colorScheme.primary.withValues(alpha: 0.18),
+            blurRadius: 24,
+            offset: const Offset(0, 16),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.14),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Text(
+              '${CommonMixin.getGroceryName(context, groceryType).toUpperCase()} ${context.l10n.collectionSuffix}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.6,
+              ),
+            ),
+          ),
+          const SizedBox(height: 14),
+          Text(
+            context.l10n.freshPicksCleanerShoppingExperience,
+            style: context.headlineMedium?.copyWith(
+              color: Colors.white,
+              height: 1.08,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            context.l10n.swipeScanAdjustDescription,
+            style: context.bodyMedium?.copyWith(
+              color: Colors.white.withValues(alpha: 0.82),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -94,45 +207,111 @@ class _GroceriesMainScreenState extends State<GroceriesMainScreen> {
 
 class _GroceryItemCard extends StatelessWidget {
   final GroceriesEntity grocery;
+
   const _GroceryItemCard({required this.grocery});
 
   @override
   Widget build(BuildContext context) {
-    var bloc = context.read<GroceriesBloc>();
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 8),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          spacing: 10,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _BuildImagesCarousel(images: grocery.images!),
-            Text(grocery.name!,
-                style: GoogleFonts.poppins(
-                    fontSize: 17, fontWeight: FontWeight.bold)),
-            Expanded(
-                child: Text(grocery.content!,
-                    style: GoogleFonts.poppins(fontSize: 14))),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                    '${Constants.rupee} ${CommonMixin.getNumberWithCommas(grocery.totalAmount.toStringAsFixed(2))}',
-                    style: GoogleFonts.alatsi(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                        color: Colors.teal)),
-                AddQtyTextField(
-                  controller: grocery.controller,
-                  onAdd: () => bloc.add(AddOutQtyEvent(grocery)),
-                  onSubtract: () => bloc.add(SubtractOutQtyEvent(grocery)),
-                  onClickOfTextField: (val) =>
-                      bloc.add(ChangeOutQtyEvent(grocery, val)),
-                )
-              ],
-            )
+    final bloc = context.read<GroceriesBloc>();
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(32),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            colorScheme.surfaceContainerLowest.withValues(alpha: 0.98),
+            colorScheme.surfaceContainerLow.withValues(alpha: 0.96),
           ],
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: colorScheme.primary.withValues(alpha: 0.12),
+            blurRadius: 24,
+            offset: const Offset(0, 16),
+          ),
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _BuildImagesCarousel(images: grocery.images!),
+              const SizedBox(height: 14),
+              Text(
+                grocery.name!,
+                style: textTheme.titleLarge?.copyWith(
+                  fontSize: 22,
+                  color: colorScheme.onSurface,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Expanded(
+                child: Text(
+                  grocery.content!,
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                  style: textTheme.bodyMedium?.copyWith(
+                    height: 1.42,
+                    color: colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 14),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 12,
+                ),
+                decoration: BoxDecoration(
+                  color: colorScheme.surfaceContainer.withValues(alpha: 0.72),
+                  borderRadius: BorderRadius.circular(24),
+                  border: Border.all(
+                    color: colorScheme.outlineVariant.withValues(alpha: 0.5),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            context.l10n.price,
+                            style: textTheme.labelMedium?.copyWith(
+                              color: colorScheme.onSurfaceVariant,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            '${Constants.rupee} ${CommonMixin.getNumberWithCommas(grocery.totalAmount.toStringAsFixed(2))}',
+                            style: textTheme.titleLarge?.copyWith(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    AddQtyTextField(
+                      controller: grocery.controller,
+                      onAdd: () => bloc.add(AddOutQtyEvent(grocery)),
+                      onSubtract: () => bloc.add(SubtractOutQtyEvent(grocery)),
+                      onClickOfTextField: (val) =>
+                          bloc.add(ChangeOutQtyEvent(grocery, val)),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -141,37 +320,54 @@ class _GroceryItemCard extends StatelessWidget {
 
 class _BuildImagesCarousel extends StatelessWidget {
   final List<String> images;
+
   const _BuildImagesCarousel({required this.images});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 5, left: 5, right: 5),
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Container(
+      padding: const EdgeInsets.all(6),
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerLowest.withValues(alpha: 0.8),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: colorScheme.outlineVariant),
+      ),
       child: CarouselSlider.builder(
-          itemCount: images.length,
-          itemBuilder:
-              (BuildContext context, int itemIndex, int pageViewIndex) =>
-                  _buildImageFullView(context, images[itemIndex]),
-          options: CarouselOptions(
-            aspectRatio: 1.8,
-            viewportFraction: 1,
-            autoPlay: images.length > 1,
-            autoPlayInterval: const Duration(seconds: 4),
-            initialPage: 0,
-            scrollDirection: Axis.horizontal,
-            reverse: false,
-          )),
+        itemCount: images.length,
+        itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
+            _buildImageFullView(context, images[itemIndex]),
+        options: CarouselOptions(
+          aspectRatio: 1.5,
+          viewportFraction: 1,
+          autoPlay: images.length > 1,
+          autoPlayInterval: const Duration(seconds: 4),
+          initialPage: 0,
+          scrollDirection: Axis.horizontal,
+          reverse: false,
+        ),
+      ),
     );
   }
 
   Widget _buildImageFullView(BuildContext context, String imgUrl) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Container(
-        width: context.width,
-        height: context.height / 4.2,
-        margin: const EdgeInsets.symmetric(horizontal: 5),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(11),
-            border: Border.all(color: Colors.grey, width: 0.7)),
-        child: BuildCachedNetworkImage(imageUrl: imgUrl));
+      width: context.width,
+      height: context.height / 4.2,
+      margin: const EdgeInsets.symmetric(horizontal: 4),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.75),
+        ),
+      ),
+      child: BuildCachedNetworkImage(
+        imageUrl: imgUrl,
+        borderRadius: 18,
+      ),
+    );
   }
 }

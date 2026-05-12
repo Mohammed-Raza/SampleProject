@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_project/l10n/app_localizations.dart';
 
 extension ContextExtensions on BuildContext {
   /// MediaQuery extensions
@@ -8,6 +9,7 @@ extension ContextExtensions on BuildContext {
   EdgeInsets get padding => MediaQuery.of(this).padding;
   double get topPadding => MediaQuery.paddingOf(this).top;
   double get bottomPadding => MediaQuery.paddingOf(this).bottom;
+  AppLocalizations get l10n => AppLocalizations.of(this)!;
 
   TextStyle? get displayLarge => Theme.of(this).textTheme.displayLarge;
   TextStyle? get displayMedium => Theme.of(this).textTheme.displayMedium;

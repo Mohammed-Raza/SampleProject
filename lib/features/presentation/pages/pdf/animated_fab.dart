@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sample_project/core/extensions/context_extension.dart';
 import 'package:sample_project/features/presentation/bloc/dynamic_pdf/share_pdf_cubit.dart';
 import 'package:sample_project/features/presentation/widgets/image_upload.dart';
 
@@ -95,7 +96,7 @@ class _AnimatedFloatingActionButtonsState
                     width: 52,
                     icon: Icons.backup_table,
                     color: Colors.cyan,
-                    toolTip: 'Create Table',
+                    toolTip: context.l10n.createTable,
                     onClick: () => showDialog(
                         context: context,
                         builder: (context) => const CreateTableDialog())),
@@ -118,7 +119,7 @@ class _AnimatedFloatingActionButtonsState
                     width: 52,
                     icon: Icons.share,
                     color: Colors.amberAccent,
-                    toolTip: 'Share Pdf',
+                    toolTip: context.l10n.sharePdfAction,
                     onClick: () => cubit.onClickOfSharePdf(context)),
               ),
             ),
@@ -139,7 +140,7 @@ class _AnimatedFloatingActionButtonsState
                     width: 52,
                     icon: Icons.add,
                     color: Colors.pinkAccent,
-                    toolTip: 'Add Images',
+                    toolTip: context.l10n.addImages,
                     onClick: () => showModalBottomSheet(
                         context: context,
                         builder: (context) =>

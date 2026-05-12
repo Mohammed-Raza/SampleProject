@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sample_project/core/extensions/context_extension.dart';
 import 'package:sample_project/core/mixins/validators_mixin.dart';
 import 'package:sample_project/features/presentation/bloc/local_db/local_db_cubit.dart';
 import 'package:sample_project/features/presentation/pages/sqflite/create_db.dart';
@@ -32,7 +33,7 @@ class _SqfLiteMainState extends State<SqfLiteMain> with ValidatorsMixin {
   Widget build(BuildContext context) {
     var cubit = context.read<LocalDbCubit>();
     return Scaffold(
-      appBar: AppBar(title: const Text("Get Local DB Data")),
+      appBar: AppBar(title: Text(context.l10n.getLocalDbData)),
       floatingActionButton: FloatingActionButton(
           onPressed: _openDialog, child: const Icon(Icons.add)),
       body: BlocBuilder<LocalDbCubit, LocalDbState>(
@@ -44,8 +45,8 @@ class _SqfLiteMainState extends State<SqfLiteMain> with ValidatorsMixin {
               case const (LocalDataSuccess):
                 var successState = state as LocalDataSuccess;
                 if (successState.itemsMapData == null) {
-                  return const Center(
-                      child: Text('No local data is available to show'));
+                  return Center(
+                      child: Text(context.l10n.noLocalDataAvailableToShow));
                 }
                 final categories = successState.itemsMapData!.keys.toList();
 
@@ -156,10 +157,10 @@ class GroceryItemCard extends StatelessWidget {
               GestureDetector(
                 onTap: () => CommonMixin.showFullDescription(
                     context, item.name, item.description),
-                child: const Padding(
+                child: Padding(
                   padding: EdgeInsets.only(top: 4.0),
                   child: Text(
-                    "Read More...",
+                    context.l10n.readMore,
                     style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
@@ -186,23 +187,25 @@ class GroceryItemCard extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Delete Item?"),
-        content: Text("Are you sure you want to delete '${item.name}'?"),
+        title: Text(context.l10n.deleteItemQuestion),
+        content: Text(context.l10n.deleteItemConfirmation(item.name)),
         actions: [
           TextButton(
-              onPressed: () => context.pop(), child: const Text("CANCEL")),
+              onPressed: () => context.pop(), child: Text(context.l10n.cancel)),
           TextButton(
               onPressed: () async {
                 final dbHelper = DBHelper();
                 await dbHelper.deleteGroceryItem(item.id!);
                 if (!context.mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text("${item.name} deleted successfully"),
+                    content:
+                        Text(context.l10n.itemDeletedSuccessfully(item.name)),
                     backgroundColor: Colors.red));
                 context.read<LocalDbCubit>().fetchLocallyStoredDbData();
                 context.pop();
               },
-              child: const Text("DELETE", style: TextStyle(color: Colors.red))),
+              child: Text(context.l10n.delete,
+                  style: const TextStyle(color: Colors.red))),
         ],
       ),
     );

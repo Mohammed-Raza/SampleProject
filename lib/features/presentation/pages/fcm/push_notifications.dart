@@ -30,7 +30,7 @@ class _PushNotificationsScreenState extends State<PushNotificationsScreen> {
   Widget build(BuildContext context) {
     var bloc = context.read<PushNotificationsBloc>();
     return Scaffold(
-      appBar: AppBar(title: const Text('Push Notifications')),
+      appBar: AppBar(title: Text(context.l10n.pushNotifications)),
       body: BlocBuilder<PushNotificationsBloc, PushNotificationsState>(
           builder: (context, state) {
         return Form(
@@ -53,8 +53,8 @@ class _PushNotificationsScreenState extends State<PushNotificationsScreen> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8)),
                         backgroundColor: Colors.cyan),
-                    child: const Text('Get Access Token',
-                        style: TextStyle(color: Colors.white))),
+                    child: Text(context.l10n.getAccessToken,
+                        style: const TextStyle(color: Colors.white))),
                 const SizedBox(height: 1),
                 GroceryCategoryDropdown(
                     onChange: context.read<DropDownCubit>().loadGroceries),
@@ -68,8 +68,8 @@ class _PushNotificationsScreenState extends State<PushNotificationsScreen> {
                         fixedSize: Size(context.width, 50),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8))),
-                    child: const Text('Push Notification',
-                        style: TextStyle(color: Colors.white))),
+                    child: Text(context.l10n.pushNotifications,
+                        style: const TextStyle(color: Colors.white))),
               ],
             ),
           ),

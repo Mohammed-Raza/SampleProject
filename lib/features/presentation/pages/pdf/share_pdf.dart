@@ -23,13 +23,13 @@ class _ShareDynamicPdfScreenState extends State<ShareDynamicPdfScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Share PDF')),
+      appBar: AppBar(title: Text(context.l10n.sharePdf)),
       body: BlocBuilder<SharePdfCubit, SharePdfState>(
         builder: (context, state) {
           return SizedBox(
             width: context.width,
             height: context.height,
-            child: const Stack(
+            child: Stack(
               clipBehavior: Clip.none,
               children: [
                 Padding(
@@ -44,18 +44,17 @@ class _ShareDynamicPdfScreenState extends State<ShareDynamicPdfScreen>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             _BuildText(
-                                label:
-                                    'Here on click of floating action menu button, you can'),
+                                label: context.l10n.sharePdfInstructionsIntro),
                             _BuildText(
                                 label:
-                                    '1. Create customized table with Rows & Columns ',
+                                    context.l10n.sharePdfInstructionCreateTable,
                                 color: Colors.cyan),
                             _BuildText(
-                                label:
-                                    '2. Share PDF with Customized table data & added images',
+                                label: context.l10n.sharePdfInstructionSharePdf,
                                 color: Colors.deepOrange),
                             _BuildText(
-                                label: '3. Capture Image / Upload from Gallery',
+                                label:
+                                    context.l10n.sharePdfInstructionAddImages,
                                 color: Colors.pink),
                           ],
                         ),
@@ -211,7 +210,7 @@ class TextFieldWithDate extends StatelessWidget {
       decoration: InputDecoration(
           isDense: true,
           counterText: '',
-          hintText: ctrl.text.isNotEmpty ? ctrl.text : 'Select Date',
+          hintText: ctrl.text.isNotEmpty ? ctrl.text : context.l10n.selectDate,
           suffixIcon: const Icon(Icons.calendar_month),
           contentPadding:
               const EdgeInsets.symmetric(vertical: 10, horizontal: 10),

@@ -1,6 +1,194 @@
 {
-  "vegetables" :"सब्ज़ियाँ",
-  "fruits" :"फल",
-  "milkProducts" :"दुग्ध उत्पाद",
-  "cookies" :"कुकीज़"
+  "@@locale": "hi",
+  "vegetables": "सब्ज़ियाँ",
+  "fruits": "फल",
+  "milkProducts": "दुग्ध उत्पाद",
+  "cookies": "कुकीज़",
+  "groceries": "किराना",
+  "isolates": "आइसोलेट्स",
+  "pushNotifications": "पुश नोटिफिकेशन",
+  "getAccessToken": "एक्सेस टोकन प्राप्त करें",
+  "sharePdf": "पीडीएफ साझा करें",
+  "sqfLite": "SqfLite",
+  "scrolls": "स्क्रॉल्स",
+  "webSocket": "वेब सॉकेट",
+  "groceriesHome": "किराना होम",
+  "home": "होम",
+  "orders": "ऑर्डर्स",
+  "cart": "कार्ट",
+  "profileAppearance": "रूप",
+  "languages": "भाषाएँ",
+  "selectLanguage": "भाषा चुनें",
+  "apply": "लागू करें",
+  "saveAppearance": "रूप सहेजें",
+  "lightTheme": "लाइट थीम",
+  "darkTheme": "डार्क थीम",
+  "useDeviceTheme": "डिवाइस थीम का उपयोग करें",
+  "light": "लाइट",
+  "dark": "डार्क",
+  "automatic": "स्वचालित",
+  "retry": "पुनः प्रयास करें",
+  "open": "खोलें",
+  "readMore": "और पढ़ें...",
+  "price": "कीमत",
+  "uploadImage": "छवि अपलोड करें",
+  "photos": "फोटो",
+  "camera": "कैमरा",
+  "tapToTakeImage": "छवि लेने के लिए टैप करें",
+  "deleteImage": "छवि हटाएँ",
+  "deleteAllImages": "सभी छवियाँ हटाएँ",
+  "sendMessage": "संदेश भेजें",
+  "sendAMessage": "एक संदेश भेजें",
+  "modules": "मॉड्यूल्स",
+  "homeHub": "होम हब",
+  "exploreSampleApp": "सैंपल ऐप देखें",
+  "beautifulDemosOnePolishedEntryPoint": "सुंदर डेमो, एक सुसज्जित प्रवेश बिंदु।",
+  "browseGroceriesNotificationsPdfsSocketsStorageDemosAndMore": "किराना, नोटिफिकेशन, पीडीएफ, सॉकेट्स, स्टोरेज डेमो और बहुत कुछ एक साफ डैशबोर्ड से देखें।",
+  "groceriesHomeDescription": "एक साफ रिटेल-स्टाइल प्रवेश बिंदु के साथ शॉपिंग कैटेगरी देखें।",
+  "isolatesDescription": "मोबाइल पर बैकग्राउंड काम के लिए प्रदर्शन-केंद्रित डेमो।",
+  "pushNotificationsDescription": "Firebase Cloud Messaging फ्लो एक सुसज्जित स्थान में।",
+  "sharePdfDescription": "छवियों के साथ डायनेमिक पीडीएफ बनाएँ और साझा करें।",
+  "sqfLiteDescription": "Android, iOS और macOS में लोकल डेटाबेस ऑपरेशन्स।",
+  "scrollsDescription": "Flutter में स्क्रॉलिंग पैटर्न और UI व्यवहार देखें।",
+  "webSocketDescription": "रीयलटाइम क्लाइंट और सर्वर संचार उदाहरण।",
+  "freshPicksAndEverydayEssentials": "ताज़ी पसंद और रोज़मर्रा की ज़रूरतें",
+  "freshGroceriesThoughtfullyPresented": "ताज़ा किराना, सोच-समझकर प्रस्तुत।",
+  "pickCategoryBrowseHandpickedEssentials": "एक कैटेगरी चुनें और साफ खरीदारी अनुभव के साथ चुनी हुई ज़रूरी चीज़ें देखें।",
+  "collectionSuffix": "कलेक्शन",
+  "freshPicksCleanerShoppingExperience": "एक साफ खरीदारी अनुभव के साथ ताज़ी पसंद।",
+  "swipeScanAdjustDescription": "छवियाँ स्वाइप करें, विवरण देखें और सुंदर ढंग से व्यवस्थित उत्पाद कार्ड से मात्रा समायोजित करें।",
+  "yourCartIsReadyForGlowUp": "आपका कार्ट निखरने के लिए तैयार है।",
+  "cartDescription": "किराना कैटलॉग से जो आइटम आप जोड़ते हैं, उन्हें यहाँ कुल, ऑफ़र और अधिक साफ चेकआउट सारांश के साथ दिखाया जा सकता है।",
+  "ordersCanFeelMorePremium": "यहाँ ऑर्डर्स और भी प्रीमियम लग सकते हैं।",
+  "ordersDescription": "यह टैब अब खाली स्क्रीन की जगह एक डिज़ाइन किए गए प्लेसहोल्डर के साथ है, जो ऑर्डर ट्रैकिंग, स्टेटस चिप्स और खरीद इतिहास के लिए तैयार है।",
+  "noCategoriesAvailableToShow": "दिखाने के लिए कोई कैटेगरी उपलब्ध नहीं है",
+  "noGroceryItemsAvailableToShow": "दिखाने के लिए कोई किराना आइटम उपलब्ध नहीं है",
+  "sharePdfInstructionsIntro": "फ़्लोटिंग एक्शन मेनू बटन पर क्लिक करके, आप कर सकते हैं",
+  "sharePdfInstructionCreateTable": "1. पंक्तियों और स्तंभों के साथ कस्टम तालिका बनाएँ",
+  "sharePdfInstructionSharePdf": "2. कस्टम तालिका डेटा और जोड़ी गई छवियों के साथ पीडीएफ साझा करें",
+  "sharePdfInstructionAddImages": "3. छवि कैप्चर करें या गैलरी से अपलोड करें",
+  "createTable": "तालिका बनाएँ",
+  "sharePdfAction": "पीडीएफ साझा करें",
+  "addImages": "छवियाँ जोड़ें",
+  "columns": "स्तंभ",
+  "rowsCount": "पंक्तियों की संख्या",
+  "selectDate": "तारीख चुनें",
+  "removeImage": "छवि हटाएँ",
+  "isolation": "आइसोलेशन",
+  "shortLived": "कम अवधि",
+  "longLived": "लंबी अवधि",
+  "shortLivedIntroPrefix": "यहाँ ",
+  "shortLivedIntroHighlight": "Isolate.run / compute ",
+  "shortLivedIntroSuffix": "method is used. This method spawns an isolate, passes a callback to the spawned isolate to start some computation, returns a value from the computation, and then shuts the isolate down when the computation is complete.",
+  "shortLivedImageCompressionDescription": "यहाँ छवि कैप्चर करने के बाद उसे compute method से compress किया जाएगा",
+  "longLivedIntroPrefix": "यहाँ ",
+  "longLivedIntroHighlight": "Isolate.spawn, SendPort & ReceivePort ",
+  "longLivedIntroSuffix": "are used. Long-lived isolates are useful when you have a specific process that either needs to be run repeatedly throughout the lifetime of your application.",
+  "longLivedImageGenerationDescription": "यहाँ छवि कैप्चर करने के बाद, index watermark और compression के साथ 50 छवियाँ बनाई जाती हैं।",
+  "unableToLoadImage": "छवि लोड नहीं हो सकी",
+  "category": "श्रेणी",
+  "grocery": "किराना",
+  "loading": "लोड हो रहा है...",
+  "noDataAvailable": "कोई डेटा उपलब्ध नहीं है",
+  "somethingWentWrong": "कुछ गलत हो गया !!",
+  "fullDescription": "पूरा विवरण",
+  "scrollTypes": "स्क्रॉल प्रकार",
+  "customScroll": "कस्टम स्क्रॉल",
+  "nestedScroll": "नेस्टेड स्क्रॉल",
+  "carousel": "कैरोसेल",
+  "pagination": "पेजिनेशन",
+  "customScrollDescription": "The CustomScrollView in Flutter is a powerful scrolling widget that builds custom scroll effects using special, low-level widgets called slivers. Unlike ListView or SingleChildScrollView, which are designed for simple lists or single-screen content, CustomScrollView provides fine-grained control to combine different scrollable areas like lists, grids, and expanding app bars into a single, cohesive scrolling experience.",
+  "nestedScrollDescription": "The Flutter NestedScrollView is a widget designed to coordinate scrolling between multiple nested scrollable areas, making them behave as a single, unified scrolling experience. It is commonly used in UIs that feature a flexible app bar with a TabBar and a TabBarView.",
+  "paginationDescription": "Pagination in Flutter is a technique for efficiently loading and displaying large datasets in small, manageable chunks, which improves performance and user experience. The most common approach is infinite scrolling, where new data loads automatically as the user scrolls to the end of a list.",
+  "carouselDescription": "In Flutter, a carousel is a UI widget that displays a series of items like images or cards in a horizontally or vertically scrolling format, typically showing one item at a time with smooth transitions.",
+  "getLocalDbData": "लोकल DB डेटा प्राप्त करें",
+  "noLocalDataAvailableToShow": "दिखाने के लिए कोई लोकल डेटा उपलब्ध नहीं है",
+  "addGroceryData": "किराना डेटा जोड़ें",
+  "groceryName": "किराना नाम",
+  "description": "विवरण",
+  "submit": "जमा करें",
+  "grocerySavedLocally": "किराना लोकली सहेजा गया!",
+  "pleaseSelectCategoryType": "कृपया एक श्रेणी प्रकार चुनें",
+  "editGroceryItem": "किराना आइटम संपादित करें",
+  "cancel": "रद्द करें",
+  "update": "अपडेट करें",
+  "itemUpdatedSuccessfully": "आइटम सफलतापूर्वक अपडेट हुआ",
+  "deleteItemQuestion": "आइटम हटाएँ?",
+  "delete": "हटाएँ",
+  "deleteItemConfirmation": "क्या आप '{itemName}' को हटाना चाहते हैं?",
+  "@deleteItemConfirmation": {
+    "placeholders": {
+      "itemName": {}
+    }
+  },
+  "itemDeletedSuccessfully": "{itemName} सफलतापूर्वक हटाया गया",
+  "@itemDeletedSuccessfully": {
+    "placeholders": {
+      "itemName": {}
+    }
+  },
+  "selectField": "{label} चुनें",
+  "@selectField": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "enterField": "{label} दर्ज करें",
+  "@enterField": {
+    "placeholders": {
+      "label": {}
+    }
+  },
+  "enterValue": "मान दर्ज करें",
+  "dotNotAllowed": "डॉट की अनुमति नहीं है",
+  "spacesAreNotAllowed": "स्पेस की अनुमति नहीं है",
+  "errorOccurred": "त्रुटि हुई",
+  "checkInternetConnection": "अपना इंटरनेट कनेक्शन जाँचें",
+  "checkInternetConnectionLoud": "अपना इंटरनेट कनेक्शन जाँचें!!!",
+  "unableToConnectServerWithCode": "{statusCode} : सर्वर से कनेक्ट नहीं हो सका!!!",
+  "@unableToConnectServerWithCode": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "unknownExceptionOccurred": "अज्ञात त्रुटि हुई",
+  "unknownExceptionOccurredLoud": "अज्ञात त्रुटि हुई!!!",
+  "somethingWentWrongLoud": "कुछ गलत हो गया !!",
+  "unknownExceptionWithCode": "{statusCode} : अज्ञात त्रुटि हुई!!!",
+  "@unknownExceptionWithCode": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "notAuthorizedWithCode": "{statusCode} : अधिकृत नहीं!!!",
+  "@notAuthorizedWithCode": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "timeoutException": "समय समाप्ति अपवाद !!!",
+  "timeoutExceptionLoud": "समय समाप्ति अपवाद!!!",
+  "pageNotFoundErrorWithCode": "{statusCode} : पेज नहीं मिला",
+  "@pageNotFoundErrorWithCode": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "unableToConnectServerShort": "{statusCode} : सर्वर से कनेक्ट नहीं हो सका",
+  "@unableToConnectServerShort": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "badRequest": "गलत अनुरोध",
+  "badRequestWithCode": "{statusCode} : गलत अनुरोध",
+  "@badRequestWithCode": {
+    "placeholders": {
+      "statusCode": {}
+    }
+  },
+  "pageNotFound": "पेज नहीं मिला",
+  "internalServerError": "आंतरिक सर्वर त्रुटि",
+  "unauthorizedNoAccess": "अनधिकृत, आपके पास पहुँच नहीं है",
+  "dontWorryTeamIsWorkingOnIt": "चिंता न करें, टीम इस पर काम कर रही है"
 }

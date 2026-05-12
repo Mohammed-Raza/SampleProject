@@ -38,7 +38,7 @@ class _LanguageScreenState extends State<LanguageScreen> with LanguageMixin {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('Select Language'),
+                Text(context.l10n.selectLanguage),
                 const Divider(height: 50),
                 Row(
                   spacing: 20,
@@ -87,7 +87,7 @@ class _LanguageScreenState extends State<LanguageScreen> with LanguageMixin {
                         shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)))),
                     onPressed: () => provider.onApplyOfLanguage(context),
-                    child: const Text('Apply'))
+                    child: Text(context.l10n.apply))
               ],
             );
           }),

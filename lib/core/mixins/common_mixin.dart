@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_project/core/extensions/context_extension.dart';
 import 'package:sample_project/core/utils/enums.dart';
 import '../../generated/assets.dart';
 import 'language_mixin.dart';
@@ -73,7 +74,7 @@ mixin CommonMixin {
                           fontSize: 22, fontWeight: FontWeight.bold)),
                   const Divider(),
                   const SizedBox(height: 10),
-                  const Text("Full Description",
+                  Text(context.l10n.fullDescription,
                       style: TextStyle(
                           color: Colors.teal, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 10),

@@ -43,21 +43,17 @@ class _LongLivedIsolationState extends State<LongLivedIsolation> {
               spacing: 10,
               children: [
                 RichText(
-                    text: TextSpan(style: context.labelLarge, children: const [
-                  TextSpan(text: 'Here '),
+                    text: TextSpan(style: context.labelLarge, children: [
+                  TextSpan(text: context.l10n.longLivedIntroPrefix),
                   TextSpan(
-                      text: 'Isolate.spawn, SendPort & ReceivePort ',
+                      text: context.l10n.longLivedIntroHighlight,
                       style: TextStyle(
                           color: Colors.blueAccent,
                           fontSize: 16,
                           fontWeight: FontWeight.bold)),
-                  TextSpan(
-                      text:
-                          'are used. Long-lived isolates are useful when you have a specific process that either needs'
-                          ' to be run repeatedly throughout the lifetime of your application.')
+                  TextSpan(text: context.l10n.longLivedIntroSuffix)
                 ])),
-                Text(
-                    'Here after capturing the image, 50 images are generated with index number as water-mark on image & with compression. ',
+                Text(context.l10n.longLivedImageGenerationDescription,
                     style: context.titleMedium?.apply(fontWeightDelta: -1)),
                 provider.longLivedImages.isNotEmpty
                     ? const _BuildStreamBuilder()
@@ -67,7 +63,8 @@ class _LongLivedIsolationState extends State<LongLivedIsolation> {
                           children: [
                             const Icon(Icons.add_a_photo_outlined, size: 70),
                             const SizedBox(height: 6),
-                            Text('Tap to take image', style: context.labelLarge)
+                            Text(context.l10n.tapToTakeImage,
+                                style: context.labelLarge)
                           ],
                         )),
                 Row(
@@ -84,7 +81,7 @@ class _LongLivedIsolationState extends State<LongLivedIsolation> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8)),
                               backgroundColor: Colors.red),
-                          child: const Text('Delete All Images',
+                          child: Text(context.l10n.deleteAllImages,
                               style: TextStyle(color: Colors.white))),
                     ),
                   ],
@@ -177,13 +174,16 @@ class _BuildStreamBuilderState extends State<_BuildStreamBuilder> {
                   height: context.height * 0.6,
                   width: double.infinity,
                   child: InteractiveViewer(
-                      maxScale: 3,
-                      minScale: 0.4,
-                      child: Image.file(File(imageUrl),
-                          gaplessPlayback: true,
-                          fit: BoxFit.fill,
-                          errorBuilder: (context, url, error) => const Center(
-                              child: Text('Unable to load Image')))),
+                    maxScale: 3,
+                    minScale: 0.4,
+                    child: Image.file(
+                      File(imageUrl),
+                      gaplessPlayback: true,
+                      fit: BoxFit.fill,
+                      errorBuilder: (context, url, error) =>
+                          Center(child: Text(context.l10n.unableToLoadImage)),
+                    ),
+                  ),
                 ),
               ),
             ));

@@ -38,7 +38,7 @@ class _UpdateDbDataState extends State<UpdateDbData> with ValidatorsMixin {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text("Edit Grocery Item"),
+      title: Text(context.l10n.editGroceryItem),
       insetPadding: const EdgeInsets.all(10),
       content: SizedBox(
         width: context.width,
@@ -53,19 +53,20 @@ class _UpdateDbDataState extends State<UpdateDbData> with ValidatorsMixin {
               const SizedBox(height: 20),
               TextFormField(
                   controller: _nameController,
-                  decoration: const InputDecoration(
-                    labelText: "Grocery Name",
+                  decoration: InputDecoration(
+                    labelText: context.l10n.groceryName,
                     border: OutlineInputBorder(),
                   ),
-                  validator: (val) =>
-                      valueEmptyValidator(val!, context, 'grocery name')),
+                  validator: (val) => valueEmptyValidator(
+                      val!, context, context.l10n.groceryName)),
               const SizedBox(height: 30),
               TextFormField(
                   controller: _descController,
                   maxLines: 3,
-                  decoration: const InputDecoration(labelText: "Description"),
-                  validator: (val) =>
-                      valueEmptyValidator(val!, context, 'description')),
+                  decoration:
+                      InputDecoration(labelText: context.l10n.description),
+                  validator: (val) => valueEmptyValidator(
+                      val!, context, context.l10n.description)),
             ],
           ),
         ),
@@ -73,14 +74,15 @@ class _UpdateDbDataState extends State<UpdateDbData> with ValidatorsMixin {
       actions: [
         TextButton(
           onPressed: () => context.pop(),
-          child: const Text("CANCEL"),
+          child: Text(context.l10n.cancel),
         ),
         ElevatedButton(
           onPressed: _onClickOfUpdate,
           style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
           child: loaderEnable
               ? const CircularIndicator()
-              : const Text("UPDATE", style: TextStyle(color: Colors.white)),
+              : Text(context.l10n.update,
+                  style: const TextStyle(color: Colors.white)),
         )
       ],
     );
@@ -121,7 +123,7 @@ class _UpdateDbDataState extends State<UpdateDbData> with ValidatorsMixin {
     context.pop();
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Item updated successfully")),
+      SnackBar(content: Text(context.l10n.itemUpdatedSuccessfully)),
     );
   }
 }

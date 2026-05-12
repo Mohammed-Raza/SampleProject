@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sample_project/core/extensions/context_extension.dart';
-import 'package:sample_project/core/utils/constants.dart';
 import '../../../../config/routes/routes.dart';
 import '../../../../core/device/adaptive_layout_builder.dart';
 import '../../../../core/mixins/common_mixin.dart';
@@ -15,16 +14,32 @@ class ScrollTypesMainScreen extends StatefulWidget {
 }
 
 class _ScrollTypesMainScreenState extends State<ScrollTypesMainScreen> {
-  List<(String, String, String)> homeCards = [
-    ('Custom Scroll', Constants.customScrollDesc, Routes.customScrollFullPath),
-    ('Nested Scroll', Constants.nestedScrollDesc, Routes.nestedScrollFullPath),
-    ('Carousel', Constants.carouselDesc, Routes.carouselScrollFullPath),
-    ('Pagination', Constants.paginationDesc, Routes.paginationScrollFullPath)
-  ];
   @override
   Widget build(BuildContext context) {
+    final homeCards = [
+      (
+        context.l10n.customScroll,
+        context.l10n.customScrollDescription,
+        Routes.customScrollFullPath
+      ),
+      (
+        context.l10n.nestedScroll,
+        context.l10n.nestedScrollDescription,
+        Routes.nestedScrollFullPath
+      ),
+      (
+        context.l10n.carousel,
+        context.l10n.carouselDescription,
+        Routes.carouselScrollFullPath
+      ),
+      (
+        context.l10n.pagination,
+        context.l10n.paginationDescription,
+        Routes.paginationScrollFullPath
+      )
+    ];
     return Scaffold(
-        appBar: AppBar(title: const Text("Scroll Types")),
+        appBar: AppBar(title: Text(context.l10n.scrollTypes)),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: AdaptiveLayoutBuilder(
@@ -79,10 +94,10 @@ class _BuildScrollTypeCard extends StatelessWidget {
               GestureDetector(
                 onTap: () => CommonMixin.showFullDescription(
                     context, title, description),
-                child: const Padding(
+                child: Padding(
                   padding: EdgeInsets.only(top: 4.0),
                   child: Text(
-                    "Read More...",
+                    context.l10n.readMore,
                     style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
