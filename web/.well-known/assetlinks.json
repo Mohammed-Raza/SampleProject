@@ -3,7 +3,9 @@
   "target": {
     "namespace": "android_app",
     "package_name": "com.sp.groceries",
-    "sha256_cert_fingerprints":
-    ["A4:44:6F:93:99:52:66:58:4E:90:65:9F:40:D6:57:D0:F7:4B:0A:F2:9E:A7:B2:5C:65:C6:78:8D:74:16:7A:42"]
+    "sha256_cert_fingerprints": [
+      "A4:44:6F:93:99:52:66:58:4E:90:65:9F:40:D6:57:D0:F7:4B:0A:F2:9E:A7:B2:5C:65:C6:78:8D:74:16:7A:42",
+      "59:ED:4D:BE:62:4A:47:5A:C0:E9:41:F5:B3:D8:25:BB:35:DE:2B:D3:4E:0A:26:07:B5:CD:FA:5F:02:61:B2:FC"
+    ]
   }
 }]

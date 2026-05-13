@@ -21,6 +21,7 @@ import '../../features/presentation/pages/scrolls/pagination_scroll.dart';
 class Routing {
   static final GoRouter router =
       GoRouter(initialLocation: Routes.homePath, routes: <RouteBase>[
+    GoRoute(path: '/', redirect: (context, state) => Routes.homePath),
     GoRoute(
         name: Routes.home,
         path: Routes.homePath,

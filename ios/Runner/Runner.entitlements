@@ -6,7 +6,7 @@
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>farmers-market-c591f.web.app</string>
+		<string>applinks:farmers-market-c591f.web.app</string>
 	</array>
 </dict>
 </plist>
