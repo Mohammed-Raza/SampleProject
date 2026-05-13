@@ -25,30 +25,29 @@ class _ThemeScreenState extends State<ThemeScreen> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.height * 0.4,
+      height: context.height * 0.44,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Text(context.l10n.profileAppearance,
-                style: const TextStyle(fontSize: 20)),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child:
+                Text(context.l10n.profileAppearance, style: context.titleLarge),
           ),
           const CommonDivider(),
           const _BuildRadioButtons(),
           const Gap(20),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 7),
-            child: ElevatedButton(
-                style: ButtonStyle(
-                    fixedSize: WidgetStatePropertyAll(Size(context.width, 50)),
-                    shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)))),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: FilledButton.icon(
+                style: FilledButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 50)),
                 onPressed: () {
                   context.read<ThemeProvider>().onSelectionOfAppearance();
                   context.pop();
                 },
-                child: Text(context.l10n.saveAppearance)),
+                icon: const Icon(Icons.check_rounded),
+                label: Text(context.l10n.saveAppearance)),
           )
         ],
       ),
@@ -107,7 +106,7 @@ class _GetRadioViewState extends State<_GetRadioView> {
       return InkWell(
         onTap: () => provider.onChangeOfRadioButton(widget.type),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
           child: RadioGroup<ThemeType>(
               groupValue: provider.themeType,
               onChanged: provider.onChangeOfRadioButton,

@@ -74,15 +74,13 @@ class _LongLivedIsolationState extends State<LongLivedIsolation> {
                     Visibility(
                       visible: provider.longLivedImages.isNotEmpty &&
                           provider.longLivedImages.length == 50,
-                      child: ElevatedButton(
+                      child: FilledButton.icon(
                           onPressed: provider.deleteLongLivedImage,
-                          style: ElevatedButton.styleFrom(
-                              fixedSize: Size(context.width * 0.9, 45),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8)),
+                          style: FilledButton.styleFrom(
+                              minimumSize: const Size(280, 45),
                               backgroundColor: Colors.red),
-                          child: Text(context.l10n.deleteAllImages,
-                              style: TextStyle(color: Colors.white))),
+                          icon: const Icon(Icons.delete_outline),
+                          label: Text(context.l10n.deleteAllImages)),
                     ),
                   ],
                 ),
@@ -167,9 +165,9 @@ class _BuildStreamBuilderState extends State<_BuildStreamBuilder> {
         builder: (context) => Dialog(
               insetPadding: const EdgeInsets.all(10),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(13)),
+                  borderRadius: BorderRadius.circular(8)),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(8),
                 child: SizedBox(
                   height: context.height * 0.6,
                   width: double.infinity,

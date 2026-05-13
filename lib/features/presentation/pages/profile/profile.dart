@@ -10,6 +10,7 @@ import 'package:sample_project/features/presentation/pages/profile/language.dart
 import 'package:sample_project/features/presentation/pages/profile/theme_screen.dart';
 import 'package:sample_project/features/presentation/providers/language_provider.dart';
 import 'package:sample_project/features/presentation/providers/theme_provider.dart';
+import 'package:sample_project/features/presentation/widgets/responsive_page.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -21,44 +22,49 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> with LanguageMixin {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(
-            12, context.topPadding, 12, context.bottomPadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 10,
-          children: [
-            IconButton(
-                onPressed: () => context.pop(),
-                icon: const Icon(Icons.arrow_back)),
-            Card(
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(12, 15, 0, 15),
-                child: Column(
-                  children: [
-                    Consumer<ThemeProvider>(
-                        builder: (context, provider, child) => BuildListTile(
-                            icon: FontAwesomeIcons.palette,
-                            label: context.l10n.profileAppearance,
-                            text: provider.getSelectedTheme(context.l10n),
-                            onTap: showThemeBottomSheet)),
-                    Consumer<LanguageProvider>(
-                        builder: (context, provider, child) => BuildListTile(
-                            icon: FontAwesomeIcons.language,
-                            label: context.l10n.languages,
-                            text: getSelectedLanguage(
-                                provider.selectedLanguageCode),
-                            showDivider: false,
-                            onTap: () => showDialog(
-                                context: context,
-                                builder: (context) => const LanguageScreen())))
-                  ],
-                ),
-              ),
-            )
-          ],
+    return ResponsivePage(
+      title: context.l10n.profileAppearance,
+      maxWidth: 760,
+      actions: [
+        IconButton(
+          onPressed: () => context.pop(),
+          icon: const Icon(Icons.close_rounded),
         ),
+      ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        spacing: 18,
+        children: [
+          ResponsiveHeroPanel(
+            icon: Icons.tune_rounded,
+            title: context.l10n.profileAppearance,
+            description:
+                '${context.l10n.languages} • ${context.l10n.automatic}',
+          ),
+          ResponsivePanel(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Column(
+              children: [
+                Consumer<ThemeProvider>(
+                    builder: (context, provider, child) => BuildListTile(
+                        icon: FontAwesomeIcons.palette,
+                        label: context.l10n.profileAppearance,
+                        text: provider.getSelectedTheme(context.l10n),
+                        onTap: showThemeBottomSheet)),
+                Consumer<LanguageProvider>(
+                    builder: (context, provider, child) => BuildListTile(
+                        icon: FontAwesomeIcons.language,
+                        label: context.l10n.languages,
+                        text:
+                            getSelectedLanguage(provider.selectedLanguageCode),
+                        showDivider: false,
+                        onTap: () => showDialog(
+                            context: context,
+                            builder: (context) => const LanguageScreen())))
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
@@ -97,13 +103,18 @@ class BuildListTile extends StatelessWidget {
         InkWell(
           onTap: onTap,
           child: Row(
-            spacing: 15,
+            spacing: 14,
             children: [
               Container(
                   decoration: BoxDecoration(
-                      color: Colors.grey.shade200, shape: BoxShape.circle),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary
+                          .withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(8)),
                   padding: const EdgeInsets.all(10),
-                  child: FaIcon(icon, color: Colors.blueGrey, size: 15)),
+                  child: FaIcon(icon,
+                      color: Theme.of(context).colorScheme.primary, size: 15)),
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -111,16 +122,22 @@ class BuildListTile extends StatelessWidget {
                     Text(label,
                         style: GoogleFonts.alatsi(
                             fontSize: 18, fontWeight: FontWeight.w500)),
-                    Row(
-                      spacing: 10,
-                      children: [
-                        Text(text,
-                            style: GoogleFonts.poppins(
-                                fontSize: 12, color: Colors.grey)),
-                        const Icon(Icons.arrow_forward_ios_outlined,
-                            color: Colors.black54, size: 15),
-                        const Gap(2)
-                      ],
+                    Flexible(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        spacing: 10,
+                        children: [
+                          Flexible(
+                            child: Text(text,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.poppins(
+                                    fontSize: 12, color: Colors.grey)),
+                          ),
+                          const Icon(Icons.arrow_forward_ios_outlined,
+                              color: Colors.black54, size: 15),
+                          const Gap(2)
+                        ],
+                      ),
                     )
                   ],
                 ),

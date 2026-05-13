@@ -52,83 +52,92 @@ class _GroceriesMainScreenState extends State<GroceriesMainScreen> {
             ],
           ),
         ),
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(14, 6, 14, context.bottomPadding),
-          child: BlocBuilder<GroceriesBloc, GroceriesState>(
-            bloc: bloc,
-            builder: (context, state) {
-              switch (state.runtimeType) {
-                case const (GroceriesInitial):
-                case const (GroceryItemsLoading):
-                  return const CircularIndicator();
-                case const (GroceryItemsSuccess):
-                  final successState = state as GroceryItemsSuccess;
-                  if (successState.groceries.isEmpty) {
-                    return Center(
-                      child: Text(context.l10n.noGroceryItemsAvailableToShow),
-                    );
-                  }
-                  return RefreshIndicator(
-                    onRefresh: () async => afterTheBuild(),
-                    child: CustomScrollView(
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      slivers: [
-                        SliverToBoxAdapter(
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1180),
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(context.width < 600 ? 14 : 24, 6,
+                  context.width < 600 ? 14 : 24, context.bottomPadding),
+              child: BlocBuilder<GroceriesBloc, GroceriesState>(
+                bloc: bloc,
+                builder: (context, state) {
+                  switch (state.runtimeType) {
+                    case const (GroceriesInitial):
+                    case const (GroceryItemsLoading):
+                      return const CircularIndicator();
+                    case const (GroceryItemsSuccess):
+                      final successState = state as GroceryItemsSuccess;
+                      if (successState.groceries.isEmpty) {
+                        return Center(
                           child:
-                              _GroceriesHero(groceryType: widget.groceryType),
-                        ),
-                        SliverPadding(
-                          padding: const EdgeInsets.only(top: 18, bottom: 12),
-                          sliver: SliverLayoutBuilder(
-                            builder: (context, constraints) {
-                              final crossAxisExtent =
-                                  constraints.crossAxisExtent;
-                              final deviceType = switch (crossAxisExtent) {
-                                < 600 => DeviceResolutionType.mobile,
-                                < 1024 => DeviceResolutionType.tab,
-                                _ => DeviceResolutionType.desktop,
-                              };
-                              final childAspectRatio = switch (deviceType) {
-                                DeviceResolutionType.mobile => 0.83,
-                                DeviceResolutionType.tab => 0.9,
-                                DeviceResolutionType.desktop => 0.84
-                              };
-                              final crossAxisCount = switch (deviceType) {
-                                DeviceResolutionType.mobile => 1,
-                                DeviceResolutionType.tab => 2,
-                                DeviceResolutionType.desktop => 3
-                              };
+                              Text(context.l10n.noGroceryItemsAvailableToShow),
+                        );
+                      }
+                      return RefreshIndicator(
+                        onRefresh: () async => afterTheBuild(),
+                        child: CustomScrollView(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          slivers: [
+                            SliverToBoxAdapter(
+                              child: _GroceriesHero(
+                                  groceryType: widget.groceryType),
+                            ),
+                            SliverPadding(
+                              padding:
+                                  const EdgeInsets.only(top: 18, bottom: 12),
+                              sliver: SliverLayoutBuilder(
+                                builder: (context, constraints) {
+                                  final crossAxisExtent =
+                                      constraints.crossAxisExtent;
+                                  final deviceType = switch (crossAxisExtent) {
+                                    < 600 => DeviceResolutionType.mobile,
+                                    < 1024 => DeviceResolutionType.tab,
+                                    _ => DeviceResolutionType.desktop,
+                                  };
+                                  final childAspectRatio = switch (deviceType) {
+                                    DeviceResolutionType.mobile => 0.83,
+                                    DeviceResolutionType.tab => 0.9,
+                                    DeviceResolutionType.desktop => 0.84
+                                  };
+                                  final crossAxisCount = switch (deviceType) {
+                                    DeviceResolutionType.mobile => 1,
+                                    DeviceResolutionType.tab => 2,
+                                    DeviceResolutionType.desktop => 3
+                                  };
 
-                              return SliverGrid.builder(
-                                itemCount: successState.groceries.length,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  mainAxisSpacing: 20,
-                                  crossAxisSpacing: 20,
-                                  childAspectRatio: childAspectRatio,
-                                  crossAxisCount: crossAxisCount,
-                                ),
-                                itemBuilder: (_, index) => _GroceryItemCard(
-                                  grocery: successState.groceries[index],
-                                ),
-                              );
-                            },
-                          ),
+                                  return SliverGrid.builder(
+                                    itemCount: successState.groceries.length,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      mainAxisSpacing: 20,
+                                      crossAxisSpacing: 20,
+                                      childAspectRatio: childAspectRatio,
+                                      crossAxisCount: crossAxisCount,
+                                    ),
+                                    itemBuilder: (_, index) => _GroceryItemCard(
+                                      grocery: successState.groceries[index],
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  );
-                case const (GroceryItemsError):
-                  final errorState = state as GroceryItemsError;
-                  return PageErrorWidget(
-                    errorText: errorState.pageErrorDetails.$1,
-                    errorImage: errorState.pageErrorDetails.$2,
-                    retry: afterTheBuild,
-                  );
-                default:
-                  return Container();
-              }
-            },
+                      );
+                    case const (GroceryItemsError):
+                      final errorState = state as GroceryItemsError;
+                      return PageErrorWidget(
+                        errorText: errorState.pageErrorDetails.$1,
+                        errorImage: errorState.pageErrorDetails.$2,
+                        retry: afterTheBuild,
+                      );
+                    default:
+                      return Container();
+                  }
+                },
+              ),
+            ),
           ),
         ),
       ),
@@ -149,7 +158,7 @@ class _GroceriesHero extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(8),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -173,7 +182,7 @@ class _GroceriesHero extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
               color: Colors.white.withValues(alpha: 0.14),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
               '${CommonMixin.getGroceryName(context, groceryType).toUpperCase()} ${context.l10n.collectionSuffix}',
@@ -218,7 +227,7 @@ class _GroceryItemCard extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(32),
+        borderRadius: BorderRadius.circular(8),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -271,7 +280,7 @@ class _GroceryItemCard extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   color: colorScheme.surfaceContainer.withValues(alpha: 0.72),
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(8),
                   border: Border.all(
                     color: colorScheme.outlineVariant.withValues(alpha: 0.5),
                   ),
@@ -331,7 +340,7 @@ class _BuildImagesCarousel extends StatelessWidget {
       padding: const EdgeInsets.all(6),
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerLowest.withValues(alpha: 0.8),
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(color: colorScheme.outlineVariant),
       ),
       child: CarouselSlider.builder(
@@ -359,14 +368,14 @@ class _BuildImagesCarousel extends StatelessWidget {
       height: context.height / 4.2,
       margin: const EdgeInsets.symmetric(horizontal: 4),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: colorScheme.outlineVariant.withValues(alpha: 0.75),
         ),
       ),
       child: BuildCachedNetworkImage(
         imageUrl: imgUrl,
-        borderRadius: 18,
+        borderRadius: 8,
       ),
     );
   }

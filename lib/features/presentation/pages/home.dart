@@ -134,46 +134,58 @@ class _HomePageState extends State<HomePage> {
         ),
         child: SafeArea(
           top: false,
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 8, 16, 20),
-            child: AdaptiveLayoutBuilder(
-              builder: (context, deviceType) => CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: _HomeHeroCard(homeCardsCount: homeCards.length),
-                  ),
-                  SliverPadding(
-                    padding: const EdgeInsets.only(top: 24),
-                    sliver: SliverGrid.builder(
-                      itemCount: homeCards.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisSpacing: 20,
-                        crossAxisSpacing: 20,
-                        childAspectRatio: switch (deviceType) {
-                          DeviceResolutionType.mobile => 0.78,
-                          DeviceResolutionType.tab => 1.0,
-                          DeviceResolutionType.desktop => 0.95
-                        },
-                        crossAxisCount: switch (deviceType) {
-                          DeviceResolutionType.mobile => 2,
-                          DeviceResolutionType.tab => 3,
-                          DeviceResolutionType.desktop => 4
-                        },
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 1180),
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(
+                  context.width < 600 ? 16 : 24,
+                  8,
+                  context.width < 600 ? 16 : 24,
+                  20,
+                ),
+                child: AdaptiveLayoutBuilder(
+                  builder: (context, deviceType) => CustomScrollView(
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: _HomeHeroCard(homeCardsCount: homeCards.length),
                       ),
-                      itemBuilder: (_, index) {
-                        final details = homeCards[index];
-                        return _BuildHomeCard(
-                          icon: details.$1,
-                          title: _localizedValue(context, details.$2),
-                          description: _localizedValue(context, details.$3),
-                          route: details.$4,
-                          isFaIcon: details.isFaIcon,
-                          index: index,
-                        );
-                      },
-                    ),
+                      SliverPadding(
+                        padding: const EdgeInsets.only(top: 24),
+                        sliver: SliverGrid.builder(
+                          itemCount: homeCards.length,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            mainAxisSpacing: 20,
+                            crossAxisSpacing: 20,
+                            childAspectRatio: switch (deviceType) {
+                              DeviceResolutionType.mobile => 0.78,
+                              DeviceResolutionType.tab => 1.0,
+                              DeviceResolutionType.desktop => 0.95
+                            },
+                            crossAxisCount: switch (deviceType) {
+                              DeviceResolutionType.mobile => 2,
+                              DeviceResolutionType.tab => 3,
+                              DeviceResolutionType.desktop => 4
+                            },
+                          ),
+                          itemBuilder: (_, index) {
+                            final details = homeCards[index];
+                            return _BuildHomeCard(
+                              icon: details.$1,
+                              title: _localizedValue(context, details.$2),
+                              description: _localizedValue(context, details.$3),
+                              route: details.$4,
+                              isFaIcon: details.isFaIcon,
+                              index: index,
+                            );
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ),
@@ -217,7 +229,7 @@ class _HomeHeroCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(32),
+        borderRadius: BorderRadius.circular(8),
         gradient: LinearGradient(
           colors: [
             colorScheme.primary,
@@ -242,7 +254,7 @@ class _HomeHeroCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
               color: Colors.white.withValues(alpha: 0.16),
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
               context.l10n.exploreSampleApp,
@@ -294,7 +306,7 @@ class _StatChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.14),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: RichText(
         text: TextSpan(
@@ -354,7 +366,7 @@ class _BuildHomeCard extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(8),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -375,7 +387,7 @@ class _BuildHomeCard extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: () => context.go(route),
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(8),
           child: Padding(
             padding: const EdgeInsets.all(18),
             child: Column(
@@ -386,7 +398,7 @@ class _BuildHomeCard extends StatelessWidget {
                   height: 54,
                   decoration: BoxDecoration(
                     color: accent.withValues(alpha: 0.14),
-                    borderRadius: BorderRadius.circular(18),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   child: Center(
                     child: isFaIcon

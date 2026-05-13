@@ -41,7 +41,7 @@ class _UpdateDbDataState extends State<UpdateDbData> with ValidatorsMixin {
       title: Text(context.l10n.editGroceryItem),
       insetPadding: const EdgeInsets.all(10),
       content: SizedBox(
-        width: context.width,
+        width: context.width < 600 ? context.width : 560,
         child: Form(
           key: _formKey,
           autovalidateMode: autoValidate
@@ -55,7 +55,7 @@ class _UpdateDbDataState extends State<UpdateDbData> with ValidatorsMixin {
                   controller: _nameController,
                   decoration: InputDecoration(
                     labelText: context.l10n.groceryName,
-                    border: OutlineInputBorder(),
+                    prefixIcon: const Icon(Icons.shopping_basket_outlined),
                   ),
                   validator: (val) => valueEmptyValidator(
                       val!, context, context.l10n.groceryName)),
@@ -63,8 +63,10 @@ class _UpdateDbDataState extends State<UpdateDbData> with ValidatorsMixin {
               TextFormField(
                   controller: _descController,
                   maxLines: 3,
-                  decoration:
-                      InputDecoration(labelText: context.l10n.description),
+                  decoration: InputDecoration(
+                    labelText: context.l10n.description,
+                    prefixIcon: const Icon(Icons.notes_rounded),
+                  ),
                   validator: (val) => valueEmptyValidator(
                       val!, context, context.l10n.description)),
             ],
@@ -76,13 +78,12 @@ class _UpdateDbDataState extends State<UpdateDbData> with ValidatorsMixin {
           onPressed: () => context.pop(),
           child: Text(context.l10n.cancel),
         ),
-        ElevatedButton(
+        FilledButton.icon(
           onPressed: _onClickOfUpdate,
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
-          child: loaderEnable
+          icon: loaderEnable
               ? const CircularIndicator()
-              : Text(context.l10n.update,
-                  style: const TextStyle(color: Colors.white)),
+              : const Icon(Icons.check_rounded),
+          label: Text(context.l10n.update),
         )
       ],
     );

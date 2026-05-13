@@ -70,7 +70,13 @@ class _GroceriesHomePageState extends State<GroceriesHomePage> {
             ],
           ),
         ),
-        child: widgets[selectedIndex],
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1180),
+            child: widgets[selectedIndex],
+          ),
+        ),
       ),
     );
   }
@@ -135,7 +141,7 @@ class _GroceriesMainBodyState extends State<GroceriesMainBody>
           Container(
             padding: const EdgeInsets.all(22),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(8),
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,

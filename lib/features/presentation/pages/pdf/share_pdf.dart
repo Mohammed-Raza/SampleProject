@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gap/gap.dart';
 import 'package:sample_project/core/extensions/build_extensions.dart';
 import 'package:sample_project/core/extensions/context_extension.dart';
 import 'package:sample_project/features/presentation/pages/pdf/animated_fab.dart';
@@ -10,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/enums.dart';
 import '../../bloc/dynamic_pdf/share_pdf_cubit.dart';
 import '../../widgets/common_widgets.dart';
+import '../../widgets/responsive_page.dart';
 
 class ShareDynamicPdfScreen extends StatefulWidget {
   const ShareDynamicPdfScreen({super.key});
@@ -24,67 +24,69 @@ class _ShareDynamicPdfScreenState extends State<ShareDynamicPdfScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.sharePdf)),
-      body: BlocBuilder<SharePdfCubit, SharePdfState>(
-        builder: (context, state) {
-          return SizedBox(
-            width: context.width,
-            height: context.height,
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(15),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      spacing: 10,
-                      children: [
-                        Column(
-                          spacing: 5,
+      body: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Theme.of(context).colorScheme.primary.withValues(alpha: 0.07),
+              Theme.of(context).colorScheme.surfaceContainerLow,
+              Theme.of(context).colorScheme.surface,
+            ],
+          ),
+        ),
+        child: BlocBuilder<SharePdfCubit, SharePdfState>(
+          builder: (context, state) {
+            return SizedBox(
+              width: context.width,
+              height: context.height,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 960),
+                      child: SingleChildScrollView(
+                        padding: EdgeInsets.fromLTRB(
+                          context.width < 600 ? 16 : 24,
+                          16,
+                          context.width < 600 ? 16 : 24,
+                          96,
+                        ),
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          spacing: 18,
                           children: [
-                            _BuildText(
-                                label: context.l10n.sharePdfInstructionsIntro),
-                            _BuildText(
-                                label:
-                                    context.l10n.sharePdfInstructionCreateTable,
-                                color: Colors.cyan),
-                            _BuildText(
-                                label: context.l10n.sharePdfInstructionSharePdf,
-                                color: Colors.deepOrange),
-                            _BuildText(
-                                label:
-                                    context.l10n.sharePdfInstructionAddImages,
-                                color: Colors.pink),
+                            ResponsiveHeroPanel(
+                              icon: Icons.picture_as_pdf_outlined,
+                              title: context.l10n.sharePdf,
+                              description: context.l10n.sharePdfDescription,
+                              trailing: [
+                                MetricPill(
+                                    label: context.l10n.columns, value: '4'),
+                                MetricPill(
+                                    label: context.l10n.rowsCount,
+                                    value:
+                                        '${context.read<SharePdfCubit>().rowsCount}'),
+                              ],
+                            ),
+                            ResponsivePanel(child: SharePdfTableView()),
+                            ResponsivePanel(child: ImageCaptureView())
                           ],
                         ),
-                        SharePdfTableView(),
-                        Gap(5),
-                        ImageCaptureView()
-                      ],
+                      ),
                     ),
                   ),
-                ),
-                AnimatedFloatingActionButtons()
-              ],
-            ),
-          );
-        },
+                  AnimatedFloatingActionButtons()
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
-  }
-}
-
-class _BuildText extends StatelessWidget {
-  final String label;
-  final Color? color;
-  const _BuildText({required this.label, this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(label,
-        style:
-            TextStyle(color: color, fontSize: 13, fontWeight: FontWeight.bold));
   }
 }
 
@@ -255,15 +257,13 @@ class ImageCaptureView extends StatelessWidget {
             Visibility(
               visible: cubit.processedImage != null &&
                   state is! ImageCaptureLoadingState,
-              child: ElevatedButton(
+              child: FilledButton.icon(
                   onPressed: cubit.deleteProcessedImage,
-                  style: ElevatedButton.styleFrom(
-                      fixedSize: Size(context.width, 45),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
+                  style: FilledButton.styleFrom(
+                      minimumSize: const Size(double.infinity, 45),
                       backgroundColor: Colors.red),
-                  child: const Text('Delete Image',
-                      style: TextStyle(color: Colors.white))),
+                  icon: const Icon(Icons.delete_outline),
+                  label: Text(context.l10n.deleteImage)),
             )
           ],
         );

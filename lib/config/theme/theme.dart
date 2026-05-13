@@ -68,8 +68,8 @@ class CustomTheme {
       cardTheme: CardThemeData(
         color: Colors.white.withValues(alpha: 0.94),
         shadowColor: config.shadowColor.withValues(alpha: 0.22),
-        elevation: 10,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+        elevation: 6,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         margin: EdgeInsets.zero,
         surfaceTintColor: Colors.white,
       ),
@@ -80,7 +80,7 @@ class CustomTheme {
           side: BorderSide(color: colorScheme.primary.withValues(alpha: 0.18)),
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(8),
           ),
         ),
       ),
@@ -164,7 +164,7 @@ class CustomTheme {
       inputDecorationTheme: darkInputThemeData,
       cardTheme: CardThemeData(
         color: const Color(0xFF1A201C),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         margin: EdgeInsets.zero,
         elevation: 6,
       ),
@@ -178,7 +178,7 @@ class CustomTheme {
         foregroundColor: Colors.white,
         elevation: 0,
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         textStyle: GoogleFonts.dmSans(fontWeight: FontWeight.w700),
       ),
     );
@@ -212,7 +212,7 @@ class CustomTheme {
       );
 
   static OutlineInputBorder _border(Color color) => OutlineInputBorder(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(color: color),
       );
 }

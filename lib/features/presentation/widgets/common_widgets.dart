@@ -42,7 +42,7 @@ class BuildCachedNetworkImage extends StatelessWidget {
             width: width,
             filterQuality: FilterQuality.high,
             imageUrl: imageUrl,
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
             progressIndicatorBuilder: (context, url, downloadProgress) =>
                 FittedBox(
                   child: Transform.scale(

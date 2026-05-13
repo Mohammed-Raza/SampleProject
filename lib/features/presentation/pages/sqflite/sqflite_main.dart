@@ -12,6 +12,7 @@ import '../../../../core/mixins/common_mixin.dart';
 import '../../../data/models/category_model.dart';
 import '../../widgets/common_widgets.dart';
 import '../../widgets/page_error.dart';
+import '../../widgets/responsive_page.dart';
 
 class SqfLiteMain extends StatefulWidget {
   const SqfLiteMain({super.key});
@@ -32,11 +33,12 @@ class _SqfLiteMainState extends State<SqfLiteMain> with ValidatorsMixin {
   @override
   Widget build(BuildContext context) {
     var cubit = context.read<LocalDbCubit>();
-    return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.getLocalDbData)),
+    return ResponsivePage(
+      title: context.l10n.getLocalDbData,
+      scrollable: false,
       floatingActionButton: FloatingActionButton(
           onPressed: _openDialog, child: const Icon(Icons.add)),
-      body: BlocBuilder<LocalDbCubit, LocalDbState>(
+      child: BlocBuilder<LocalDbCubit, LocalDbState>(
           bloc: cubit,
           builder: (context, state) {
             switch (state.runtimeType) {
@@ -50,32 +52,53 @@ class _SqfLiteMainState extends State<SqfLiteMain> with ValidatorsMixin {
                 }
                 final categories = successState.itemsMapData!.keys.toList();
 
-                return ListView.builder(
-                  itemCount: categories.length,
-                  itemBuilder: (context, index) {
-                    String categoryName = categories[index];
-                    List<CategoryModel> items =
-                        successState.itemsMapData![categoryName] ?? [];
-
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Category Header
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                          child: Text(
-                            categoryName.toUpperCase(),
-                            style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.teal),
-                          ),
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    ResponsiveHeroPanel(
+                      icon: Icons.storage_rounded,
+                      title: context.l10n.getLocalDbData,
+                      description: context.l10n.sqfLiteDescription,
+                      trailing: [
+                        MetricPill(
+                          label: context.l10n.category,
+                          value: '${categories.length}',
                         ),
-                        // List of items in this category
-                        ...items.map((item) => GroceryItemCard(item: item))
                       ],
-                    );
-                  },
+                    ),
+                    const SizedBox(height: 18),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: categories.length,
+                        itemBuilder: (context, index) {
+                          String categoryName = categories[index];
+                          List<CategoryModel> items =
+                              successState.itemsMapData![categoryName] ?? [];
+
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Category Header
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                                child: Text(
+                                  categoryName.toUpperCase(),
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.teal),
+                                ),
+                              ),
+                              // List of items in this category
+                              ...items
+                                  .map((item) => GroceryItemCard(item: item))
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 );
               case const (LocalDataError):
                 var errorState = state as LocalDataError;
@@ -95,11 +118,11 @@ class _SqfLiteMainState extends State<SqfLiteMain> with ValidatorsMixin {
         builder: (context) => Dialog(
               insetPadding: const EdgeInsets.all(10),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
+                  borderRadius: BorderRadius.circular(8)),
               child: Container(
-                  width: double.infinity,
+                  constraints: const BoxConstraints(maxWidth: 640),
                   decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(12)),
+                      BoxDecoration(borderRadius: BorderRadius.circular(8)),
                   padding: const EdgeInsets.all(10),
                   child: const CreateDbAndAddData()),
             ));
@@ -112,12 +135,10 @@ class GroceryItemCard extends StatelessWidget {
   const GroceryItemCard({super.key, required this.item});
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.only(right: 2.0),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      child: ResponsivePanel(
+        padding: EdgeInsets.zero,
         child: ListTile(
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -131,13 +152,12 @@ class GroceryItemCard extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.edit_note_outlined,
-                        color: Colors.blue, size: 24),
+                  IconButton.filledTonal(
+                    icon: const Icon(Icons.edit_note_outlined, size: 22),
                     onPressed: () => _showEditDialog(context, item),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.delete, color: Colors.red, size: 20),
+                  IconButton.filledTonal(
+                    icon: const Icon(Icons.delete_outline, size: 20),
                     onPressed: () => _showDeleteDialog(context, item),
                   ),
                 ],

@@ -5,6 +5,7 @@ import 'package:sample_project/features/presentation/bloc/drop_downs/drop_down_c
 import 'package:sample_project/features/presentation/bloc/notifications/push_notifications_bloc.dart';
 
 import '../../components/drop_downs.dart';
+import '../../widgets/responsive_page.dart';
 
 class PushNotificationsScreen extends StatefulWidget {
   const PushNotificationsScreen({super.key});
@@ -29,49 +30,56 @@ class _PushNotificationsScreenState extends State<PushNotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     var bloc = context.read<PushNotificationsBloc>();
-    return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.pushNotifications)),
-      body: BlocBuilder<PushNotificationsBloc, PushNotificationsState>(
+    return ResponsivePage(
+      title: context.l10n.pushNotifications,
+      maxWidth: 760,
+      child: BlocBuilder<PushNotificationsBloc, PushNotificationsState>(
           builder: (context, state) {
         return Form(
           key: bloc.formKey,
           autovalidateMode: bloc.autoValidate
               ? AutovalidateMode.always
               : AutovalidateMode.disabled,
-          child: Padding(
-            padding: const EdgeInsets.all(15),
-            child: Column(
-              spacing: 20,
-              children: [
-                const SizedBox(height: 10),
-                TextFormField(
-                    controller: bloc.tokenCtrl, maxLines: 5, readOnly: true),
-                ElevatedButton(
-                    onPressed: () => bloc.add(GetAccessTokenEvent()),
-                    style: ElevatedButton.styleFrom(
-                        fixedSize: Size(context.width, 50),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        backgroundColor: Colors.cyan),
-                    child: Text(context.l10n.getAccessToken,
-                        style: const TextStyle(color: Colors.white))),
-                const SizedBox(height: 1),
-                GroceryCategoryDropdown(
-                    onChange: context.read<DropDownCubit>().loadGroceries),
-                const SizedBox(height: 1),
-                // const GroceriesDropdown(),
-                // const SizedBox(height: 1),
-                ElevatedButton(
-                    onPressed: () =>
-                        bloc.add(RequestNotificationEvent(context)),
-                    style: ElevatedButton.styleFrom(
-                        fixedSize: Size(context.width, 50),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8))),
-                    child: Text(context.l10n.pushNotifications,
-                        style: const TextStyle(color: Colors.white))),
-              ],
-            ),
+          child: Column(
+            spacing: 18,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ResponsiveHeroPanel(
+                icon: Icons.notifications_active_outlined,
+                title: context.l10n.pushNotifications,
+                description: context.l10n.pushNotificationsDescription,
+              ),
+              ResponsivePanel(
+                child: Column(
+                  spacing: 18,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    TextFormField(
+                      controller: bloc.tokenCtrl,
+                      maxLines: 5,
+                      readOnly: true,
+                      decoration: InputDecoration(
+                        labelText: context.l10n.getAccessToken,
+                        prefixIcon: const Icon(Icons.key_rounded),
+                      ),
+                    ),
+                    FilledButton.icon(
+                      onPressed: () => bloc.add(GetAccessTokenEvent()),
+                      icon: const Icon(Icons.vpn_key_outlined),
+                      label: Text(context.l10n.getAccessToken),
+                    ),
+                    GroceryCategoryDropdown(
+                        onChange: context.read<DropDownCubit>().loadGroceries),
+                    FilledButton.icon(
+                      onPressed: () =>
+                          bloc.add(RequestNotificationEvent(context)),
+                      icon: const Icon(Icons.send_rounded),
+                      label: Text(context.l10n.pushNotifications),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         );
       }),

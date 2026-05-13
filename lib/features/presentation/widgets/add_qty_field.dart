@@ -28,7 +28,7 @@ class _AddQtyTextFieldState extends State<AddQtyTextField> {
       color: colorScheme.surfaceContainerLowest.withValues(alpha: 0.94),
       elevation: 0,
       shape: RoundedRectangleBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
           side: BorderSide(color: colorScheme.outlineVariant)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

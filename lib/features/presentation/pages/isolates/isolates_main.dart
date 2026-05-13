@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sample_project/core/extensions/context_extension.dart';
 import 'package:sample_project/features/presentation/providers/media_provider.dart';
 import 'package:sample_project/features/presentation/widgets/common_widgets.dart';
+import 'package:sample_project/features/presentation/widgets/responsive_page.dart';
 
 import 'long_lived_isolates.dart';
 
@@ -27,10 +28,17 @@ class _IsolatesMainScreenState extends State<IsolatesMainScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.isolation)),
-      body: Column(
+    return ResponsivePage(
+      title: context.l10n.isolation,
+      scrollable: false,
+      child: Column(
         children: [
+          ResponsiveHeroPanel(
+            icon: Icons.memory_rounded,
+            title: context.l10n.isolation,
+            description: context.l10n.isolatesDescription,
+          ),
+          const SizedBox(height: 14),
           TabBar(
               dividerColor: Colors.transparent,
               indicatorSize: TabBarIndicatorSize.tab,

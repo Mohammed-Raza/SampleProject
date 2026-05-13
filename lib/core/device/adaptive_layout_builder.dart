@@ -31,8 +31,7 @@ class AdaptiveLayoutBuilder extends StatelessWidget {
   DeviceResolutionType _getDeviceType(double width) {
     if (width < mobileBreakpoint) {
       return DeviceResolutionType.mobile;
-    } else if (width > mobileBreakpoint &&
-        width < ScreenBreakPoints.desktopBreakPoint) {
+    } else if (width < tabletBreakpoint) {
       return DeviceResolutionType.tab;
     } else {
       return DeviceResolutionType.desktop;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:sample_project/core/extensions/context_extension.dart';
 
 class CarouselScrollScreen extends StatefulWidget {
   const CarouselScrollScreen({super.key});
@@ -29,8 +30,8 @@ class _CarouselScrollScreenState extends State<CarouselScrollScreen> {
           SliverAppBar(
             key: centerKey,
             pinned: true,
-            expandedHeight: 250.0,
-            backgroundColor: Colors.teal.shade100,
+            expandedHeight: 280.0,
+            backgroundColor: Theme.of(context).colorScheme.primary,
             // title: const Text("Carousel Scroll View"),
             flexibleSpace: FlexibleSpaceBar(
               background: CarouselSlider(
@@ -62,7 +63,7 @@ class _CarouselScrollScreenState extends State<CarouselScrollScreen> {
               minHeight: 60.0,
               maxHeight: 60.0,
               child: Container(
-                color: Colors.orangeAccent,
+                color: Theme.of(context).colorScheme.primary,
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: const Text(
@@ -79,9 +80,23 @@ class _CarouselScrollScreenState extends State<CarouselScrollScreen> {
           // 3. SCROLLABLE LIST CONTENT
           SliverList(
             delegate: SliverChildBuilderDelegate(
-              (context, index) => ListTile(
-                title: Text("List Item ${index + 1}"),
-                subtitle: const Text("Scroll to see headers pin"),
+              (context, index) => Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surfaceContainerLowest,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.outlineVariant,
+                    ),
+                  ),
+                  child: ListTile(
+                    title: Text("List Item ${index + 1}",
+                        style: context.titleMedium),
+                    subtitle: const Text("Scroll to see headers pin"),
+                  ),
+                ),
               ),
               childCount: 30,
             ),

@@ -92,11 +92,10 @@ class _CreateDbAndAddDataState extends State<CreateDbAndAddData>
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(width: 10),
-                Text(context.l10n.addGroceryData, style: context.bodyLarge),
+                Text(context.l10n.addGroceryData, style: context.titleLarge),
                 IconButton(
                     onPressed: () => context.pop(),
-                    icon: const Icon(Icons.close))
+                    icon: const Icon(Icons.close_rounded))
               ],
             ),
             const Gap(20),
@@ -108,7 +107,7 @@ class _CreateDbAndAddDataState extends State<CreateDbAndAddData>
                 controller: _nameController,
                 decoration: InputDecoration(
                   labelText: context.l10n.groceryName,
-                  border: OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.shopping_basket_outlined),
                 ),
                 validator: (val) => valueEmptyValidator(
                     val!, context, context.l10n.groceryName)),
@@ -116,20 +115,21 @@ class _CreateDbAndAddDataState extends State<CreateDbAndAddData>
             TextFormField(
                 controller: _descController,
                 maxLines: 3,
-                decoration:
-                    InputDecoration(labelText: context.l10n.description),
+                decoration: InputDecoration(
+                  labelText: context.l10n.description,
+                  prefixIcon: const Icon(Icons.notes_rounded),
+                ),
                 validator: (val) => valueEmptyValidator(
                     val!, context, context.l10n.description)),
             const SizedBox(height: 30),
-            ElevatedButton(
+            FilledButton.icon(
               onPressed: _saveToDatabase,
-              style: ElevatedButton.styleFrom(
-                  fixedSize: Size(context.width, 50),
-                  backgroundColor: Colors.teal),
-              child: loaderEnable
+              style: FilledButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 50)),
+              icon: loaderEnable
                   ? const CircularIndicator()
-                  : Text(context.l10n.submit,
-                      style: const TextStyle(color: Colors.white)),
+                  : const Icon(Icons.save_outlined),
+              label: Text(context.l10n.submit),
             ),
           ],
         ),

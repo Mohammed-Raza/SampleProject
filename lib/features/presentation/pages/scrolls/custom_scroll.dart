@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_project/core/extensions/context_extension.dart';
 
 class CustomScrollScreen extends StatefulWidget {
   const CustomScrollScreen({super.key});
@@ -23,13 +24,17 @@ class _CustomScrollScreenState extends State<CustomScrollScreen> {
         slivers: <Widget>[
           // 2. PINNED APP BAR
           // We use the centerKey here so it is the start of the "positive" flow
-          const SliverAppBar(
+          SliverAppBar(
             key: centerKey,
             pinned: true,
-            expandedHeight: 150.0,
-            flexibleSpace: const FlexibleSpaceBar(
-              title: Text("Custom Scroll View"),
-              background: FlutterLogo(),
+            expandedHeight: 210.0,
+            flexibleSpace: FlexibleSpaceBar(
+              title: const Text("Custom Scroll View"),
+              background: _ScrollHero(
+                icon: Icons.view_stream_outlined,
+                description:
+                    "Pinned app bars, persistent headers, and slivers.",
+              ),
             ),
           ),
 
@@ -41,7 +46,7 @@ class _CustomScrollScreenState extends State<CustomScrollScreen> {
               minHeight: 60.0,
               maxHeight: 60.0,
               child: Container(
-                color: Colors.orangeAccent,
+                color: Theme.of(context).colorScheme.primary,
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: const Text(
@@ -61,9 +66,17 @@ class _CustomScrollScreenState extends State<CustomScrollScreen> {
             itemBuilder: (BuildContext context, int index) {
               return Container(
                 alignment: Alignment.center,
-                color: Colors.green[200 + (bottom[index] % 4) * 100],
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surfaceContainerLowest,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.outlineVariant,
+                  ),
+                ),
                 height: 100,
-                child: Text('Bottom Item: ${bottom[index]}'),
+                child: Text('Bottom Item: ${bottom[index]}',
+                    style: context.titleMedium),
               );
             },
           ),
@@ -77,6 +90,49 @@ class _CustomScrollScreenState extends State<CustomScrollScreen> {
             bottom.add(bottom.length);
           });
         },
+      ),
+    );
+  }
+}
+
+class _ScrollHero extends StatelessWidget {
+  final IconData icon;
+  final String description;
+
+  const _ScrollHero({
+    required this.icon,
+    required this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            colorScheme.primary,
+            colorScheme.tertiary.withValues(alpha: 0.74),
+          ],
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 44, 20, 60),
+        child: Row(
+          children: [
+            Icon(icon, color: Colors.white, size: 42),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                description,
+                style: context.bodyLarge?.copyWith(color: Colors.white70),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

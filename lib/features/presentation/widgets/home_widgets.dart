@@ -23,7 +23,7 @@ class GroceryCard extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(32),
+        borderRadius: BorderRadius.circular(8),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -45,7 +45,7 @@ class GroceryCard extends StatelessWidget {
         child: InkWell(
           onTap: () =>
               context.go('${Routes.groceriesMainPath}/${groceryType.name}'),
-          borderRadius: BorderRadius.circular(32),
+          borderRadius: BorderRadius.circular(8),
           child: Padding(
             padding: const EdgeInsets.all(14),
             child: Column(
@@ -114,7 +114,7 @@ class BuildActiveItemView extends StatelessWidget {
               colorScheme.primary.withValues(alpha: 0.78),
             ],
           ),
-          borderRadius: BorderRadius.circular(22),
+          borderRadius: BorderRadius.circular(8),
           boxShadow: [
             BoxShadow(
               color: colorScheme.primary.withValues(alpha: 0.22),

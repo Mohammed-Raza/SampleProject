@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_project/core/extensions/context_extension.dart';
 
 class NestedScrollScreen extends StatefulWidget {
   const NestedScrollScreen({super.key});
@@ -32,7 +33,24 @@ class _NestedScrollScreenState extends State<NestedScrollScreen> {
                   title: const Text(
                       'Nested Scroll View'), // This is the title in the app bar.
                   pinned: true,
-                  expandedHeight: 150.0,
+                  expandedHeight: 210.0,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Theme.of(context).colorScheme.primary,
+                            Theme.of(context)
+                                .colorScheme
+                                .tertiary
+                                .withValues(alpha: 0.72),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                   // The "forceElevated" property causes the SliverAppBar to show
                   // a shadow. The "innerBoxIsScrolled" parameter is true when the
                   // inner scroll view is scrolled beyond its "zero" point, i.e.
@@ -81,7 +99,7 @@ class _NestedScrollScreenState extends State<NestedScrollScreen> {
                                   context),
                         ),
                         SliverPadding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(16.0),
                           // In this example, the inner scroll view has
                           // fixed-height list items, hence the use of
                           // SliverFixedExtentList. However, one could use any
@@ -99,7 +117,13 @@ class _NestedScrollScreenState extends State<NestedScrollScreen> {
                             itemBuilder: (BuildContext context, int index) {
                               // This builder is called for each child.
                               // In this example, we just number each list item.
-                              return ListTile(title: Text('Item $index'));
+                              return Card(
+                                elevation: 0,
+                                child: ListTile(
+                                  title: Text('Item $index',
+                                      style: context.titleMedium),
+                                ),
+                              );
                             },
                           ),
                         ),

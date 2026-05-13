@@ -28,66 +28,69 @@ class _LanguageScreenState extends State<LanguageScreen> with LanguageMixin {
   Widget build(BuildContext context) {
     return Dialog(
       insetPadding: const EdgeInsets.all(10),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: SizedBox(
-        width: double.infinity,
+        width: context.width < 600 ? double.infinity : 520,
         child: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(20),
           child:
               Consumer<LanguageProvider>(builder: (context, provider, child) {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(context.l10n.selectLanguage),
+                Text(context.l10n.selectLanguage, style: context.titleLarge),
                 const Divider(height: 50),
-                Row(
-                  spacing: 20,
+                GridView(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: context.width < 420 ? 1 : 2,
+                    crossAxisSpacing: 14,
+                    mainAxisSpacing: 14,
+                    childAspectRatio: context.width < 420 ? 3.2 : 1.25,
+                  ),
                   children: [
                     _LanguageCard(
-                        languageName: 'English',
-                        languageLetter: 'A',
-                        color: Colors.pink,
-                        languageCode: Constants.english,
-                        selectedCode: provider.selectedLanguageCode,
-                        onTap: provider.selectLanguage),
+                      languageName: 'English',
+                      languageLetter: 'A',
+                      color: Colors.pink,
+                      languageCode: Constants.english,
+                      selectedCode: provider.selectedLanguageCode,
+                      onTap: provider.selectLanguage,
+                    ),
                     _LanguageCard(
-                        languageName: 'Hindi',
-                        languageLetter: 'अ',
-                        color: Colors.cyan,
-                        languageCode: Constants.hindi,
-                        selectedCode: provider.selectedLanguageCode,
-                        onTap: provider.selectLanguage),
-                  ],
-                ),
-                const Gap(20),
-                Row(
-                  spacing: 20,
-                  children: [
+                      languageName: 'Hindi',
+                      languageLetter: 'अ',
+                      color: Colors.cyan,
+                      languageCode: Constants.hindi,
+                      selectedCode: provider.selectedLanguageCode,
+                      onTap: provider.selectLanguage,
+                    ),
                     _LanguageCard(
-                        languageName: 'Telugu',
-                        languageLetter: 'ఆ',
-                        color: Colors.deepOrange,
-                        languageCode: Constants.telugu,
-                        selectedCode: provider.selectedLanguageCode,
-                        onTap: provider.selectLanguage),
+                      languageName: 'Telugu',
+                      languageLetter: 'ఆ',
+                      color: Colors.deepOrange,
+                      languageCode: Constants.telugu,
+                      selectedCode: provider.selectedLanguageCode,
+                      onTap: provider.selectLanguage,
+                    ),
                     _LanguageCard(
-                        languageName: 'Urdu',
-                        languageLetter: 'یور',
-                        color: Colors.teal,
-                        languageCode: Constants.urdu,
-                        selectedCode: provider.selectedLanguageCode,
-                        onTap: provider.selectLanguage)
+                      languageName: 'Urdu',
+                      languageLetter: 'یور',
+                      color: Colors.teal,
+                      languageCode: Constants.urdu,
+                      selectedCode: provider.selectedLanguageCode,
+                      onTap: provider.selectLanguage,
+                    )
                   ],
                 ),
                 const Gap(15),
-                ElevatedButton(
-                    style: ButtonStyle(
-                        fixedSize:
-                            WidgetStatePropertyAll(Size(context.width, 50)),
-                        shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)))),
+                FilledButton.icon(
+                    style: FilledButton.styleFrom(
+                        minimumSize: const Size(double.infinity, 50)),
                     onPressed: () => provider.onApplyOfLanguage(context),
-                    child: Text(context.l10n.apply))
+                    icon: const Icon(Icons.check_rounded),
+                    label: Text(context.l10n.apply))
               ],
             );
           }),
@@ -119,45 +122,42 @@ class _LanguageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isSelected = languageCode == selectedCode;
-    return Expanded(
-      child: InkWell(
-        onTap: () => onTap(languageCode),
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                  color: isSelected ? color : context.languageBorderColor,
-                  width: 2)),
-          padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
-          child: Column(
-            spacing: 10,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Align(
-                  alignment: Alignment.centerRight,
-                  child: Icon(
-                      isSelected ? Icons.check_circle : Icons.circle_outlined,
-                      color: isSelected ? color : Colors.grey,
-                      size: 30)),
-              Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                    color: color, borderRadius: BorderRadius.circular(10)),
-                padding: const EdgeInsets.all(10),
-                alignment: Alignment.center,
-                child: Text(languageLetter,
-                    style: GoogleFonts.alatsi(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold)),
-              ),
-              Text(
+    return InkWell(
+      onTap: () => onTap(languageCode),
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+                color: isSelected ? color : context.languageBorderColor,
+                width: 2)),
+        padding: const EdgeInsets.all(12),
+        child: Row(
+          spacing: 12,
+          children: [
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                  color: color, borderRadius: BorderRadius.circular(8)),
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.center,
+              child: Text(languageLetter,
+                  style: GoogleFonts.alatsi(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold)),
+            ),
+            Expanded(
+              child: Text(
                 languageName,
-                style: GoogleFonts.aBeeZee(fontSize: 20),
-              )
-            ],
-          ),
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.aBeeZee(fontSize: 18),
+              ),
+            ),
+            Icon(isSelected ? Icons.check_circle : Icons.circle_outlined,
+                color: isSelected ? color : Colors.grey, size: 24)
+          ],
         ),
       ),
     );

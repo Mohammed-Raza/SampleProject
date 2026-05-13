@@ -22,7 +22,7 @@ class _CartPageState extends State<CartPage> {
           padding: const EdgeInsets.all(28),
           decoration: BoxDecoration(
             color: colorScheme.surfaceContainerLowest.withValues(alpha: 0.94),
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(8),
             boxShadow: [
               BoxShadow(
                 color: colorScheme.primary.withValues(alpha: 0.12),
