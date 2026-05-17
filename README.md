@@ -76,13 +76,37 @@ Run static analysis:
 flutter analyze
 ```
 
-Run tests:
+## Testing
 
+The project is set up with three types of tests:
+
+### 1. Unit Tests
+Unit tests are used to test individual functions, methods, or classes in isolation.
+Located in: `test/unit/`
+
+Run unit tests:
 ```sh
-flutter test
+flutter test test/unit
 ```
 
-The current `test/widget_test.dart` is still the default counter-style smoke test and should be updated before relying on it as app coverage.
+### 2. Widget Tests
+Widget tests are used to test individual widgets or small UI components.
+Located in: `test/widget/`
+
+Run widget tests:
+```sh
+flutter test test/widget
+```
+
+### 3. Integration Tests
+Integration tests are used to test the app as a whole, running on a real device or emulator.
+Located in: `integration_test/`
+
+Run integration tests:
+```sh
+flutter test integration_test
+```
+Note: Ensure a device or emulator is connected before running integration tests.
 
 ## Running The App
 

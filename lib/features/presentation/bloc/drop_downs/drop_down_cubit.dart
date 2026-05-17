@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:sample_project/core/error/exception_handler.dart';
 import 'package:sample_project/features/domain/entities/drop_down_entity.dart';
-import 'package:sample_project/features/domain/usecases/grocery_usecases.dart';
+import 'package:sample_project/features/domain/use_cases/grocery_use_cases.dart';
 
 part 'drop_down_state.dart';
 
@@ -11,7 +11,7 @@ class DropDownCubit extends Cubit<DropDownState> {
 
   final ExceptionHandler _exceptionHandler = ExceptionHandler();
 
-  final GroceryUserCases _groceryUserCases;
+  final GroceryUseCases _groceryUserCases;
 
   List<DropDownEntity> categories = [], groceries = [];
 

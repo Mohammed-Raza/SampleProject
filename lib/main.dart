@@ -6,7 +6,7 @@ import 'package:sample_project/config/theme/theme.dart';
 import 'package:sample_project/core/firebase/firebase_messaging.dart';
 import 'package:sample_project/features/data/repository/firebase_repo_impl.dart';
 import 'package:sample_project/features/data/repository/groceries_repo_impl.dart';
-import 'package:sample_project/features/domain/usecases/grocery_usecases.dart';
+import 'package:sample_project/features/domain/use_cases/grocery_use_cases.dart';
 import 'package:sample_project/features/presentation/bloc/drop_downs/drop_down_cubit.dart';
 import 'package:sample_project/features/presentation/bloc/dynamic_pdf/share_pdf_cubit.dart';
 import 'package:sample_project/features/presentation/bloc/groceries/groceries_bloc.dart';
@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp>
       providers: [
         BlocProvider(
             create: (_) => GroceriesBloc(
-                GroceryUserCases(GroceriesRepoImpl(baseService)))),
+                GroceryUseCases(GroceriesRepoImpl(baseService)))),
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => MediaProvider()),
@@ -62,7 +62,7 @@ class _MyAppState extends State<MyApp>
                 PushNotificationsBloc(FirebaseRepoImpl(baseService))),
         BlocProvider(
             create: (_) => DropDownCubit(
-                GroceryUserCases(GroceriesRepoImpl(baseService)))),
+                GroceryUseCases(GroceriesRepoImpl(baseService)))),
         BlocProvider(create: (_) => SharePdfCubit()),
         BlocProvider(create: (_) => LocalDbCubit()),
       ],
