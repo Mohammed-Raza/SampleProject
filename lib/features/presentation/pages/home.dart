@@ -258,7 +258,7 @@ class _HomeHeroCard extends StatelessWidget {
             ),
             child: Text(
               context.l10n.exploreSampleApp,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w700,
               ),

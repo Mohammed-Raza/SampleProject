@@ -75,7 +75,7 @@ mixin CommonMixin {
                   const Divider(),
                   const SizedBox(height: 10),
                   Text(context.l10n.fullDescription,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.teal, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 10),
                   Text(description,

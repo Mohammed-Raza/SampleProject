@@ -52,8 +52,8 @@ class _MyAppState extends State<MyApp>
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (_) => GroceriesBloc(
-                GroceryUseCases(GroceriesRepoImpl(baseService)))),
+            create: (_) =>
+                GroceriesBloc(GroceryUseCases(GroceriesRepoImpl(baseService)))),
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => MediaProvider()),
@@ -61,8 +61,8 @@ class _MyAppState extends State<MyApp>
             create: (_) =>
                 PushNotificationsBloc(FirebaseRepoImpl(baseService))),
         BlocProvider(
-            create: (_) => DropDownCubit(
-                GroceryUseCases(GroceriesRepoImpl(baseService)))),
+            create: (_) =>
+                DropDownCubit(GroceryUseCases(GroceriesRepoImpl(baseService)))),
         BlocProvider(create: (_) => SharePdfCubit()),
         BlocProvider(create: (_) => LocalDbCubit()),
       ],

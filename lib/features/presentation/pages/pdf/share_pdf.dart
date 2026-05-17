@@ -72,14 +72,14 @@ class _ShareDynamicPdfScreenState extends State<ShareDynamicPdfScreen>
                                         '${context.read<SharePdfCubit>().rowsCount}'),
                               ],
                             ),
-                            ResponsivePanel(child: SharePdfTableView()),
-                            ResponsivePanel(child: ImageCaptureView())
+                            const ResponsivePanel(child: SharePdfTableView()),
+                            const ResponsivePanel(child: ImageCaptureView())
                           ],
                         ),
                       ),
                     ),
                   ),
-                  AnimatedFloatingActionButtons()
+                  const AnimatedFloatingActionButtons()
                 ],
               ),
             );
