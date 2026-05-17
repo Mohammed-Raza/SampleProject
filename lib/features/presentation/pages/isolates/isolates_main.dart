@@ -82,7 +82,7 @@ class _ShortLivedIsolationState extends State<ShortLivedIsolation> {
               TextSpan(text: context.l10n.shortLivedIntroPrefix),
               TextSpan(
                   text: context.l10n.shortLivedIntroHighlight,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.blueAccent,
                       fontSize: 16,
                       fontWeight: FontWeight.bold)),
@@ -132,7 +132,7 @@ class _ShortLivedIsolationState extends State<ShortLivedIsolation> {
                                 borderRadius: BorderRadius.circular(8)),
                             backgroundColor: Colors.red),
                         child: Text(context.l10n.deleteImage,
-                            style: TextStyle(color: Colors.white))),
+                            style: const TextStyle(color: Colors.white))),
                   )
                 ],
               ),

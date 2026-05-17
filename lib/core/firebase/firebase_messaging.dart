@@ -154,10 +154,10 @@ class FirebasePushNotifications {
   static void deleteToken() async =>
       await FirebaseMessaging.instance.deleteToken();
 
-  bool get _isAuthorized =>
-      notificationSettings != null &&
-      notificationSettings?.authorizationStatus ==
-          AuthorizationStatus.authorized;
+  // bool get _isAuthorized =>
+  //     notificationSettings != null &&
+  //     notificationSettings?.authorizationStatus ==
+  //         AuthorizationStatus.authorized;
 
   void clearNotificationBadge() async {
     if (await FlutterAppBadgeControl.isAppBadgeSupported()) {
