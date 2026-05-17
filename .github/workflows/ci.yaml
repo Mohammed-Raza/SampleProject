@@ -56,7 +56,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: flutter-apk
-          path: build/app/outputs/flutter-apk/app-farmersMarket-release.apk
+          path: build/app/outputs/flutter-apk/app-farmersmarket-release.apk
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
