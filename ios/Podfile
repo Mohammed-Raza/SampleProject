@@ -8,6 +8,14 @@ project 'Runner', {
   'Debug' => :debug,
   'Profile' => :release,
   'Release' => :release,
+
+  'Debug-farmersMarket' => :debug,
+  'Profile-farmersMarket' => :release,
+  'Release-farmersMarket' => :release,
+
+  'Debug-healthyFood' => :debug,
+  'Profile-healthyFood' => :release,
+  'Release-healthyFood' => :release,
 }
 
 def flutter_root
