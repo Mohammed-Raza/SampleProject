@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:sample_project/core/error/exception_handler.dart';
 import 'package:sample_project/features/domain/entities/groceries_entity.dart';
-import 'package:sample_project/features/domain/usecases/grocery_usecases.dart';
+import 'package:sample_project/features/domain/use_cases/grocery_use_cases.dart';
 import '../../../../core/utils/records_typedefs.dart';
 import '../../../data/models/groceries_model.dart';
 
@@ -19,7 +19,7 @@ class GroceriesBloc extends Bloc<GroceriesEvent, GroceriesState> {
     on<ChangeOutQtyEvent>(_onChangeOfTextField);
   }
 
-  final GroceryUserCases _groceryUserCases;
+  final GroceryUseCases _groceryUserCases;
 
   List<GroceriesEntity> groceries = [];
 
