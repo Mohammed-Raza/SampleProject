@@ -50,13 +50,13 @@ jobs:
           java-version: '17'
 
       - name: Build APK
-        run: flutter build apk --flavor farmersMarket --no-tree-shake-icons
+        run: flutter build apk --flavor farmersMarket
 
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v4
         with:
           name: flutter-apk
-          path: build/app/outputs/flutter-apk/app-flutter-release.apk
+          path: build/app/outputs/flutter-apk/app-farmersMarket-release.apk
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
