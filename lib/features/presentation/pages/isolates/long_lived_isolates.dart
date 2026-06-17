@@ -47,7 +47,7 @@ class _LongLivedIsolationState extends State<LongLivedIsolation> {
                   TextSpan(text: context.l10n.longLivedIntroPrefix),
                   TextSpan(
                       text: context.l10n.longLivedIntroHighlight,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.blueAccent,
                           fontSize: 16,
                           fontWeight: FontWeight.bold)),

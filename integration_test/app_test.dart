@@ -13,7 +13,7 @@ void main() {
       app.main();
       await tester.pumpAndSettle();
 
-      // Verify that the app starts. 
+      // Verify that the app starts.
       // Replace with an actual check for your home screen content.
       // expect(find.byType(MaterialApp), findsOneWidget);
     });

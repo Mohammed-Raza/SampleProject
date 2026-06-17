@@ -178,10 +178,10 @@ class GroceryItemCard extends StatelessWidget {
                 onTap: () => CommonMixin.showFullDescription(
                     context, item.name, item.description),
                 child: Padding(
-                  padding: EdgeInsets.only(top: 4.0),
+                  padding: const EdgeInsets.only(top: 4.0),
                   child: Text(
                     context.l10n.readMore,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
                         fontSize: 12),

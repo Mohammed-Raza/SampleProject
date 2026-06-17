@@ -24,12 +24,12 @@ class _CustomScrollScreenState extends State<CustomScrollScreen> {
         slivers: <Widget>[
           // 2. PINNED APP BAR
           // We use the centerKey here so it is the start of the "positive" flow
-          SliverAppBar(
+          const SliverAppBar(
             key: centerKey,
             pinned: true,
             expandedHeight: 210.0,
             flexibleSpace: FlexibleSpaceBar(
-              title: const Text("Custom Scroll View"),
+              title: Text("Custom Scroll View"),
               background: _ScrollHero(
                 icon: Icons.view_stream_outlined,
                 description:

@@ -90,7 +90,7 @@ class _CreateTableDialogState extends State<CreateTableDialog> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8))),
                           child: Text(context.l10n.cancel,
-                              style: TextStyle(color: Colors.white))),
+                              style: const TextStyle(color: Colors.white))),
                     ),
                     Expanded(
                       child: ElevatedButton(
@@ -103,7 +103,7 @@ class _CreateTableDialogState extends State<CreateTableDialog> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8))),
                           child: Text(context.l10n.update,
-                              style: TextStyle(color: Colors.white))),
+                              style: const TextStyle(color: Colors.white))),
                     ),
                   ],
                 )
